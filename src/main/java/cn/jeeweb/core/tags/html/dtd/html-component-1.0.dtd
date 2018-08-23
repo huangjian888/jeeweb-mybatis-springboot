@@ -1,0 +1,17 @@
+<!--根节点-->  
+<!ELEMENT html-component ((js|css|fragment)*)>  
+<!ATTLIST html-component
+namespace CDATA #IMPLIED
+>
+
+<!-- JS片段 -->  
+<!ELEMENT js (#PCDATA)>  
+    <!ATTLIST js name CDATA #REQUIRED>  
+  
+<!-- css片段 -->  
+<!ELEMENT css (#PCDATA)>  
+    <!ATTLIST css name CDATA #REQUIRED>  
+
+<!-- HTML FRAGMENT 片段 -->  
+<!ELEMENT fragment (#PCDATA)>  
+    <!ATTLIST fragment name CDATA #REQUIRED>  

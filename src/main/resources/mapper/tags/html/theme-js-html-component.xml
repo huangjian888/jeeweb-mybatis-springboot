@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<!DOCTYPE html-component SYSTEM "http://www.jeeweb.cn/dtd/html-component-1.0.dtd">  
+<html-component>  
+    <js name="ace-theme">  
+    <![CDATA[ 
+      	<!-- ace scripts -->
+		<script src="${staticPath}/ace/js/ace-elements.min.js"></script>
+		<script src="${staticPath}/ace/js/ace.min.js"></script>
+		<script src="${staticPath}/ace/js/ace-extra.min.js"></script>
+	    ]]>   
+    </js>
+</html-component>  

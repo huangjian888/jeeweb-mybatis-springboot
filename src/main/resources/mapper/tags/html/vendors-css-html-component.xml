@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<!DOCTYPE html-component SYSTEM "http://www.jeeweb.cn/dtd/html-component-1.0.dtd">  
+<html-component> 
+    <css name="favicon">  
+    <![CDATA[ 
+        <link rel="shortcut icon" href="${staticPath}/common/favicon.ico">
+    ]]>   
+    </css> 
+    <css name="animate">  
+    <![CDATA[ 
+        <link href="${staticPath}/vendors/animate/css/animate.css?v=3.5.2" rel="stylesheet">
+    ]]>   
+    </css>
+    <css name="bootstrap">  
+    <![CDATA[ 
+        <link href="${staticPath}/vendors/bootstrap/css/bootstrap.min.css?v=v3.2.0" rel="stylesheet">
+    ]]>   
+    </css>
+    <css name="font-awesome">  
+    <![CDATA[ 
+        <link href="${staticPath}/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    ]]>   
+    </css>
+    <css name="iCheck">  
+    <![CDATA[ 
+        <link type="text/css" rel="stylesheet" href="${staticPath}/vendors/iCheck/skins/all.css">
+    ]]>   
+    </css>
+    <css name="datepicker">  
+    <![CDATA[ 
+		<link href="${staticPath}/vendors/datepicker/datepicker3.css" rel="stylesheet">
+    ]]>   
+    </css>
+    <css name="datetimepicker">  
+    <![CDATA[ 
+		<link href="${staticPath}/vendors/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    ]]>   
+    </css>
+    <css name="jqgrid">  
+    <![CDATA[ 
+		<!-- jqgrid-->
+		<link href="${staticPath}/vendors/jqgrid/css/ui.jqgrid-bootstrap.css?0820" rel="stylesheet">
+    ]]>   
+    </css>
+    <css name="sweetalert">  
+    <![CDATA[ 
+		<!-- Sweet Alert -->
+		<link href="${staticPath}/vendors/sweetalert/sweetalert.css" rel="stylesheet">
+    ]]>   
+    </css>
+    <css name="Validform">  
+    <![CDATA[ 
+		<!--  Validform -->
+		<link rel="stylesheet" href="${staticPath}/vendors/Validform_v5.3.2/css/style.css" type="text/css" media="all" />
+    ]]>   
+    </css>
+    <css name="bootstrap-fileinput">  
+    <![CDATA[ 
+		<!--  Validform -->
+		<link href="${staticPath}/vendors/bootstrap-fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+	    <link href="${staticPath}/vendors/bootstrap-fileinput/themes/explorer/theme.css" media="all" rel="stylesheet" type="text/css"/>
+	    <!-- some CSS styling changes and overrides -->
+		<style>
+		.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
+		    margin: 0;
+		    padding: 0;
+		    border: none;
+		    box-shadow: none;
+		    text-align: center;
+		}
+		</style>
+    ]]>   
+    </css>
+    <css name="toastr">  
+    <![CDATA[ 
+		<!-- toastr -->
+		<link href="${staticPath}/vendors/toastr/toastr.min.css" rel="stylesheet">
+    ]]>   
+    </css>
+    <css name="bootstrapvalidator">  
+    <![CDATA[ 
+		<!-- bootstrapvalidator -->
+		<link rel="stylesheet" href="${staticPath}/vendors/bootstrapvalidator/css/bootstrapValidator.css"/>
+    ]]>   
+    </css>
+    <css name="jquery-ztree">  
+    <![CDATA[ 
+		<!-- jquery-ztree -->
+		<link href="${staticPath}/vendors/jquery-ztree/3.5.12/css/zTreeStyle/metro.css" rel="stylesheet" type="text/css"/>
+    ]]>   
+    </css>
+    <css name="simditor">  
+    <![CDATA[ 
+		<!-- simditor -->
+		<link rel="stylesheet" type="text/css" href="${staticPath}/vendors/simditor/css/simditor.css" />
+    ]]>   
+    </css>
+    <css name="markdown">  
+    <![CDATA[ 
+		<!-- markdown -->
+		 <link rel="stylesheet" type="text/css" href="${staticPath}/vendors/markdown/css/bootstrap-markdown.min.css" />
+    ]]>   
+    </css>
+    <css name="codemirror">  
+    <![CDATA[ 
+		<!-- codemirror -->
+		<link href="${staticPath}/vendors/codemirror/codemirror.css" rel="stylesheet">
+   		<link href="${staticPath}/vendors/codemirror/ambiance.css" rel="stylesheet">
+    ]]>   
+    </css>
+    <css name="summernote">  
+    <![CDATA[ 
+		<!-- codemirror -->
+		<link href="${staticPath}/vendors/summernote/summernote.css" rel="stylesheet">
+    	<link href="${staticPath}/vendors/summernote/summernote-bs3.css" rel="stylesheet">
+    ]]>   
+    </css>
+    <css name="syntaxhighlighter">  
+    <![CDATA[ 
+		<!-- SYNTAXHIGHLIGHTER -->
+		<link type="text/css" rel="stylesheet" href="${staticPath}/vendors/syntaxhighlighter/styles/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="${staticPath}/vendors/syntaxhighlighter/styles/shThemeDefault.css"/>
+    ]]>   
+    </css>
+    <css name="bootstrap-treeview">  
+    <![CDATA[ 
+		<!-- bootstrap-treeview -->
+		<link type="text/css" rel="stylesheet" href="${staticPath}/vendors/bootstrap-treeview/bootstrap-treeview.css"/>
+    ]]>   
+    </css>
+    <css name="bootstrap-colorpicker">
+        <![CDATA[
+		<!-- bootstrap-colorpicker -->
+		<link href="${staticPath}/vendors/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    ]]>
+    </css>
+</html-component>  

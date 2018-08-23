@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jeeweb.modules.sys.mapper.LogMapper" >
+
+    <!--<resultMap id="BaseResultMap" type="cn.jeeweb.modules.sys.entity.Log">-->
+        <!--<id column="id" property="id" jdbcType="VARCHAR" />-->
+        <!--<result column="type" property="type" jdbcType="CHAR" />-->
+        <!--<result column="title" property="title" jdbcType="VARCHAR" />-->
+        <!--<result column="content" property="content" jdbcType="VARCHAR" />-->
+        <!--<result column="logtype" property="logtype" jdbcType="VARCHAR" />-->
+        <!--<result column="createBy.id" property="createBy.id" jdbcType="VARCHAR" />-->
+        <!--<result column="createData" property="createDate" jdbcType="DATETIME" />-->
+        <!--<result column="remote_addr" property="remoteAddr" jdbcType="VARCHAR" />-->
+        <!--<result column="user_agent" property="userAgent" jdbcType="VARCHAR" />-->
+        <!--<result column="request_uri" property="requestUri" jdbcType="VARCHAR" />-->
+        <!--<result column="method" property="method" jdbcType="VARCHAR" />-->
+        <!--<result column="params" property="params" jdbcType="TEXT" />-->
+        <!--<result column="exception" property="exception" jdbcType="TEXT" />-->
+        <!--<result column="createBy.realname" property="createBy.realname" jdbcType="VARCHAR" />-->
+        <!--<result column="createBy.username" property="createBy.username" jdbcType="VARCHAR" />-->
+    <!--</resultMap>-->
+
+  <sql id="Base_Column_List" >
+    t.id, 
+    t.type, 
+    t.title, 
+    t.content, 
+    t.logtype, 
+    t.create_by as "createBy.id", 
+    t.create_date,
+    t.remote_addr, 
+    t.user_agent, 
+    t.request_uri, 
+    t.method,
+    t.params, 
+    t.exception,
+    u.realname as "createBy.realname",
+    u.username as "createBy.username"
+
+  </sql>
+  
+  <select id="selectLogPage" resultType="Log">
+	  select  
+	  <include refid="Base_Column_List" />
+	  from sys_log t 
+	  LEFT JOIN sys_user u on t.create_by=u.id 
+	  <where>
+	   ${ew.sqlSegment} 
+	  </where>
+  </select>
+
+  <select id="selectLogPageByTime" resultType="Log">
+      SELECT
+      <include refid="Base_Column_List"/>
+      FROM sys_log t
+      LEFT JOIN sys_user u ON t.create_by = u.id
+      WHERE t.create_date BETWEEN #{startTime, jdbcType=TIMESTAMP} and #{endTime,jdbcType=TIMESTAMP}
+  </select>
+
+ 
+</mapper>

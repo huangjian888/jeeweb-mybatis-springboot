@@ -1,0 +1,305 @@
+.icon-spin {
+    display: inline-block;
+    -moz-animation: spin 2s infinite linear;
+    -o-animation: spin 2s infinite linear;
+    -webkit-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
+}
+.no-border-radius {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+.text-uppercase {
+    text-transform: uppercase;
+}
+.text-justify {
+    text-align: justify;
+}
+.text-line-through {
+    text-decoration: line-through;
+}
+.box-heading {
+    font-weight: bold;
+    font-family: 'Oswald';
+    margin-bottom: 15px;
+}
+@media (max-width: 767px) {
+    #sidebar {
+        z-index: 99999;
+        position: relative;
+    }
+    #page-wrapper {
+        margin-top: 50px;
+    }
+    #topbar .navbar-header {
+        width: 100%;
+        text-align: left;
+    }
+    #topbar .navbar-header #logo {
+        line-height: auto;
+        width: auto;
+        height: auto;
+    }
+    #topbar .navbar-header .navbar-toggle {
+        margin: 4px 15px;
+        border: 0;
+    }
+    #topbar .navbar-header .navbar-toggle:hover,
+    #topbar .navbar-header .navbar-toggle:focus {
+        background: transparent;
+        color: #488c6c;
+    }
+    #topbar .navbar-header .navbar-toggle .icon-bar {
+        background: #ffffff;
+        width: 30px;
+        height: 5px;
+        border-radius: 0;
+    }
+    #topbar .navbar-top-links {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    #topbar .navbar-top-links li > a {
+        padding: 15px;
+    }
+    #footer {
+        position: relative;
+    }
+    #sidebar-hover #topbar .navbar-header {
+        width: 100%;
+    }
+    #sidebar-hover #wrapper #page-wrapper {
+        margin-left: 0px;
+    }
+    #sidebar-hover .dropdown-submenu > .dropdown-menu {
+        margin-left: 0;
+    }
+    .timeline-centered .timeline-entry {
+        width: 100%;
+        float: left;
+    }
+    .horizontal-menu-page #sidebar {
+        display: block;
+    }
+}
+@media (max-width: 768px) {
+    .timeline-centered:before {
+        margin-left: 27px;
+        left: 0px;
+    }
+    .timeline-centered .timeline-entry .timeline-entry-inner {
+        margin-left: 0px;
+    }
+    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-time,
+    .timeline-centered .timeline-entry.left-aligned .timeline-entry-inner .timeline-time {
+        left: 73px;
+        text-align: left;
+        top: -55px;
+    }
+    .timeline-centered.timeline-sm .timeline-entry {
+        margin-bottom: 65px !important;
+    }
+    .timeline-centered .timeline-entry.left-aligned .timeline-entry-inner .timeline-icon {
+        float: left;
+    }
+    .timeline-centered .timeline-entry.left-aligned .timeline-entry-inner .timeline-label {
+        margin-left: 85px;
+        margin-right: 27px;
+    }
+    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label.bg-green:after {
+        border-color: transparent #fff transparent transparent;
+    }
+    .page-title-breadcrumb {
+        height: auto;
+        min-height: 50px;
+        padding-bottom: 10px;
+    }
+    .page-title-breadcrumb .reportrange {
+        clear: both;
+        float: left;
+    }
+}
+@media (min-width: 768px) {
+    .sidebar-collapse {
+        display: block;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .sidebar-collapse {
+        display: block;
+    }
+    #topbar .navbar-header {
+        text-align: center;
+    }
+    #topbar .navbar-header #logo {
+        line-height: auto;
+        width: 100%;
+        height: auto;
+    }
+    #topbar .navbar-header .navbar-toggle {
+        margin: 4px 15px;
+        border: 0;
+    }
+    #topbar .navbar-header .navbar-toggle:hover,
+    #topbar .navbar-header .navbar-toggle:focus {
+        background: transparent;
+        color: #488c6c;
+    }
+    #topbar .navbar-header .navbar-toggle .icon-bar {
+        background: #ffffff;
+        width: 30px;
+        height: 5px;
+        border-radius: 0;
+    }
+    #topbar .navbar-top-links {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    #topbar .navbar-top-links li > a {
+        padding: 15px;
+    }
+    #footer {
+        position: relative;
+    }
+    .timeline-centered .timeline-entry {
+        width: 100%;
+        float: left;
+    }
+    .horizontal-menu-page #sidebar {
+        display: block;
+    }
+}
+@media only screen and (min-width: 1281px) and (max-width: 1520px) {
+    span.text-uppercase {
+        display: none;
+    }
+    #topbar .navbar-top-links li > a {
+        padding: 15px 15px;
+    }
+}
+/* BEGIN FLIP SCROLL RESPONSIVE TABLE */
+
+@media only screen and (max-width: 800px) {
+    /* Flip Scroll */
+    
+    #flip-scroll .cf:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+    #flip-scroll * html .cf {
+        zoom: 1;
+    }
+    #flip-scroll *:first-child + html .cf {
+        zoom: 1;
+    }
+    #flip-scroll table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    #flip-scroll th,
+    #flip-scroll td {
+        margin: 0;
+        vertical-align: top;
+    }
+    #flip-scroll th {
+        text-align: left;
+    }
+    #flip-scroll table {
+        display: block;
+        position: relative;
+        width: 100%;
+    }
+    #flip-scroll thead {
+        display: block;
+        float: left;
+    }
+    #flip-scroll tbody {
+        display: block;
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    #flip-scroll thead tr {
+        display: block;
+    }
+    #flip-scroll th {
+        display: block;
+        text-align: right;
+    }
+    #flip-scroll tbody tr {
+        display: inline-block;
+        vertical-align: top;
+    }
+    #flip-scroll td {
+        display: block;
+        min-height: 1.25em;
+        text-align: left;
+    }
+    #flip-scroll th {
+        border-bottom: 0;
+        border-left: 0;
+    }
+    #flip-scroll td {
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+    }
+    #flip-scroll tbody tr {
+        border-left: 1px solid #babcbf;
+    }
+    #flip-scroll th:last-child,
+    #flip-scroll td:last-child {
+        border-bottom: 1px solid #babcbf;
+    }
+    /* Flip Scroll */
+    /* No More Table */
+    
+    #no-more-tables table,
+    #no-more-tables thead,
+    #no-more-tables tbody,
+    #no-more-tables th,
+    #no-more-tables td,
+    #no-more-tables tr {
+        display: block;
+    }
+    #no-more-tables thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    #no-more-tables tr {
+        border: 1px solid #ccc;
+    }
+    #no-more-tables td {
+        /* Behave  like a "row" */
+        
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+    }
+    #no-more-tables td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+    #no-more-tables td:before {
+        content: attr(data-title);
+    }
+    /* No More Table */
+}
+/* END FLIP SCROLL RESPONSIVE TABLE */

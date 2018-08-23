@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+    <description>Spring Framework JSP Form Tag Library</description>
+    <tlib-version>3.0</tlib-version>
+    <short-name>fns</short-name>
+    <uri>/tags/jeeweb-functions</uri>
+	
+	<function>
+	  <description>获得后台配置前缀地址</description>
+	  <name>getAdminUrlPrefix</name>
+	  <function-class>cn.jeeweb.modules.sys.tags.SysFunctions</function-class>
+	  <function-signature>java.lang.String getAdminUrlPrefix()</function-signature>
+	  <example>${fns:getAdminUrlPrefix()}</example>  
+	</function>
+
+	<function>
+	  <description>获取当前用户的菜单对象列表</description>
+	  <name>getMenuList</name>
+	  <function-class>cn.jeeweb.modules.sys.utils.UserUtils</function-class>
+	  <function-signature>java.util.List getMenuList()</function-signature>
+	  <example>${fns:getMenuList()}</example>  
+	</function>
+	
+	<function>
+	  <description>获取当前用户对象</description>
+	  <name>getUser</name>
+	  <function-class>cn.jeeweb.modules.sys.utils.UserUtils</function-class>
+	  <function-signature>cn.jeeweb.modules.sys.entity.User getUser()</function-signature>
+	  <example>${fns:getUser()}</example>  
+	</function>
+	
+	<function>
+	  <description>对象转JSON</description>
+	  <name>toJson</name>
+	  <function-class>cn.jeeweb.core.mapper.JsonMapper</function-class>
+	  <function-signature>java.lang.String toJsonString(java.lang.Object)</function-signature>
+	  <example>${fns:toJson(obj)}</example>  
+	</function>
+	
+	<function>
+	  <description>获得样式</description>
+	  <name>getTheme</name>
+	  <function-class>cn.jeeweb.modules.sys.tags.SysFunctions</function-class>
+	  <function-signature>java.lang.String getTheme()</function-signature>
+	  <example>${fns:getTheme()}</example>  
+	</function>
+	
+	
+	<function>
+	  <description>获取当前菜单</description>
+	  <name>getCurrentMenu</name>
+	  <function-class>cn.jeeweb.modules.sys.utils.UserUtils</function-class>
+	  <function-signature>cn.jeeweb.modules.sys.entity.Menu getCurrentMenu()</function-signature>
+	  <example>${fns:getCurrentMenu()}</example>  
+	</function>
+	
+	<function>
+	  <description>获取当前菜单</description>
+	  <name>getMenuById</name>
+	  <function-class>cn.jeeweb.modules.sys.utils.UserUtils</function-class>
+	  <function-signature>cn.jeeweb.modules.sys.entity.Menu getMenuById(java.lang.String)</function-signature>
+	  <example>${fns:getMenuById()}</example>  
+	</function>
+
+</taglib>
