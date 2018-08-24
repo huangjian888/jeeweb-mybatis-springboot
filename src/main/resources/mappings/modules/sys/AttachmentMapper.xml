@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jeeweb.modules.sys.mapper.AttachmentMapper" >
+  <resultMap id="BaseResultMap" type="Attachment" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="uploadtime" property="uploadtime" jdbcType="TIMESTAMP" />
+    <result column="uploadip" property="uploadip" jdbcType="VARCHAR" />
+    <result column="fileext" property="fileext" jdbcType="VARCHAR" />
+    <result column="filepath" property="filepath" jdbcType="VARCHAR" />
+    <result column="filesize" property="filesize" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    a.id, 
+    a.filename, 
+    a.userid, 
+    a.uploadtime, 
+    a.uploadip, 
+    a.fileext, 
+    a.filepath, 
+    a.filesize, 
+    a.status,
+    a.userid as "user.id",
+    u.realname as "user.realname",
+    u.username as "user.username"
+  </sql>
+  <select id="selectAttachmentPage" resultType="Attachment">
+	  select  
+	  <include refid="Base_Column_List" /> 
+	  from sys_attachment a 
+	  LEFT JOIN sys_user u on a.userid=u.id 
+	  <where>
+	   ${ew.sqlSegment} 
+	  </where>
+  </select>
+</mapper>

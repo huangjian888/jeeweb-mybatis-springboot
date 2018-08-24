@@ -78,12 +78,16 @@ JeeWeb 功能特点
 简单使用说明
 -----------------------------------
 * 导入sql/jeeweb-mysql-v1.0.sql文件到mysql数据库
-* 导入项目到Eclipse.
+* 导入项目到IDEA.
 * 修改数据库配置文件dbconfig.properties中的账号密码.
 * 启动项目,管理员账号admin/密码123456
-* 项目启动说明(JeewebSpringBootApplication为启动入口类)
+* 项目启动说明(JeewebSpringBootApplication为启动入口类)->http://localhost:8080进行访问
 * 通过spring-boot命令启动：Maven project下Plugins下找到spring-boot目录下spring-boot:run进行启动
 * 通过JeewebSpringBootApplication为启动入口类进行启动，需要将pom.xml中<scope>provided</scope>注释掉,上线需要打开注释,不推荐该方式启动
+
+计划任务
+-----------------------------------
+* v2.0版本采用分布式架构(Web+Sys...)
 
 平台目录结构说明
 -----------------------------------

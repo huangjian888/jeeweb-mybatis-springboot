@@ -9,14 +9,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-//@MapperScan("")
-//@ComponentScan(basePackages = {
-//		"cn.jeeweb.core.common.service.*",
-//		"cn.jeeweb.core.common.dao.*",
-//		"cn.jeeweb.modules.**.service",
-//		"cn.jeeweb.modules.**.mapper"
-//		}
-//)
 public class JeewebSpringBootApplication extends SpringBootServletInitializer {
 
 	@Override

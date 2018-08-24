@@ -41,9 +41,7 @@
 		<!-- velocity工具用于代码生成 -->
 		<velocity.version>1.7</velocity.version>
 		<guava.version>17.0</guava.version>
-
 		<druid.version>1.1.10</druid.version>
-
 		<log4j.version>1.2.17</log4j.version>
 		<httpclient.version>4.4.1</httpclient.version>
 		<commons.httpclient.version>3.1</commons.httpclient.version>
@@ -55,6 +53,11 @@
 		<!--<jackson.version>2.2.3</jackson.version>-->
 		<!-- 计划任务 -->
 		<!--<quartz.version>2.2.1</quartz.version>-->
+		<!-- 邮件发送工具 -->
+		<email.version>1.4</email.version>
+		<!-- 并发框架Disruptor -->
+		<disruptor.version>3.3.6</disruptor.version>
+
 		<!-- 分割线 -->
 	</properties>
 
@@ -159,24 +162,13 @@
 			<version>${sitemesh.version}</version>
 		</dependency>
 
-		<!--<dependency>-->
-			<!--<groupId>opensymphony</groupId>-->
-			<!--<artifactId>quartz-all</artifactId>-->
-			<!--<version>1.6.1</version>-->
-			<!--<exclusions>-->
-				<!--<exclusion>-->
-					<!--<groupId>*</groupId>-->
-					<!--<artifactId>*</artifactId>-->
-				<!--</exclusion>-->
-			<!--</exclusions>-->
-		<!--</dependency>-->
-		<!-- shiro开始 -->
+		<!-- gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
 
-		<!--<dependency>-->
-			<!--<groupId>org.apache.shiro</groupId>-->
-			<!--<artifactId>shiro-all</artifactId>-->
-			<!--<version>${shiro.version}</version>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-core</artifactId>
@@ -206,6 +198,12 @@
 			<scope>compile</scope>
 		</dependency>
 		<!-- shiro END-->
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -252,6 +250,13 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson-lib.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.3</version>
+			<classifier>jdk15</classifier>
 		</dependency>
 
 		<!-- 工具包 -->
@@ -321,10 +326,16 @@
 			<version>${druid.version}</version>
 		</dependency>
 
-
-
-		<!-- 日志相关jar包 -->
-
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>${disruptor.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>${email.version}</version>
+		</dependency>
 
 
 		<dependency>
