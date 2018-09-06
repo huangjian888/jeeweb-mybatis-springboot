@@ -1,7 +1,8 @@
 # jeeweb-mybatis-spring-boot_2.0
 JeeWeb敏捷开发平台(Mybatis)
 ===============
-* 	QQ交流群： 46417153
+*   QQ交流群： 46417153
+*   码云地址：https://gitee.com/huang465265897/jeeweb-mybatis-spring-boot
 
 简介
 -----------------------------------
@@ -77,7 +78,7 @@ JeeWeb 功能特点
 
 简单使用说明
 -----------------------------------
-* 本项目使用zookeeper-3.4.8、redisbin_x64 环境，启动项目之前需启动该服务
+* 本项目使用zookeeper-3.4.8、redisbin_x64 环境，启动项目之前需启动该服务,或者通过https://gitee.com/huang465265897/jeeweb-mybatis-spring-boot/attach_files进行下载
 * 导入sql/jeeweb-mysql-v1.0.sql文件到mysql数据库
 * 导入项目到IDEA.
 * 修改数据库配置文件dbconfig.properties中的账号密码.
