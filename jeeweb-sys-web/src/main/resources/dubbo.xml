@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://code.alibabatech.com/schema/dubbo
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!-- SYS -->
+	<dubbo:application name="jeeweb-sys-web"  />
+	<dubbo:registry id="zookeeper" protocol="zookeeper" address="localhost:2181" />
+
+
+	<dubbo:reference id="tableService" interface="cn.jeeweb.modules.codegen.service.ITableService" check="false" />
+	<dubbo:reference id="columnService" interface="cn.jeeweb.modules.codegen.service.IColumnService" check="false" />
+	<dubbo:reference id="schemeService" interface="cn.jeeweb.modules.codegen.service.ISchemeService" check="false" />
+
+	<dubbo:reference id="emailSendService" interface=" cn.jeeweb.modules.email.service.IEmailSendService" check="false" />
+	<dubbo:reference id="emailSendLogService" interface=" cn.jeeweb.modules.email.service.IEmailSendLogService" check="false" />
+	<dubbo:reference id="emailTemplateService" interface=" cn.jeeweb.modules.email.service.IEmailTemplateService" check="false" />
+
+	<dubbo:reference id="oaNotificationService" interface=" cn.jeeweb.modules.oa.service.IOaNotificationService" check="false" />
+	<dubbo:reference id="smsSendLogService" interface=" cn.jeeweb.modules.sms.service.ISmsSendLogService" check="false" />
+	<dubbo:reference id="smsSendService" interface=" cn.jeeweb.modules.sms.service.ISmsSendService" check="false" />
+	<dubbo:reference id="smsTemplateService" interface=" cn.jeeweb.modules.sms.service.ISmsTemplateService" check="false" />
+
+	<dubbo:reference id="attachmentService" interface=" cn.jeeweb.modules.sys.service.IAttachmentService" check="false" />
+	<dubbo:reference id="dataSourceService" interface=" cn.jeeweb.modules.sys.service.IDataSourceService" check="false" />
+	<dubbo:reference id="dictGroupService" interface=" cn.jeeweb.modules.sys.service.IDictGroupService" check="false" />
+	<dubbo:reference id="dictService" interface=" cn.jeeweb.modules.sys.service.IDictService" check="false" />
+	<dubbo:reference id="logService" interface=" cn.jeeweb.modules.sys.service.ILogService" check="false" />
+	<dubbo:reference id="menuService" interface="cn.jeeweb.modules.sys.service.IMenuService" check="false" />
+	<dubbo:reference id="organizationService" interface=" cn.jeeweb.modules.sys.service.IOrganizationService" check="false" />
+	<dubbo:reference id="roleMenuService" interface=" cn.jeeweb.modules.sys.service.IRoleMenuService" check="false" />
+	<dubbo:reference id="roleService" interface=" cn.jeeweb.modules.sys.service.IRoleService" check="false" />
+	<dubbo:reference id="settingService" interface=" cn.jeeweb.modules.sys.service.ISettingService" check="false" />
+	<dubbo:reference id="userLastOnlineService" interface=" cn.jeeweb.modules.sys.service.IUserLastOnlineService" check="false" />
+	<dubbo:reference id="userOnlineService" interface=" cn.jeeweb.modules.sys.service.IUserOnlineService" check="false" />
+	<dubbo:reference id="userOrganizationService" interface=" cn.jeeweb.modules.sys.service.IUserOrganizationService" check="false" />
+	<dubbo:reference id="userRoleService" interface=" cn.jeeweb.modules.sys.service.IUserRoleService" check="false" />
+	<dubbo:reference id="userService" interface=" cn.jeeweb.modules.sys.service.IUserService" check="false" />
+
+	<dubbo:reference id="scheduleJobService" interface=" cn.jeeweb.modules.task.service.IScheduleJobService" check="false" />
+
+	<!--<dubbo:reference id="commonService" interface=" cn.jeeweb.core.common.service.ICommonService" check="false" />-->
+
+</beans>

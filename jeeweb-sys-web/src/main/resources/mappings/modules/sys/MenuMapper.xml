@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jeeweb.modules.sys.mapper.MenuMapper">
+   
+   <!-- 查询父模块-->  
+   <resultMap id="parentResult" type="Menu" >
+		<id property="id" column="parent_id"/>
+	    <result property="name" column="parent_name"/>
+   </resultMap>
+   
+   <resultMap id="BaseResultMap" type="Menu" >
+        <!-- 树形基础模块 -->
+	    <id column="id" property="id" jdbcType="VARCHAR" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+	    <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
+	    <result column="hasChildren" property="hasChildren" />
+		<!-- 扩展模块 -->
+	    <result column="type" property="type" jdbcType="VARCHAR" />
+	    <result column="url" property="url" jdbcType="VARCHAR" />
+	    <result column="permission" property="permission" jdbcType="VARCHAR" />
+	    <result column="isshow" property="isshow" jdbcType="BIT" />
+	    <result column="sort" property="sort" jdbcType="INTEGER" />
+	    <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR" />
+	    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+	    <!-- 不知到为什么一定要放在最后才行 -->
+	    <association property="parent" resultMap="parentResult"/>  
+	    
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    t.id, 
+    t.name,
+    t.parent_id, 
+    t.parent_ids, 
+    t.parent_id AS parent_id,
+    p.name AS parent_name,
+    t.type, 
+    t.url,
+    t.permission, 
+    t.isshow, 
+    t.sort, 
+    t.menu_icon,
+    t.remarks,
+    (select count(*) from sys_menu s
+		WHERE s.parent_id=t.id and s.isshow=1) as hasChildren
+  </sql>
+
+    <sql id="Base_Column_List_1" >
+        t.id,
+        t.name,
+        t.parent_id,
+        t.parent_ids,
+        t.parent_id AS parent_id,
+        p.name AS parent_name,
+        t.type,
+        t.url,
+        t.permission,
+        t.isshow,
+        t.sort,
+        t.menu_icon,
+        t.remarks,
+        (select count(*) from sys_menu s
+        WHERE s.parent_id=t.id and s.isshow=1 and s.type = 1) as hasChildren
+    </sql>
+  <sql id="parentJoins">
+		LEFT JOIN sys_menu p ON p.id = t.parent_id
+  </sql>
+  
+  <select id="selectByTreeId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu t
+    <include refid="parentJoins"/>
+    where t.id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectTreeList" resultMap="BaseResultMap">
+	  select 
+   	   <include refid="Base_Column_List" />
+      from sys_menu t
+      <include refid="parentJoins"/>
+	  <where>
+	    ${ew.sqlSegment} 
+	  </where>
+  </select>
+  
+  <!-- 更新子树 -->  
+  <update id="updateSunTreeParentIds">  
+	       update sys_menu set parent_ids= CONCAT(#{newParentIds},
+          <if test="'${dbType}' == 'mysql'">
+              substring(parent_ids, length(#{oldParentIds})+1,length(parent_ids)+1))
+          </if>
+          <if test="'${dbType}' == 'oracle'">
+              substr(parent_ids, length(#{oldParentIds})+1,length(parent_ids)+1))
+          </if>
+	       where parent_ids like concat(#{oldParentIds}, '%')     
+  </update>
+  <!-- 删除子树 -->  
+  <delete id="deleteSunTree" parameterType="java.lang.String" >  
+      delete from sys_menu 
+      where parent_ids like concat(#{oldParentIds}, '%')   
+  </delete> 
+  
+  <!-- 通过用户ID查询 -->
+  <select id="findMenuByUserId"  resultMap="BaseResultMap">
+		SELECT DISTINCT
+			<include refid="Base_Column_List" />
+		from sys_menu t
+		<include refid="parentJoins"/>
+		LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
+		LEFT JOIN sys_user_role ur on rm.role_id=ur.role_id
+		WHERE ur.user_id= #{userId}
+		ORDER BY sort
+  </select>
+
+    <!-- 通过用户ID查询 -->
+    <select id="findMenuByUserId_Type"  resultMap="BaseResultMap">
+        SELECT DISTINCT
+        <include refid="Base_Column_List_1" />
+        from sys_menu t
+        <include refid="parentJoins"/>
+        LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
+        LEFT JOIN sys_user_role ur on rm.role_id=ur.role_id
+        WHERE ur.user_id= #{userId} and t.type = #{type}
+        ORDER BY sort
+    </select>
+
+  <!-- 通过用户ID查询 -->
+  <select id="findMenuByRoleId"  resultMap="BaseResultMap">
+		SELECT DISTINCT
+			<include refid="Base_Column_List" />
+		from sys_menu t
+		<include refid="parentJoins"/>
+		LEFT JOIN sys_role_menu rm on t.id=rm.menu_id
+		WHERE rm.role_id= #{roleId}
+		ORDER BY sort
+  </select>
+
+
+
+</mapper>

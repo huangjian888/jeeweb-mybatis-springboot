@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jeeweb.modules.sys.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="cn.jeeweb.modules.sys.entity.User" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="portrait" property="portrait" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    DISTINCT
+    t.id, 
+    t.realname, 
+    t.username, 
+    t.portrait, 
+    t.password, 
+    t.salt, 
+    t.email, 
+    t.phone, 
+    t.status
+  </sql>
+  
+  <sql id="userOrganizationJoins">
+		 LEFT JOIN sys_user_organization uo on t.id=uo.user_id
+  </sql>
+
+
+  <select id="selectUserList" resultMap="BaseResultMap">
+	  select
+   	    <include refid="Base_Column_List" />
+      from sys_user t
+      <include refid="userOrganizationJoins"/>
+       <if test="ew.sqlSegment != '' and ew.sqlSegment != null">
+		  <where>
+		    ${ew.sqlSegment}
+		  </where>
+	   </if>
+  </select>
+
+
+
+</mapper>

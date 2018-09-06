@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<!DOCTYPE html-component SYSTEM "http://www.jeeweb.cn/dtd/html-component-1.0.dtd">
+<html-component>
+	<fragment name="gridselect">  
+    <![CDATA[ 
+        <#if genField>
+		<div class="input-group">
+			 <input id="${labelName!}" name="${labelName!}"  readonly="readonly"  type="text" value="<#if labelValue??>${labelValue!}<#else>无</#if>" class="form-control"/>
+			 <span class="input-group-btn">
+		   		 <button type="button"  id="${name!}Button" class="btn btn-primary treebtn"><i class="fa ${icon!}"></i></button>
+		   		 <button type="button"  id="${name!}Clear" class="btn btn-default treebtn"><i class="fa  fa-remove"></i></button>
+			 </span>
+			 <label class="Validform_checktip"></label>
+		</div>
+		</#if>
+		<script type="text/javascript">
+			$(document).ready(function(){
+			   $("#${name!}Button, #${labelName!}").click(function(){
+					//打开GRID
+					top.layer.open({
+					    type: 2, 
+					    area: ['${layerWidth!}', '${layerHeight!}'],
+					    title:"${title!}",
+		                maxmin: true, //开启最大化最小化按钮
+					    content: "${gridUrl!}",
+					    btn: ['确定', '关闭'],
+					    yes: function(index, layero){ //或者使用btn1
+					               	var grid=layero.find("iframe")[0].contentWindow.$("#${gridId}Grid");//获取默认ID  
+									var ids = []<#list gridFieldMap?keys as formField>,${formField}s=[]</#list>;
+									var rows = grid.jqGrid('getGridParam','selarrrow');
+									var rowData= grid.jqGrid('getGridParam','selrow');
+									var multiselect = grid.jqGrid('getGridParam','multiselect');
+									if(!multiselect)
+									{
+										if(rowData)
+										{
+											rows[0]=rowData;
+										}
+									}
+									var rowDatas=[];
+									for ( var i = 0; i < rows.length; i++) {
+										var rowId=rows[i];
+						        		ids.push(rowId);
+						        		var rowData =grid.jqGrid('getRowData',rowId);
+						        		rowDatas.push(rowData);
+						        		<#list gridFieldMap?keys as formField>
+						        		${formField}s.push(rowData.${gridFieldMap[formField]});
+						        		</#list>
+									}
+									$("#${name!}").val(ids.join(",").replace(/u_/ig,""));
+									<#list gridFieldMap?keys as formField>
+									$("#${formField}").val(${formField}s.join(","));
+									</#list>
+									$("#${labelName!}").focus();
+									top.layer.close(index);
+									<#if callback??>
+									  ${callback!}(rowDatas);
+									</#if>
+									
+						   },
+			    	      cancel: function(index){ //或者使用btn2
+			    	           //按钮【按钮二】的回调
+			    	      }
+					}); 
+				});
+				
+				 $("#${name!}Clear").click(function(){
+				      $("#${name!}").val("");
+				      $("#${labelName!}").val("无");
+				 });
+		});
+		</script>
+    ]]>
+	</fragment>
+
+</html-component>  

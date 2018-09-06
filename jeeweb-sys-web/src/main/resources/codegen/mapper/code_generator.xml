@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<!-- 名称 -->
+	<name>生成器配置</name>
+	<!-- 描述 -->
+	<description>生成配置</description>
+	<generators>
+		<generator>
+			<!-- 注册关键字 -->
+			<key>Controller</key>
+			<!-- 文件层 -->
+			<layer>controller</layer>
+			<!-- 模版名称 -->
+			<template-file>ControllerTemplate.ftl</template-file>
+			<!-- 是否JSP,1.JAVA,2.页面代码 -->
+			<code-type>1</code-type>
+			<!-- 关键字有,entityName -->
+			<name-format>[entityName]Controller.java</name-format>
+		</generator>
+		<generator>
+			<!-- 注册关键字 -->
+			<key>IService</key>
+			<!-- 文件层 -->
+			<layer>service</layer>
+			<!-- 模版名称 -->
+			<template-file>IServiceTemplate.ftl</template-file>
+			<!-- 是否JSP,1.JAVA,2.页面代码 -->
+			<code-type>1</code-type>
+			<!-- 关键字有,entityName -->
+			<name-format>I[entityName]Service.java</name-format>
+		</generator>
+		<generator>
+			<!-- 注册关键字 -->
+			<key>ServiceImpl</key>
+			<!-- 文件层级关系 -->
+			<layer>service/impl</layer>
+			<!-- 模版名称 -->
+			<template-file>ServiceImplTemplate.ftl</template-file>
+			<!-- 是否JSP,1.JAVA,2.页面代码 -->
+			<code-type>1</code-type>
+			<!-- 关键字有,entityName -->
+			<name-format>[entityName]ServiceImpl.java</name-format>
+		</generator>
+		<generator>
+			<!-- 注册关键字 -->
+			<key>Mapper</key>
+			<!-- 文件层级关系 -->
+			<layer>mapper</layer>
+			<!-- 模版名称 -->
+			<template-file>MapperTemplate.ftl</template-file>
+			<!-- 是否JSP,1.JAVA,2.页面代码 -->
+			<code-type>1</code-type>
+			<!-- 关键字有,entityName -->
+			<name-format>[entityName]Mapper.java</name-format>
+		</generator>
+		<generator>
+			<!-- 注册关键字 -->
+			<key>Entity</key>
+			<!-- 文件层级关系 -->
+			<layer>entity</layer>
+			<!-- 模版名称 -->
+			<template-file>EntityTemplate.ftl</template-file>
+			<!-- 是否JSP,1.JAVA,2.页面代码 -->
+			<code-type>1</code-type>
+			<!-- 关键字有,entityName -->
+			<name-format>[entityName].java</name-format>
+		</generator>
+		<generator>
+			<!-- 注册关键字 -->
+			<key>viewList</key>
+			<!-- 文件层级关系 -->
+			<layer>[entityName]</layer>
+			<!-- 模版名称 -->
+			<template-file>viewListTemplate.ftl</template-file>
+			<!-- 是否JSP,1.JAVA,2.页面代码 -->
+			<code-type>2</code-type>
+			<!-- 关键字有,entityName -->
+			<name-format>list.jsp</name-format>
+		</generator>
+		<generator>
+			<!-- 注册关键字 -->
+			<key>viewForm</key>
+			<!-- 文件层级关系 -->
+			<layer>[entityName]</layer>
+			<!-- 模版名称 -->
+			<template-file>viewFormTemplate.ftl</template-file>
+			<!-- 是否JSP,1.JAVA,2.页面代码 -->
+			<code-type>2</code-type>
+			<!-- 关键字有,entityName -->
+			<name-format>edit.jsp</name-format>
+		</generator>
+		
+		<generator>
+			<!-- 注册关键字 -->
+			<key>xmlMapper</key>
+			<!-- 文件层级关系 -->
+			<layer></layer>
+			<!-- 模版名称 -->
+			<template-file>xmlMapperTemplate.ftl</template-file>
+			<!-- 是否JSP,1.JAVA,2.页面代码 -->
+			<code-type>3</code-type>
+			<!-- 关键字有,entityName -->
+			<name-format>[entityName]Mapper.xml</name-format>
+		</generator>
+	 
+	</generators>
+</config>

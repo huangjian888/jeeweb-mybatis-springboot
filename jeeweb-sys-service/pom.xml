@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cn.jeeweb</groupId>
+	<artifactId>jeeweb-sys-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>jeeweb-sys-service</name>
+	<description>jeeweb system service</description>
+
+	<parent>
+		<groupId>cn.jeeweb</groupId>
+		<artifactId>jeeweb-spring-boot</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+
+	</properties>
+
+	<dependencies>
+
+		<!--<dependency>-->
+			<!--<groupId>cn.jeeweb</groupId>-->
+			<!--<artifactId>jeeweb-core</artifactId>-->
+			<!--<exclusions>-->
+				<!--<exclusion>-->
+					<!--<groupId>*</groupId>-->
+					<!--<artifactId>*</artifactId>-->
+				<!--</exclusion>-->
+			<!--</exclusions>-->
+            <!--<scope>provided</scope>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>cn.jeeweb</groupId>-->
+			<!--<artifactId>jeeweb-sys-facade</artifactId>-->
+			<!--<exclusions>-->
+				<!--<exclusion>-->
+					<!--<groupId>*</groupId>-->
+					<!--<artifactId>*</artifactId>-->
+				<!--</exclusion>-->
+			<!--</exclusions>-->
+			<!--<scope>provided</scope>-->
+		<!--</dependency>-->
+
+		<dependency>
+			<groupId>cn.jeeweb</groupId>
+			<artifactId>jeeweb-common-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
