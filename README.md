@@ -1,5 +1,5 @@
 # jeeweb-mybatis-spring-boot_2.0
-JeeWeb敏捷开发平台(Mybatis)
+JeeWeb敏捷开发平台(Mybatis),分布式应用框架
 ===============
 *   QQ交流群： 46417153
 *   码云地址：https://gitee.com/huang465265897/jeeweb-mybatis-spring-boot
