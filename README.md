@@ -1,11 +1,11 @@
-# jeeweb-mybatis-spring-boot_1.0
+# jeeweb-mybatis-spring-boot_2.0
 JeeWeb敏捷开发平台(Mybatis)
 ===============
 * 	QQ交流群： 46417153
 
 简介
 -----------------------------------
-JeeWeb Mybatis版本是一款基于Springboot2.0+SpringMVC+Spring+Mybatis+Mybatis Plus的敏捷开发系统；它是一款具有代码生成功能的智能快速开发平台；是以Spring Framework为核心容器，Spring MVC为模型视图控制器，Mybatis为数据访问层， Apache Shiro为权限授权层，Ehcahe对常用数据进行缓存，Disruptor作为并发框架，Bootstrap作为前端框架的优秀 **开源** 系统。
+JeeWeb Mybatis版本是一款基于Springboot2.0+dubbo+redis+SpringMVC+Spring+Mybatis+Mybatis Plus的敏捷开发系统；它是一款具有代码生成功能的智能快速开发平台；是以Spring Framework为核心容器，Spring MVC为模型视图控制器，Mybatis为数据访问层， Apache Shiro为权限授权层，Ehcahe对常用数据进行缓存，Disruptor作为并发框架，Bootstrap作为前端框架的优秀 **开源** 系统。
 
 JeeWeb是一款 **全开源开发平台** ，特别 **代码生成器模块也采用开源模式** ，各位开发者可以根据自己的需要改造出更加适合自己的代码生成器，不管是做项目、学习、接私活它都将是你的最佳拍档；
 
@@ -49,7 +49,7 @@ JeeWeb 功能特点
 
 1、后端
 
-* 核心框架：Springboot2.0+Spring Framework
+* 核心框架：Springboot2.0+dubbo(zookeeper注册中心)+Spring Framework
 * 安全框架：Apache Shiro
 * 视图框架：Spring MVC
 * 服务端验证：Hibernate Validator
@@ -57,11 +57,11 @@ JeeWeb 功能特点
 * 任务调度：Quartz
 * 持久层框架：Mybatis
 * 数据库连接池：Alibaba Druid
-* 缓存框架：Ehcache
+* 缓存框架：Ehcache/Redis
 * 并发框架：Disruptor
 * 日志管理：SLF4J、Log4j
 * 工具类：Apache Commons、Jackson、Xstream、
- 
+
 2、前端
 
 * JS框架：jQuery。
@@ -77,17 +77,20 @@ JeeWeb 功能特点
 
 简单使用说明
 -----------------------------------
+* 本项目使用zookeeper-3.4.8、redisbin_x64 环境，启动项目之前需启动该服务
 * 导入sql/jeeweb-mysql-v1.0.sql文件到mysql数据库
 * 导入项目到IDEA.
 * 修改数据库配置文件dbconfig.properties中的账号密码.
 * 启动项目,管理员账号admin/密码123456
-* 项目启动说明(JeewebSpringBootApplication为启动入口类)->http://localhost:8080进行访问
-* 通过spring-boot命令启动：Maven project下Plugins下找到spring-boot目录下spring-boot:run进行启动
-* 通过JeewebSpringBootApplication为启动入口类进行启动，需要将pom.xml中<scope>provided</scope>注释掉,上线需要打开注释,不推荐该方式启动
+* 启动项目：(如:F:/Federation2.0/jeeweb-spring-boot-2.0为项目根目录,找到IDEA工具右侧maven projects，点击上方Excute Maven Goal按钮)
+* Working directory输入F:/Federation2.0/jeeweb-spring-boot-2.0/Command line为以下命令
+* 启动jeeweb-sys-service命令：clean package -P build -Dmaven.tomcat.port=8081 tomcat8:run-war -f jeeweb-sys-service-server.xml
+* 启动jeeweb-sys-web命令：clean package -P build -Dmaven.tomcat.port=8082 tomcat8:run-war -f jeeweb-sys-web-server.xml
+* 
 
 计划任务
 -----------------------------------
-* v2.0版本采用分布式架构(Web+Sys...)
+* v3.0版本扩展子系统
 
 平台目录结构说明
 -----------------------------------
