@@ -19,7 +19,6 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 
 @Transactional
-//@Service(interfaceClass = ICommonService.class)
 public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements ICommonService<T> {
 
 	@Override
@@ -30,8 +29,6 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
 
 	@Override
 	public Page<T> list(Queryable queryable, Wrapper<T> wrapper) {
-		System.out.println("queryable:"+JSON.toJSONString(queryable));
-		System.out.println("entityWrapper:"+wrapper.toString());
 		QueryToWrapper<T> queryToWrapper = new QueryToWrapper<T>();
 		queryToWrapper.parseCondition(wrapper, queryable);
 		// 排序问题
