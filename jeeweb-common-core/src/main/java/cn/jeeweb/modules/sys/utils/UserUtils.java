@@ -16,7 +16,9 @@ import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -36,7 +38,6 @@ import java.util.Set;
  */
 @SuppressWarnings("unchecked")
 public class UserUtils {
-
 	private static IUserService userService = SpringContextHolder.getBean(IUserService.class);
 	private static IRoleService roleService = SpringContextHolder.getBean(IRoleService.class);
 	private static IMenuService menuService = SpringContextHolder.getBean(IMenuService.class);
@@ -47,6 +48,7 @@ public class UserUtils {
 	public static final String CACHE_ROLE_LIST = "roleList";
 	public static final String CACHE_MENU_LIST = "menuList";
 	public static final String CACHE_MENU_LIST_ALL = "menuListAll";
+
 
 	/**
 	 * 根据ID获取用户

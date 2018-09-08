@@ -8,12 +8,15 @@ import cn.jeeweb.core.query.data.Queryable;
 import cn.jeeweb.core.query.utils.QueryableConvertUtils;
 import cn.jeeweb.core.security.shiro.authz.annotation.RequiresMethodPermissions;
 import cn.jeeweb.core.security.shiro.authz.annotation.RequiresPathPermission;
+import cn.jeeweb.core.utils.IpUtils;
 import cn.jeeweb.core.utils.MessageUtils;
 import cn.jeeweb.core.utils.StringUtils;
 import cn.jeeweb.core.utils.upload.exception.FileNameLengthLimitExceededException;
 import cn.jeeweb.core.utils.upload.exception.InvalidExtensionException;
+import cn.jeeweb.modules.sys.data.AttachmentFile;
 import cn.jeeweb.modules.sys.entity.Attachment;
 import cn.jeeweb.modules.sys.service.IAttachmentService;
+import cn.jeeweb.modules.sys.utils.UserUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializeFilter;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -71,7 +74,7 @@ public class AttachmentController extends BaseController {
 	 * @description: 文件上传
 	 * @param request
 	 * @param response
-	 * @param files
+//	 * @param files
 	 * @return
 	 * @return: AjaxUploadResponse
 	 */
@@ -89,7 +92,9 @@ public class AttachmentController extends BaseController {
 			while (ite.hasNext()) {
 				MultipartFile file = multiRequest.getFile(ite.next());
 				try {
-					Attachment attachment = attachmentService.upload(request, file);
+					String path = request.getServletContext().getRealPath("/");
+					AttachmentFile attachmentFile = new AttachmentFile(file.getName(),file.getOriginalFilename(), IpUtils.getIpAddr(request),file.getContentType(),file.getBytes());
+					Attachment attachment = attachmentService.upload(attachmentFile, UserUtils.getUser());
 					attachmentList.add(attachment);
 					continue;
 				} catch (IOException e) {
@@ -118,7 +123,7 @@ public class AttachmentController extends BaseController {
 	 * @description: 文件上传
 	 * @param request
 	 * @param response
-	 * @param files
+//	 * @param files
 	 * @return
 	 * @return: AjaxUploadResponse
 	 */
@@ -137,7 +142,9 @@ public class AttachmentController extends BaseController {
 			while (ite.hasNext()) {
 				MultipartFile file = multiRequest.getFile(ite.next());
 				try {
-					Attachment attachment = attachmentService.upload(request, file);
+					String path = request.getServletContext().getRealPath("/");
+					AttachmentFile attachmentFile = new AttachmentFile(file.getName(),file.getOriginalFilename(), IpUtils.getIpAddr(request),file.getContentType(),file.getBytes());
+					Attachment attachment = attachmentService.upload(attachmentFile, UserUtils.getUser());
 					attachmentList.add(attachment);
 					continue;
 				} catch (IOException e) {
@@ -201,7 +208,7 @@ public class AttachmentController extends BaseController {
 	 * @description: 文件上传
 	 * @param request
 	 * @param response
-	 * @param files
+//	 * @param files
 	 * @return
 	 * @return: AjaxUploadResponse
 	 */

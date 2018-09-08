@@ -199,7 +199,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         multipartResolver.setMaxUploadSize(52428800);
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 //        multipartResolver.setUploadTempDir(resolver.getResource("/upload/temp/"));
-        multipartResolver.setUploadTempDir(new FileSystemResource("/upload/temp"));
+//        multipartResolver.setUploadTempDir(new FileSystemResource("/upload/temp"));
+        multipartResolver.setUploadTempDir(new ClassPathResource("upload/temp"));
         return multipartResolver;
     }
 

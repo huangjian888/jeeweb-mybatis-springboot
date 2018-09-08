@@ -142,10 +142,28 @@ public class FileUploadUtils {
 		return filename;
 	}
 
+	public static final String upload(String path, String baseDir, MultipartFile file,
+									  String[] allowedExtension, long maxSize, boolean needDatePathAndRandomName)
+			throws InvalidExtensionException, FileSizeLimitExceededException, IOException,
+			FileNameLengthLimitExceededException {
+
+		int fileNamelength = file.getOriginalFilename().length();
+		if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH) {
+			throw new FileNameLengthLimitExceededException(file.getOriginalFilename(), fileNamelength,
+					FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
+		}
+		assertAllowed(file, allowedExtension, maxSize);
+		String filename = extractFilename(file, baseDir, needDatePathAndRandomName);
+		File desc = getAbsoluteFile(path, filename);
+
+		file.transferTo(desc);
+		return filename;
+	}
+
 	private static final File getAbsoluteFile(String uploadDir, String filename) throws IOException {
 
 		uploadDir = FilenameUtils.normalizeNoEndSeparator(uploadDir);
-
+		System.out.println("getAbsoluteFile path:"+uploadDir + "/" + filename);
 		File desc = new File(uploadDir + "/" + filename);
 
 		if (!desc.getParentFile().exists()) {
@@ -203,7 +221,6 @@ public class FileUploadUtils {
 
 		String filename = file.getOriginalFilename();
 		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
-
 		if (allowedExtension != null && !isAllowedExtension(extension, allowedExtension)) {
 			if (allowedExtension == IMAGE_EXTENSION) {
 				throw new InvalidExtensionException.InvalidImageExtensionException(allowedExtension, extension,
@@ -218,7 +235,6 @@ public class FileUploadUtils {
 				throw new InvalidExtensionException(allowedExtension, extension, filename);
 			}
 		}
-
 		long size = file.getSize();
 		if (maxSize != -1 && size > maxSize) {
 			throw new FileSizeLimitExceededException("not allowed upload upload", size, maxSize);
