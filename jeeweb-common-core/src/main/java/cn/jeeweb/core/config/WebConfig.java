@@ -127,12 +127,21 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    @Bean
+    public FastJsonHttpMessageConverter fastJsonHttpMessageConverter(){
         FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
         List<MediaType> fastJsonHttpMessageConverter_supportedMediaTypes = new ArrayList<>();
         fastJsonHttpMessageConverter_supportedMediaTypes.add(MediaType.valueOf("application/json;charset=UTF-8"));
         fastJsonHttpMessageConverter.setSupportedMediaTypes(fastJsonHttpMessageConverter_supportedMediaTypes);
+        return fastJsonHttpMessageConverter;
+    }
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        /*FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        List<MediaType> fastJsonHttpMessageConverter_supportedMediaTypes = new ArrayList<>();
+        fastJsonHttpMessageConverter_supportedMediaTypes.add(MediaType.valueOf("application/json;charset=UTF-8"));
+        fastJsonHttpMessageConverter.setSupportedMediaTypes(fastJsonHttpMessageConverter_supportedMediaTypes);*/
 
         StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
         List<MediaType> stringHttpMessageConverter_supportedMediaTypes = new ArrayList<>();
@@ -149,7 +158,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         jsonMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
         mappingJackson2HttpMessageConverter.setObjectMapper(jsonMapper);
 
-        converters.add(fastJsonHttpMessageConverter);
+        converters.add(fastJsonHttpMessageConverter());
+        converters.add(stringHttpMessageConverter);
+        converters.add(mappingJackson2HttpMessageConverter);
     }
 
     @Override

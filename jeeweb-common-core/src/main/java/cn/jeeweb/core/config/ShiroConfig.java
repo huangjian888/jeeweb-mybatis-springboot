@@ -27,6 +27,7 @@ import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.context.annotation.Bean;
@@ -43,6 +44,7 @@ import java.util.Map;
  * Created by hexin on 2018/8/13.
  */
 @Configuration
+@ConditionalOnProperty(prefix = "jeeweb",name = "shiroConfig",havingValue = "true")
 public class ShiroConfig {
 
     @Bean
