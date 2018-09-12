@@ -3,6 +3,7 @@ package cn.jeeweb.core.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -102,42 +103,42 @@ public class DataSourceConfig {
         return druidDataSource;
     }
 
-//    @Value("${connection.url}")
+    @Value("${connection.url}")
     public void setDbUrl(String dbUrl) {
         this.dbUrl = dbUrl;
     }
 
-//    @Value("${connection.username}")
+    @Value("${connection.username}")
     public void setUsername(String username) {
         this.username = username;
     }
 
-//    @Value("${connection.password}")
+    @Value("${connection.password}")
     public void setPassword(String password) {
         this.password = password;
     }
 
-//    @Value("${connection.driverClassName}")
+    @Value("${connection.driverClassName}")
     public void setDriverClassName(String driverClassName) {
         this.driverClassName = driverClassName;
     }
 
-//    @Value(value = "${druid.initialSize}")
+    @Value(value = "${druid.initialSize}")
     public void setInitialSize(int initialSize) {
         this.initialSize = initialSize;
     }
 
-//    @Value(value = "${druid.minIdle}")
+    @Value(value = "${druid.minIdle}")
     public void setMinIdle(int minIdle) {
         this.minIdle = minIdle;
     }
 
-//    @Value(value = "${druid.maxActive}")
+    @Value(value = "${druid.maxActive}")
     public void setMaxActive(int maxActive) {
         this.maxActive = maxActive;
     }
 
-//    @Value(value = "${druid.maxWait}")
+    @Value(value = "${druid.maxWait}")
     public void setMaxWait(int maxWait) {
         this.maxWait = maxWait;
     }
