@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>cn.jeeweb</groupId>
-	<artifactId>jeeweb-sso-service</artifactId>
+	<artifactId>jeeweb-sso-web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>jeeweb-sso-service</name>
-	<description>jeeweb sso service</description>
+	<name>jeeweb-sso-web</name>
+	<description>jeeweb sso web</description>
 
 	<parent>
 		<groupId>cn.jeeweb</groupId>
