@@ -44,7 +44,7 @@ import java.util.Map;
  * Created by hexin on 2018/8/13.
  */
 @Configuration
-@ConditionalOnProperty(prefix = "jeeweb",name = "shiroConfig",havingValue = "true")
+@ConditionalOnProperty(name = "jeeweb.common-core.shiroConfig",havingValue = "true")
 public class ShiroConfig {
 
     @Bean

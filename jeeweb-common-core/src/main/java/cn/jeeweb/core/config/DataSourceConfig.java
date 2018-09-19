@@ -5,6 +5,7 @@ import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,7 @@ import java.util.Map;
  * Created by hexin on 2018/8/14.
  */
 @Configuration
+@ConditionalOnProperty(name = "jeeweb.common-core.dataSourceConfig",havingValue = "true")
 @ConditionalOnClass(DruidDataSource.class)
 public class DataSourceConfig {
     private String dbUrl = "jdbc:mysql://localhost:3306/jeeweb_mybatis?useUnicode=true&characterEncoding=utf-8";

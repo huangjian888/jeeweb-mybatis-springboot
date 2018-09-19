@@ -1,14 +1,16 @@
 package cn.jeeweb.sso.config;
 
-import cn.jeeweb.core.config.WebConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  * Created by hexin on 2018/9/14.
  */
 @Configuration
-public class SsoWebConfig extends WebConfig{
+public class SsoWebConfig extends WebMvcConfigurerAdapter {
+
+
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

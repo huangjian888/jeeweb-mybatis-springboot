@@ -9,6 +9,7 @@ import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -23,6 +24,7 @@ import java.util.Properties;
  * Created by hexin on 2018/8/14.
  */
 @Configuration
+@ConditionalOnProperty(name = "jeeweb.common-core.myBatisConfig",havingValue = "true")
 @ConditionalOnClass(value = {MapperScannerConfigurer.class, DataSourceTransactionManager.class})
 @EnableTransactionManagement(proxyTargetClass = true)
 @EnableScheduling

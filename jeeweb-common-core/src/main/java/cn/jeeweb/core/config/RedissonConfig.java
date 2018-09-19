@@ -6,6 +6,7 @@ import cn.jeeweb.core.utils.PropertiesUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by hexin on 2018/9/4.
  */
 @Configuration
+@ConditionalOnProperty(name = "jeeweb.common-core.redissonConfig",havingValue = "true")
 public class RedissonConfig {
 
     @Bean(name = "redissonClient")

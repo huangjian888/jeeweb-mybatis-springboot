@@ -1,6 +1,7 @@
 package cn.jeeweb.core.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
@@ -12,6 +13,7 @@ import org.springframework.core.io.ClassPathResource;
  * Created by hexin on 2018/8/22.
  */
 @Configuration
+@ConditionalOnProperty(name = "jeeweb.common-core.cacheConfig",havingValue = "true")
 @EnableCaching
 public class CacheConfig {
 

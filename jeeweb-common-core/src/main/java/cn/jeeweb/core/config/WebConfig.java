@@ -18,6 +18,7 @@ import org.hibernate.validator.HibernateValidator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -59,6 +60,7 @@ import java.util.List;
  */
 
 @Configuration
+@ConditionalOnProperty(name = "jeeweb.common-core.webConfig",havingValue = "true")
 //@EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 
