@@ -14,6 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/auth")
 public class SsoClientController {
 
+    /**
+     * sso client test
+     * @param request
+     * @param response
+     * @param model
+     */
     @RequestMapping(value = "/login")
     public void login(HttpServletRequest request, HttpServletResponse response, Model model){
         System.out.println("Sso client login");
