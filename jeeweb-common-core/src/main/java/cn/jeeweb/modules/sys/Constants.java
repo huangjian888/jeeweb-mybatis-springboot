@@ -16,6 +16,7 @@ public class Constants {
 	public static final String SYSTEM_CACHE_NAMESPACE = "s:jeeweb:";
 	public static final String REDIS_SHIRO_CACHE = SYSTEM_CACHE_NAMESPACE + "shiro-cache:";
 	public static final String REDIS_SHIRO_SESSION = SYSTEM_CACHE_NAMESPACE + "shiro-session:";
+	public static final String REDIS_TOKEN = SYSTEM_CACHE_NAMESPACE + "token:";
 
 	/** 在线用户数量 */
 	public static final String ALLUSER_NUMBER = SYSTEM_CACHE_NAMESPACE + "ALLUSER_NUMBER";

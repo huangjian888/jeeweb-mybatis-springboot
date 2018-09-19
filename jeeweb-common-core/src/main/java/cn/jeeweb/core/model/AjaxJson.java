@@ -1,8 +1,10 @@
 package cn.jeeweb.core.model;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 
-public class AjaxJson {
+public class AjaxJson implements Serializable {
+	private static final long serialVersionUID = 1L;
 	//200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。
 	//201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。
 	//202 Accepted - [*]：表示一个请求已经进入后台排队（异步任务）

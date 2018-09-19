@@ -4,17 +4,18 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>cn.jeeweb</groupId>
-	<artifactId>jeeweb-sso</artifactId>
+	<artifactId>jeeweb-sso-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 
-	<name>jeeweb-sso</name>
-	<description>jeeweb sso</description>
+	<name>jeeweb-sso-client</name>
+	<description>sso client</description>
 
 	<parent>
 		<groupId>cn.jeeweb</groupId>
-		<artifactId>jeeweb-spring-boot</artifactId>
+		<artifactId>jeeweb-sso</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -26,7 +27,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>cn.jeeweb</groupId>
-			<artifactId>jeeweb-common-core</artifactId>
+			<artifactId>jeeweb-sso-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
@@ -40,15 +41,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version>0.6.0</version>
-		</dependency>
 	</dependencies>
 
-
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 
 </project>
