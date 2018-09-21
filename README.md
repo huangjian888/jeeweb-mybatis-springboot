@@ -84,7 +84,8 @@ JeeWeb 功能特点
 * 修改数据库配置文件dbconfig.properties中的账号密码.
 * 启动项目,管理员账号admin/密码123456
 * 启动项目：(如:F:/Federation2.0/jeeweb-spring-boot-2.0为项目根目录,找到IDEA工具右侧maven projects，点击上方Excute Maven Goal按钮)
-* Working directory输入F:/Federation2.0/jeeweb-spring-boot-2.0/Command line为以下命令
+* Working directory输入F:/Federation2.0/jeeweb-spring-boot-2.0/
+* Command line为以下命令
 * 启动jeeweb-sys-service命令：clean package -P build -Dmaven.tomcat.port=8081 tomcat8:run-war -f jeeweb-sys-service-server.xml
 * 启动jeeweb-sys-web命令：clean package -P build -Dmaven.tomcat.port=8082 tomcat8:run-war -f jeeweb-sys-web-server.xml
 * 项目访问：http://localhost:8082/jeeweb-sys-web/

@@ -1,12 +1,24 @@
 package cn.jeeweb;
 
+import com.alibaba.csp.sentinel.init.InitExecutor;
+import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-@SpringBootApplication
-public class JeewebSsoServiceApplication {
+@DubboComponentScan
+@SpringBootApplication(scanBasePackages={"cn.jeeweb"})
+public class JeewebSsoServiceApplication extends SpringBootServletInitializer {
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(JeewebSsoServiceApplication.class);
+	}
+
 
 	public static void main(String[] args) {
+		InitExecutor.doInit();
 		SpringApplication.run(JeewebSsoServiceApplication.class, args);
 	}
 }
