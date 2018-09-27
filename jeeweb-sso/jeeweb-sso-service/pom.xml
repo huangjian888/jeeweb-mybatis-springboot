@@ -6,7 +6,7 @@
 	<groupId>cn.jeeweb</groupId>
 	<artifactId>jeeweb-sso-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>jeeweb-sso-service</name>
 	<description>jeeweb sso service</description>

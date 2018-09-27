@@ -13,5 +13,7 @@
 	<dubbo:registry id="zookeeper" protocol="zookeeper" address="localhost:2181" />
 
 	<dubbo:reference id="ssoUserService" interface="cn.jeeweb.sso.service.ISsoUserService" check="false" />
-
+	<dubbo:reference id="logService" interface=" cn.jeeweb.modules.sys.service.ILogService" check="false" />
+	<dubbo:reference id="menuService" interface="cn.jeeweb.modules.sys.service.IMenuService" check="false" />
+	<dubbo:reference id="scheduleJobService" interface=" cn.jeeweb.modules.task.service.IScheduleJobService" check="false" />
 </beans>

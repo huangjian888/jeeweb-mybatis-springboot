@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<!DOCTYPE html-component SYSTEM "http://www.jeeweb.cn/dtd/html-component-1.0.dtd">
+<html-component>
+	<fragment name="syntaxhighlighter-code">  
+    <![CDATA[ 
+		<pre class="brush: ${codeType};">
+              ${bodyContent}
+ 		</pre>
+    ]]>
+	</fragment>
+	<fragment name="fa-icons">  
+    <![CDATA[ 
+		<#if genField>
+			<i id="${name!}Icon" class="fa ${value!}"></i>&nbsp;
+			<span id="${name!}IconLabel"><#if value??>${value!}<#else>无</#if></span>&nbsp;
+			<a id="${name!}Button" href="javascript:" class="btn btn-primary iconbtn">选择</a>&nbsp;&nbsp;
+			<a id="${name!}clear" href="javascript:" class="btn btn-default iconbtn">清除</a>
+		</#if>
+		<script type="text/javascript">
+			$(document).ready(function(){
+			   $("#${name!}Button").click(function(){
+					//打开树
+				    top.layer.open({
+							type: 2, 
+							maxmin: true, //开启最大化最小化按钮
+							title:"选择图标",
+							area: ['${width!}', '${height!}'],
+						    content: '${adminPath}/sys/common/icons?value="+$("#${name!}").val()',
+						    btn: ['确定', '关闭'],
+						    yes: function(index, layero){ //或者使用btn1
+						    	var icon = layero.find("iframe")[0].contentWindow.$("#icon").val();
+				            	$("#${name!}Icon").attr("class", "fa "+icon);
+				                $("#${name!}IconLabel").text(icon);
+				                $("#${name!}").val(icon);
+				                top.layer.close(index);
+				                <#if callback??>
+				                      ${callback!}(icon);
+								</#if>
+						    },cancel: function(index){ //或者使用btn2
+						    	
+						    }
+						});
+				});
+				
+			    $("#${name!}clear").click(function(){
+					$("#${name!}Icon").attr("class", "icon-hide");
+					$("#${name!}IconLabel").text("无");
+					$("#${name!}").val("");
+				});
+			});
+		</script>
+    ]]>
+	</fragment>
+	
+	<fragment name="suggest-combox">  
+    <![CDATA[ 
+       <div class="input-group">
+		  <input id="${labelName!}" name="${labelName!}"  type="text" value="<#if labelValue??>${labelValue!}<#else></#if>" class="form-control"/>
+	      <div class="input-group-btn">
+	          <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+	              <span class="caret"></span>
+	          </button>
+	          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+	          </ul>
+	      </div>
+	   </div>
+          <!-- /btn-group -->
+	   <script type="text/javascript">
+			$(document).ready(function(){
+			    init${name?cap_first}Combox();
+			});
+			
+			function init${name?cap_first}Combox(){
+			    var settings={
+		            idField: '${idField}',   //每组数据的哪个字段作为 data-id，优先级高于 indexId 设置（推荐）
+	    			keyField: '${keyField}',  //每组数据的哪个字段作为输入框内容，优先级高于 indexKey 设置（推荐）
+	    			allowNoKeyword: false,           //是否允许无关键字时请求数据
+		            multiWord: ${multiWord?string("true","false")}, //以分隔符号分割的多关键字支持
+		            separator: "${separator}", //多关键字支持时的分隔符，默认为空格
+		            getDataMethod: "${getDataMethod}", //获取数据的方式，总是从 URL 获取
+		            <#if initDatas??&&initDatas!=''>
+		            data: {
+		                'value':${initDatas}
+		            },
+		            </#if>
+		            <#if effectiveFields??&&effectiveFields!=''>
+		            effectiveFields: ${effectiveFields},
+		            </#if>
+		            <#if effectiveFieldsAlias??&&effectiveFieldsAlias!=''>
+		            effectiveFieldsAlias: ${effectiveFieldsAlias},
+		            </#if>
+		            <#if showHeader??>
+		            showHeader: ${showHeader?string("true","false")},
+		            </#if>
+		            <#if dataUrl??&&dataUrl!=''>
+		            url: '${dataUrl}',
+		            /*优先从url ajax 请求 json 帮助数据，注意最后一个参数为关键字请求参数*/
+		            <#if jsonp??&&jsonp!=''>
+		            jsonp: '${jsonp}',
+		            </#if>
+		            processData: function (json) {
+		                <#if processData??&&processData!=''>
+		                return ${processData}(json);
+		                <#else>
+		                var i, len, data = {
+		                    value: []
+		                };
+		                if (!json || json.length == 0) {
+		                    return false;
+		                }
+		                len = json.length;
+		                for (i = 0; i < len; i++) {
+		                    data.value.push(json[i]);
+		                }
+		                return data;
+		                </#if>
+		            }
+		            </#if>
+		        };
+		        <#if comboxSetting??&&comboxSetting!=''>
+	            $.extend(settings, ${comboxSetting});
+	            </#if>
+				var bsSuggest=$("#${labelName!}").bsSuggest(settings);
+		        //事件处理
+		        bsSuggest.on('onDataRequestSuccess', function (e, result) {
+		             <#if dataRequestSuccess??&&dataRequestSuccess!=''>
+						  ${dataRequestSuccess!}(e, result);
+					 </#if>
+		        }).on('onSetSelectValue', function (e, keyword) {
+		             <#if multiWord??&&multiWord>
+		                 var ids=$("#${name}").val();
+		                 if(ids!=''){
+		                    ids+=",";
+		                 }
+		                 ids+=keyword.id;
+		                 $("#${name}").val(ids);
+		             <#else>
+		               $("#${name}").val(keyword.id);
+		             </#if>
+		             <#if setSelectValue??&&setSelectValue!=''>
+						  ${setSelectValue!}(e, keyword);
+					 </#if>
+		        }).on('onUnsetSelectValue', function (e) {
+		             <#if unsetSelectValue??&&unsetSelectValue!=''>
+						  ${unsetSelectValue!}(e);
+					 </#if>
+		        });
+       	 	 }
+		 </script>
+    ]]>
+	</fragment>
+	<fragment name="bootstrap-treeview">  
+    <![CDATA[ 
+        <div id="${id}"></div>
+        <script type="text/javascript">
+        var  ${id}settings={
+          <#if onNodeSelected??&&onNodeSelected!=''>
+	        onNodeSelected: function (event, node) {
+	             ${onNodeSelected}(event,node);
+	        }
+	      </#if>
+        };
+        <#if treeviewSettingCallback??&&treeviewSettingCallback!=''>
+        $.extend(${id}settings, typeof ${treeviewSettingCallback} == "function" &&${treeviewSettingCallback}());
+        </#if>
+        $(document).ready(function(){
+            <#if initDatas??&&initDatas!=''>
+            initTree(setting,${initDatas});
+            <#else>
+		 	$.ajax({  
+			       type : "post",  
+			       url : "${dataUrl!}",  
+			       dataType : "json",
+			       success : function(nodes) { 
+			    	   init${id}Tree(${id}settings,nodes);
+			       }
+			});
+			</#if>
+		});
+		function init${id}Tree(setting,nodes){
+		   setting['data']=nodes;
+		   $('#${id}').treeview(setting);
+		}
+		</script>
+    ]]>
+	</fragment>
+</html-component>  

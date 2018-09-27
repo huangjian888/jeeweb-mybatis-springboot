@@ -25,6 +25,9 @@
 		<module>jeeweb-sys-service</module>
 		<module>jeeweb-sys-web</module>
 		<module>jeeweb-common-core</module>
+
+		<!--<module>jeeweb-sso/jeeweb-sso-common</module>-->
+		<!--<module>jeeweb-sso/jeeweb-sso-service</module>-->
 	</modules>
 
 	<properties>
@@ -96,6 +99,18 @@
 				<artifactId>jeeweb-sys-service</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
+
+			<!--<dependency>-->
+				<!--<groupId>cn.jeeweb</groupId>-->
+				<!--<artifactId>jeeweb-sso-common</artifactId>-->
+				<!--<version>0.0.1-SNAPSHOT</version>-->
+			<!--</dependency>-->
+			<!--<dependency>-->
+				<!--<groupId>cn.jeeweb</groupId>-->
+				<!--<artifactId>jeeweb-sso-service</artifactId>-->
+				<!--<version>0.0.1-SNAPSHOT</version>-->
+			<!--</dependency>-->
+
 		</dependencies>
 	</dependencyManagement>
 

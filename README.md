@@ -91,6 +91,10 @@ JeeWeb 功能特点
 * 项目访问：http://localhost:8082/jeeweb-sys-web/
 * 生产环境打包：clean package -P product -Dmaven.tomcat.port=8081 tomcat8:run-war -f jeeweb-sys-service-server.xml
                 clean package -P product -Dmaven.tomcat.port=8082 tomcat8:run-war -f jeeweb-sys-web-server.xml
+* 启动Sso单点登录模块(访问Sso client入口：http://localhost:8085/jeeweb-sso-client/auth/login)
+* clean package -P build -Dmaven.tomcat.port=8083 tomcat8:run-war -f jeeweb-sso-service-server.xml
+* clean package -P build -Dmaven.tomcat.port=8084 tomcat8:run-war -f jeeweb-sso-web-server.xml
+* clean package -P build -Dmaven.tomcat.port=8085 tomcat8:run-war -f jeeweb-sso-client-server.xml
 
 计划任务
 -----------------------------------

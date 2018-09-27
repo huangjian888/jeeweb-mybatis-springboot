@@ -1,0 +1,19 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
+<%@taglib prefix="fns" uri="/WEB-INF/tlds/jeeweb-functions.tld"%>
+<%@taglib prefix="form" uri="/WEB-INF/tlds/jeeweb-form.tld"%>
+<%@taglib prefix="grid" uri="/WEB-INF/tlds/jeeweb-grid.tld"%>
+<%@taglib prefix="html" uri="/WEB-INF/tlds/jeeweb-html.tld"%>
+<%@taglib prefix="view" uri="/WEB-INF/tlds/jeeweb-view.tld"%>
+
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<c:set var="adminPath" value="${pageContext.request.contextPath}${fns:getAdminUrlPrefix()}" />
+<c:set var="appPath" value="${pageContext.request.contextPath}"/>
+<c:set var="staticPath" value="${pageContext.request.contextPath}/static"/>
+
+<spring:message code="platform.name"  var="platformName"/>
+<spring:message code="platform.copyright"  var="platformCopyright"/>
+<spring:message code="platform.version"  var="platformVersion"/>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<description>Spring Framework JSP Form Tag Library</description>
+	<tlib-version>4.0</tlib-version>
+	<short-name>form</short-name>
+	<uri>/tags/jeeweb-view</uri>
+	<tag>
+		<!-- 树主标签 -->
+		<name>treeview</name>
+		<!-- 处理类 -->
+		<tag-class>cn.jeeweb.core.tags.view.TreeviewTag</tag-class>
+		<!-- 标签的内容体 -->
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>表格唯一标示</description>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>获取数据的URL</description>
+			<name>dataUrl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>设置数据</description>
+			<name>datas</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>事件</description>
+			<name>onNodeSelected</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>配置扩展</description>
+			<name>treeviewSettingCallback</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		 
+		<!-- 指定支持动态属性 -->
+		<dynamic-attributes>true</dynamic-attributes>
+	</tag>
+	 
+</taglib>

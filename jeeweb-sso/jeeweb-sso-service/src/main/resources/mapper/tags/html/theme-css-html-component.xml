@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<!DOCTYPE html-component SYSTEM "http://www.jeeweb.cn/dtd/html-component-1.0.dtd">  
+<html-component>  
+    <css name="ace-theme">  
+    <![CDATA[ 
+		<!-- text fonts -->
+		<link rel="stylesheet" href="${staticPath}/ace/css/ace-fonts.min.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="${staticPath}/ace/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="${staticPath}/ace/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+		<link rel="stylesheet" href="${staticPath}/ace/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="${staticPath}/ace/css/ace-rtl.min.css" />
+		
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="${staticPath}/ace/css/ace-ie.min.css" />
+		<![endif]-->
+		<link rel="stylesheet" href="${staticPath}/ace/css/ace-tab.css" />
+    ]]>   
+    </css>
+</html-component>  

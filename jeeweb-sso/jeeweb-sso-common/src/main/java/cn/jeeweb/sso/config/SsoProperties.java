@@ -4,13 +4,13 @@ package cn.jeeweb.sso.config;
  * Created by hexin on 2018/9/17.
  */
 public class SsoProperties {
-    private String ssoServiceUrl; //sso服务器地址
+    private String ssoBaseServiceUrl; //sso服务器地址
 
-    public String getSsoServiceUrl() {
-        return ssoServiceUrl;
+    public String getSsoBaseServiceUrl() {
+        return ssoBaseServiceUrl;
     }
 
-    public void setSsoServiceUrl(String ssoServiceUrl) {
-        this.ssoServiceUrl = ssoServiceUrl;
+    public void setSsoBaseServiceUrl(String ssoBaseServiceUrl) {
+        this.ssoBaseServiceUrl = ssoBaseServiceUrl;
     }
 }

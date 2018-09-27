@@ -13,6 +13,7 @@ public class SsoConstants {
     public static final String FLAG_LOGIN_USER = "loginUser";
 
     //url
+    public static final String URL_LOGIN = "/auth/login";
     public static final String URL_PARSE_TOKEN = "/auth/parseToken";
     public static final String URL_CLEAR_TOKEN = "/auth/clearToken";
 }

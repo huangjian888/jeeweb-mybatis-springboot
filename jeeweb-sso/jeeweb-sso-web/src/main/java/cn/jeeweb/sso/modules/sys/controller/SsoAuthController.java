@@ -33,7 +33,8 @@ public class SsoAuthController extends BaseController {
     private ISsoUserService ssoUserService;
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public ModelAndView login(){
+    public ModelAndView login(HttpServletRequest request, HttpServletRequest response, Model model){
+        model.addAttribute("showCaptcha", "0");
         return new ModelAndView("modules/sys/login/login");
     }
 
@@ -43,6 +44,7 @@ public class SsoAuthController extends BaseController {
         String password = request.getParameter("password");
         boolean isMobileLogin = Boolean.getBoolean(request.getParameter("mobile"));
         String redirectUrl = request.getParameter(SsoConstants.PARAMETER_REDIRECT);
+        System.out.println("login redirectUrl:"+redirectUrl);
         if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(redirectUrl)){
             request.setAttribute("shiroLoginFailure", "shiroLoginFailure");
             request.setAttribute("error", "用户名密码等信息不能为空...");
@@ -57,6 +59,7 @@ public class SsoAuthController extends BaseController {
         }
         if(ret.getRet() == AjaxJson.RET_SUCCESS){
             String token = ssoUserService.generateToken((String) ret.getData());
+            System.out.println("login token:"+token);
             request.getSession().setAttribute(SsoConstants.FLAG_SESSION_LOGIN, token);
             try {
                 response.sendRedirect(redirectUrl + "?" +SsoConstants.PARAMETER_TOKEN + "=" +token);
@@ -78,4 +81,6 @@ public class SsoAuthController extends BaseController {
         model.addAttribute(SsoConstants.PARAMETER_REDIRECT, request.getParameter(SsoConstants.PARAMETER_REDIRECT));
         return new ModelAndView("modules/sys/login/login");
     }
+
+
 }

@@ -12,9 +12,10 @@
 	<dubbo:application name="jeeweb-sso-service"  />
 	<dubbo:registry id="zookeeper" protocol="zookeeper" address="localhost:2181" />
 	<dubbo:annotation package="cn.jeeweb" />
-	<dubbo:protocol name="dubbo" port="30001" dispather="all" threadpool="cached" threads="5000"/>
+	<dubbo:protocol name="dubbo" port="30002" dispather="all" threadpool="cached" threads="5000"/>
 
 	<dubbo:reference id="userService" interface="cn.jeeweb.modules.sys.service.IUserService" check="false" />
 	<dubbo:reference id="roleService" interface="cn.jeeweb.modules.sys.service.IRoleService" check="false" />
 	<dubbo:reference id="menuService" interface="cn.jeeweb.modules.sys.service.IMenuService" check="false" />
+	<dubbo:reference id="logService" interface=" cn.jeeweb.modules.sys.service.ILogService" check="false" />
 </beans>

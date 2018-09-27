@@ -118,6 +118,7 @@ public class SsoUserServiceImpl implements ISsoUserService {
         }else{
             ret.fail("没有找到当前帐号...");
         }
+        System.out.println("findByUsername: ret"+JSON.toJSONString(ret));
         return ret;
     }
 

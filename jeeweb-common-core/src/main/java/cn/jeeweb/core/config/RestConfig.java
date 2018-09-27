@@ -3,6 +3,7 @@ package cn.jeeweb.core.config;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,8 @@ public class RestConfig {
 
     @Bean(name = "restTemplateBuilder")
     public RestTemplateBuilder restTemplateBuilder(){
+        System.out.println("restTemplateBuilder....");
+        System.out.println("fastJsonHttpMessageConverter:"+fastJsonHttpMessageConverter);
         RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder();
         restTemplateBuilder.messageConverters(fastJsonHttpMessageConverter);
         return restTemplateBuilder;
@@ -28,6 +31,7 @@ public class RestConfig {
 
     @Bean
     public RestTemplate restTemplate( @Qualifier("restTemplateBuilder")RestTemplateBuilder restTemplateBuilder){
+        System.out.println("restTemplate....");
         return restTemplateBuilder.build();
     }
 }

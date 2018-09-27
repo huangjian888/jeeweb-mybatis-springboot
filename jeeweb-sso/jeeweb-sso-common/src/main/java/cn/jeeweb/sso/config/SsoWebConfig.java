@@ -1,21 +1,31 @@
 package cn.jeeweb.sso.config;
 
+import cn.jeeweb.core.config.RestConfig;
 import cn.jeeweb.core.exception.DefaultExceptionHandler;
 import cn.jeeweb.core.interceptor.EncodingInterceptor;
 import cn.jeeweb.core.interceptor.ReloadConfigInterceptor;
 import cn.jeeweb.core.mapper.JsonMapper;
 import cn.jeeweb.core.query.resolver.*;
 import cn.jeeweb.core.security.shiro.interceptor.PermissionInterceptorAdapter;
+import cn.jeeweb.core.tags.html.builder.DefaultHtmlComponentBuilder;
+import cn.jeeweb.core.tags.html.listener.HtmlComponentInitListener;
+import cn.jeeweb.core.tags.html.manager.HtmlComponentManager;
 import cn.jeeweb.modules.common.interceptor.LogInterceptor;
+import com.alibaba.druid.support.http.WebStatFilter;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.format.support.FormattingConversionServiceFactoryBean;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -38,12 +48,15 @@ import org.springframework.web.servlet.view.JstlView;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hexin on 2018/9/14.
  */
 @Configuration
+@AutoConfigureAfter(RestConfig.class)
 public class SsoWebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
@@ -67,6 +80,10 @@ public class SsoWebConfig extends WebMvcConfigurerAdapter {
         argumentResolvers.add(new RequestJsonParamMethodArgumentResolver());
     }
 
+    /**
+     * 跨域
+     * @param registry
+     */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         super.addCorsMappings(registry);
@@ -82,7 +99,7 @@ public class SsoWebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
-        registry.addResourceHandler("/upload/**").addResourceLocations("/upload/");
+        super.addResourceHandlers(registry);
     }
 
     @Bean
@@ -128,16 +145,15 @@ public class SsoWebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LocaleChangeInterceptor()).order(1);
-        LogInterceptor logInterceptor = new LogInterceptor();
-        logInterceptor.setOpenAccessLog(true);
-        registry.addInterceptor(logInterceptor).order(2);
+//        LogInterceptor logInterceptor = new LogInterceptor();
+//        logInterceptor.setOpenAccessLog(true);
+//        registry.addInterceptor(logInterceptor).order(2);
         ReloadConfigInterceptor reloadConfigInterceptor = new ReloadConfigInterceptor();
         reloadConfigInterceptor.setDevelopMode(false);
         reloadConfigInterceptor.setReloadConfigInterval(60000);
         registry.addInterceptor(reloadConfigInterceptor).order(3);
         List<String> excludePathPatterns = new ArrayList<>();
         excludePathPatterns.add("/static/**");
-        excludePathPatterns.add("/upload/**");
         registry.addInterceptor(new EncodingInterceptor()).addPathPatterns("/**").excludePathPatterns(excludePathPatterns).order(4);
     }
 
@@ -190,9 +206,37 @@ public class SsoWebConfig extends WebMvcConfigurerAdapter {
         return new SessionLocaleResolver();
     }
 
+    @Bean(name = "defaultHtmlComponentBuilder")
+    public DefaultHtmlComponentBuilder defaultHtmlComponentBuilder(){
+        DefaultHtmlComponentBuilder defaultHtmlComponentBuilder = new DefaultHtmlComponentBuilder();
+        defaultHtmlComponentBuilder.setFileNames(new String[]{"classpath*:/mapper/tags/html/*-html-component.xml"});
+        return defaultHtmlComponentBuilder;
+    }
+
+    @Bean
+    public HtmlComponentManager htmlComponentManager(@Qualifier("defaultHtmlComponentBuilder") DefaultHtmlComponentBuilder defaultHtmlComponentBuilder){
+        HtmlComponentManager htmlComponentManager = new HtmlComponentManager();
+        htmlComponentManager.setDynamicStatementBuilder(defaultHtmlComponentBuilder);
+        return htmlComponentManager;
+    }
+
+    @Bean
+    public HtmlComponentInitListener htmlComponentInitListener(){
+        return new HtmlComponentInitListener();
+    }
+
     @Bean
     public ServletListenerRegistrationBean<RequestContextListener> requestContextListenerServletListenerRegistrationBean(){
         return new ServletListenerRegistrationBean<RequestContextListener>(new RequestContextListener());
     }
 
+    @Bean
+    public PropertyPlaceholderConfigurer propertyPlaceholderConfigurer(){
+        PropertyPlaceholderConfigurer config = new PropertyPlaceholderConfigurer();
+        config.setIgnoreResourceNotFound(true);
+        List<Resource> resourceList = new ArrayList<Resource>();
+        resourceList.add(new ClassPathResource("jeeweb.properties"));
+        config.setLocations(resourceList.toArray(new Resource[]{}));
+        return config;
+    }
 }

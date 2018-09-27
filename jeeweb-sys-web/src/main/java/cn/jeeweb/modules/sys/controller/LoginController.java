@@ -27,7 +27,6 @@ public class LoginController extends BaseController {
 	
 	@RequestMapping(value = "/login")
 	public ModelAndView login(HttpServletRequest request, HttpServletRequest response, Model model) {
-		// 我的电脑有缓存问题
 		Principal principal = UserUtils.getPrincipal(); // 如果已经登录，则跳转到管理首页
 		if (principal != null && !principal.isMobileLogin()) {
 			return new ModelAndView("redirect:/admin");

@@ -31,6 +31,7 @@ public class SsoClientInterceptor implements HandlerInterceptor {
             String token = request.getParameter(SsoConstants.PARAMETER_TOKEN);
             if(token != null){
                 AjaxJson ret = ssoRemoteService.parseToken(token,request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath());
+                System.out.println("SsoClientInterceptor ret:"+ret);
                 if(ret.getRet() == AjaxJson.RET_SUCCESS){
                     session.setAttribute(SsoConstants.FLAG_SESSION_LOGIN,token);
                     session.setAttribute(SsoConstants.FLAG_LOGIN_USER,ret.getData());
@@ -60,7 +61,8 @@ public class SsoClientInterceptor implements HandlerInterceptor {
 
     private void redirectSsoService(HttpServletRequest request, HttpServletResponse response){
         String redirectBaseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getRequestURI();
-        String ssoServiceUrl = ssoProperties.getSsoServiceUrl()+"?"+SsoConstants.PARAMETER_REDIRECT +"="+ redirectBaseUrl;
+        String ssoServiceUrl = ssoProperties.getSsoBaseServiceUrl()+SsoConstants.URL_LOGIN +"?"+SsoConstants.PARAMETER_REDIRECT +"="+ redirectBaseUrl;
+        System.out.println("ssoServiceUrl:"+ssoServiceUrl);
         try {
             response.sendRedirect(ssoServiceUrl);
         } catch (IOException e) {
