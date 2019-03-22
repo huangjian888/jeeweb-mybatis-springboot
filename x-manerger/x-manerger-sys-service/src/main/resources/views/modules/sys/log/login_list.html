@@ -1,0 +1,27 @@
+<% layout('/layouts/list.html', {title: '登陆日志', libs: ''}){ %>
+<#grid:grid id="groupGrid" url="${adminPath}/sys/login/log/ajaxList" sortname="loginTime" sortorder="desc">
+    <#grid:toolbar title="导出"   icon="fa-download"  onclick="download()"  />
+    <#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+    <#grid:column label="登陆用户"  name="loginName" width="100"/>
+    <#grid:column label="登陆IP"  name="loginIp"  />
+    <#grid:column label="登录地点"  name="loginLocation"   width="60"/>
+    <#grid:column label="浏览器"  name="browser"   width="80"/>
+    <#grid:column label="操作系统"  name="os"   width="120"/>
+    <#grid:column label="登陆状态"  name="status" formatterClass="0:label label-primary;1:label label-success;-1:label label-danger" dict="loginstatus"  query="true" queryMode="select"/>
+    <#grid:column label="操作信息"  name="msg" />
+    <#grid:column label="操作时间"  name="loginTime" query="true" queryMode="date" condition="between" />
+    <#grid:toolbar   function="delete" />
+
+    <#grid:toolbar  function="search"  />
+    <#grid:toolbar  function="reset" />
+</#grid:grid>
+<script>
+    /**
+     * 导出
+     * @param rowId
+     */
+    function download() {
+        excelExport("${adminPath}/sys/login/log/export","groupGrid");
+    }
+</script>
+<% } %>

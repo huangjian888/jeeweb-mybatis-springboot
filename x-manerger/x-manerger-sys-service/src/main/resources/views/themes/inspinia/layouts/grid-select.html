@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <% include("/themes/uadmin/include/header.html"){}%>
+	<!-- list新增 -->
+    <#html:css  name="datepicker,jqgrid,sweetalert,layer"/>
+	<style>
+	   .uadmin-grid-margin{
+	   	   margin-top:8px;
+	   }
+	</style>
+</head>
+
+<body>
+   <div class="page-content">
+      <div class="portlet box">
+          <div class="portlet-body">
+              ${layoutContent}
+          </div>
+      </div>
+   </div>
+
+   <% include("/themes/uadmin/include/footer.html"){}%>
+    <!-- list新增  -->
+    <#html:js  name="jqGrid,jqGrid_curdtools,layer,sweetalert,datepicker"/>
+</body>
+
+</html>

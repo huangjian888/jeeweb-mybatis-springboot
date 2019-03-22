@@ -1,0 +1,234 @@
+BODY {
+	BACKGROUND-COLOR: white
+}
+BODY {
+	FONT-FAMILY: 'lucida grande', helvetica, verdana, arial, sans-serif
+}
+DIV {
+	FONT-FAMILY: 'lucida grande', helvetica, verdana, arial, sans-serif
+}
+BODY {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; COLOR: #333; PADDING-TOP: 0px
+}
+H1 {
+	PADDING-BOTTOM: 10px; MARGIN: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; FONT-FAMILY: 'trebuchet ms', verdana, arial; PADDING-TOP: 10px
+}
+H2 {
+	PADDING-BOTTOM: 10px; MARGIN: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; FONT-FAMILY: 'trebuchet ms', verdana, arial; PADDING-TOP: 10px
+}
+H1 {
+	FONT-SIZE: large
+}
+H2 {
+	PADDING-LEFT: 0px; COLOR: #800; FONT-SIZE: large; FONT-WEIGHT: normal
+}
+TABLE {
+	BORDER-COLLAPSE: collapse
+}
+FORM {
+	BORDER-BOTTOM: #ddd 1px solid; BORDER-LEFT: #ddd 1px solid; PADDING-BOTTOM: 15px; BACKGROUND-COLOR: #ffe; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; BORDER-TOP: #ddd 1px solid; BORDER-RIGHT: #ddd 1px solid; PADDING-TOP: 15px
+}
+#fmasters-dialog FORM {
+	BORDER-BOTTOM-STYLE: none; PADDING-BOTTOM: 0px; BORDER-LEFT-STYLE: none; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-RIGHT-STYLE: none; PADDING-TOP: 0px
+}
+FORM#paypal {
+	BORDER-BOTTOM-STYLE: none; PADDING-BOTTOM: 0px; BACKGROUND-COLOR: transparent; MARGIN-TOP: -8px; BORDER-LEFT-STYLE: none; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; BORDER-TOP-STYLE: none; FLOAT: right; BORDER-RIGHT-STYLE: none; PADDING-TOP: 0px
+}
+TD {
+	VERTICAL-ALIGN: top
+}
+P {
+	MARGIN: 10px 0px
+}
+DL {
+	MARGIN-TOP: 0px
+}
+DT {
+	COLOR: #a00; FONT-WEIGHT: bold
+}
+DD {
+	MARGIN: 0px 0px 40px; COLOR: #555
+}
+DL.options {
+	MARGIN: 10px 25px
+}
+HR {
+	HEIGHT: 1px
+}
+#main {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+#main H1 {
+	PADDING-BOTTOM: 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 10px; PADDING-TOP: 15px
+}
+#banner {
+	BORDER-BOTTOM: #eee 1px inset; TEXT-ALIGN: center; PADDING-BOTTOM: 15px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; BACKGROUND: url(images/bg7.png) #2278bb repeat-x 0px -40px; COLOR: #eee; FONT-SIZE: 24px; PADDING-TOP: 15px
+}
+#backnav {
+	POSITION: absolute; COLOR: #fff; FONT-SIZE: x-small; TEXT-DECORATION: none; LEFT: 10px
+}
+#backnav:hover {
+	COLOR: #fff
+}
+#logo {
+	DISPLAY: none
+}
+#content {
+	PADDING-BOTTOM: 20px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 20px
+}
+#busy {
+	BORDER-BOTTOM: #ccc 1px ridge; POSITION: absolute; BORDER-LEFT: #ccc 1px ridge; PADDING-BOTTOM: 3px; BACKGROUND-COLOR: #e95555; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; DISPLAY: none; COLOR: #eee; BORDER-TOP: #ccc 1px ridge; RIGHT: 7px; BORDER-RIGHT: #ccc 1px ridge; PADDING-TOP: 3px; TOP: 7px
+}
+#footer {
+	MARGIN-TOP: 30px; COLOR: #888; BORDER-TOP: #ddd 1px solid; PADDING-TOP: 20px
+}
+A.external {
+	BACKGROUND-IMAGE: url(images/external.png); PADDING-RIGHT: 12px; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: right center
+}
+DIV.step-one {
+	PADDING-BOTTOM: 0px; MARGIN-TOP: 20px; PADDING-LEFT: 50px; PADDING-RIGHT: 0px; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: left center; HEIGHT: 43px; VERTICAL-ALIGN: middle; PADDING-TOP: 25px
+}
+DIV.step-two {
+	PADDING-BOTTOM: 0px; MARGIN-TOP: 20px; PADDING-LEFT: 50px; PADDING-RIGHT: 0px; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: left center; HEIGHT: 43px; VERTICAL-ALIGN: middle; PADDING-TOP: 25px
+}
+DIV.step-three {
+	PADDING-BOTTOM: 0px; MARGIN-TOP: 20px; PADDING-LEFT: 50px; PADDING-RIGHT: 0px; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: left center; HEIGHT: 43px; VERTICAL-ALIGN: middle; PADDING-TOP: 25px
+}
+DIV.step-one {
+	BACKGROUND-IMAGE: url(images/1.gif)
+}
+DIV.step-two {
+	BACKGROUND-IMAGE: url(images/2.gif)
+}
+DIV.step-three {
+	BACKGROUND-IMAGE: url(images/3.gif)
+}
+IMG.logo {
+	BORDER-BOTTOM-STYLE: none; MARGIN: 10px 10px 0px 0px; BORDER-LEFT-STYLE: none; BORDER-TOP-STYLE: none; FLOAT: right; BORDER-RIGHT-STYLE: none
+}
+PRE {
+	MARGIN-TOP: 10px
+}
+PRE {
+	BORDER-BOTTOM: #ddd 1px solid; BORDER-LEFT: #ddd 5px solid; PADDING-BOTTOM: 15px; OVERFLOW-X: auto; BACKGROUND-COLOR: #eee; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; FONT-SIZE: small; BORDER-TOP: #ddd 1px solid; BORDER-RIGHT: #ddd 1px solid; PADDING-TOP: 15px
+}
+PRE.normal {
+	BORDER-BOTTOM-STYLE: none; BORDER-LEFT: 0px; OVERFLOW-X: auto; BACKGROUND-COLOR: transparent; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none
+}
+CODE {
+	PADDING-BOTTOM: 0px; FONT-STYLE: normal; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 108%; PADDING-TOP: 0px
+}
+CODE.method {
+	MARGIN-TOP: 20px; DISPLAY: block; FONT-SIZE: 150%
+}
+CODE.inline {
+	BACKGROUND-COLOR: #ffc
+}
+.jscom {
+	COLOR: #4040c2
+}
+.mix htcom {
+	COLOR: #4040c2
+}
+.com {
+	COLOR: green
+}
+.regexp {
+	COLOR: maroon
+}
+.string {
+	COLOR: teal
+}
+.keywords {
+	COLOR: blue
+}
+.global {
+	COLOR: #008
+}
+.numbers {
+	COLOR: #880
+}
+.comm {
+	COLOR: green
+}
+.tag {
+	COLOR: blue
+}
+.entity {
+	COLOR: blue
+}
+.string {
+	COLOR: teal
+}
+.aname {
+	COLOR: maroon
+}
+.avalue {
+	COLOR: maroon
+}
+.jquery {
+	COLOR: #00a
+}
+.plugin {
+	COLOR: red
+}
+.php .tag {
+	COLOR: purple
+}
+.php .com {
+	COLOR: green
+}
+.php .const1 {
+	COLOR: maroon
+}
+.php .const2 {
+	COLOR: maroon
+}
+.php .function {
+	COLOR: #e17100
+}
+.php .global {
+	COLOR: maroon
+}
+.php .keyword {
+	COLOR: blue
+}
+.php .mlcom {
+	COLOR: gray
+}
+.php .name {
+	COLOR: maroon
+}
+.php .number {
+	COLOR: #880
+}
+.php .string1 {
+	COLOR: teal
+}
+.php .string2 {
+	COLOR: teal
+}
+.php .value {
+	COLOR: gray
+}
+.php .variable {
+	COLOR: #e15c03
+}
+.css .mlcom {
+	COLOR: #4040c2
+}
+.css .color {
+	COLOR: black
+}
+.css .string {
+	COLOR: teal
+}
+.css .attrib {
+	COLOR: blue
+}
+.css .value {
+	COLOR: navy
+}
+.css .number {
+	COLOR: #880
+}

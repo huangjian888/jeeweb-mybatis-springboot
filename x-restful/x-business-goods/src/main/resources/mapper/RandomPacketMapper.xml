@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.RandomPacketMapper">
+    <resultMap id="MallCategoryMap" type="com.company.business.goods.moudle.entity.RandomPacketEntity">
+        <id column="id" property="id"/>
+        <result column="random_amounts" property="random_amounts"/>
+        <result column="order_num" property="order_num"/>
+        <result column="status" property="status"/>
+
+    </resultMap>
+    <sql id="cate_mallSql">
+        SELECT id,random_amounts,order_num,status FROM tomato_promotion_packet_counts_config
+    </sql>
+
+    <!--获取到当前的实体-->
+    <select id="getRandomByOrder" resultMap="MallCategoryMap">
+
+        <include refid="cate_mallSql"/>where order_num=#{order} and status=1
+    </select>
+    <!--获取到全部实体-->
+    <select id="getRandomPacket" resultMap="MallCategoryMap">
+
+        <include refid="cate_mallSql"/>where status=1
+    </select>
+
+
+</mapper>

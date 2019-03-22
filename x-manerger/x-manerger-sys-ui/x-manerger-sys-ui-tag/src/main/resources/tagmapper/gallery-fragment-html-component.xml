@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html-component PUBLIC "-//company/Html Configuration DTD 1.0//EN" "http://www.company.cn/dtd/html-component-1.0.dtd">
+<html-component>
+    <fragment name="gallery-file">
+        <![CDATA[
+            <#list value?split(",") as img_src>
+                <a href="${img_src}"><img style="widht:${imgWidth};height:${imgHeight};" src="${img_src}" alt=""/></a>
+            </#list>
+            <script>
+                (function($) {
+                    $.fn.extend({
+                        gallery: function() {
+                            $(this).on("click", function() {
+                                var self = $(this),
+                                    link = self.parent().find("a"),
+                                    bd = $("body");
+                                    html = "\
+                                        <div class='gallery-overlay'>\
+                                            <div class='gallery-photo'><span></span><img src='"+ self.attr("href") +"'></div>\
+                                            <div class='gallery-thumb'></div>\
+                                            <a class='gallery-prev' href='javascript:;' title='上一个'>&lt;</a>\
+                                            <a class='gallery-next' href='javascript:;' title='下一个'>&gt;</a>\
+                                            <a class='gallery-close' href='javascript:;' title='关闭'>&times;</a>\
+                                        </div>\
+                                    ";
+                                bd.css("overflow-y", "hidden").append(html);
+                                var overlay = $(".gallery-overlay"),
+                                    photo = $(".gallery-photo"),
+                                    photoImg = photo.find("img"),
+                                    thumb = $(".gallery-thumb"),
+                                    prev = $(".gallery-prev"),
+                                    next = $(".gallery-next"),
+                                    close = $(".gallery-close"),
+                                    str = "";
+
+                                //浏览器缩放时候，重置
+                                function toResize() {
+                                    var height = $(window).height();
+                                    overlay.height(height);
+                                    photo.css({"height": height - 200});
+                                    photoImg.css({"max-height": height - 200});//解决safari下bug
+                                }
+                                toResize();
+                                $(window).resize(function() {
+                                    toResize();
+                                });
+
+                                thumb.css({"height": ${imgHeight?replace("px","")}});
+                                //生成缩略图列表
+                                link.each(function() {
+                                    var href = $(this).attr("href");
+                                    src = $(this).find("img").attr("src");
+                                    act = "<a href='"+ href +"' style='widht:${imgWidth};height:${imgHeight};'><img src='"+ src +"' style='widht:${imgWidth};height:${imgHeight};'/></a>";
+                                    str += act;
+                                });
+                                thumb.append(str);
+
+                                //图片切换
+                                var thumbLink = thumb.find("a"),
+                                    len = thumbLink.length - 1,
+                                    index = link.index(this);
+                                function switchPhoto(index) {
+                                    var _this = thumbLink.eq(index);
+                                    _this.addClass("selected").siblings().removeClass("selected");
+                                    photo.find("img").attr("src", _this.attr("href"));
+                                }
+                                switchPhoto(index);
+
+                                thumb.on("click", "a", function() {
+                                    index = thumbLink.index(this);
+                                    switchPhoto(index);
+                                    return false;
+                                });
+
+                                //切换下一个
+                                function switchPrev() {
+                                    index--;
+                                    if (index < 0) {
+                                        index = len;
+                                    }
+                                    switchPhoto(index);
+                                }
+                                //切换上一个
+                                function switchNext() {
+                                    index++;
+                                    if (index > len) {
+                                        index = 0;
+                                    }
+                                    switchPhoto(index);
+                                }
+
+                                prev.on("click", function() {
+                                    switchPrev();
+                                    return false;
+                                });
+                                next.on("click", function() {
+                                    switchNext();
+                                    return false;
+                                });
+                                photo.on("click", "img", function() {
+                                    switchNext();
+                                    return false;
+                                });
+
+                                //关闭层
+                                function closeOverlay() {
+                                    overlay.remove();
+                                    bd.css("overflow-y", "auto");
+                                }
+                                close.on("click", function() {
+                                    closeOverlay();
+                                    return false;
+                                });
+                                overlay.on("click", function() {
+                                    closeOverlay();
+                                });
+                                return false;
+                            });
+                        }
+                    });
+                })(jQuery);
+            </script>
+        ]]>
+    </fragment>
+</html-component>
+

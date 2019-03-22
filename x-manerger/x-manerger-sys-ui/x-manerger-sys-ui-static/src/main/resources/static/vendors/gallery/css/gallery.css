@@ -1,0 +1,17 @@
+.gallery-overlay {width:100%;height:100%;position:fixed;_top:absolute;top:0;left:0;z-index:99;filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#B2000000', endColorstr='#B2000000');background-color:rgba(0,0,0,.7);}
+:root .gallery-overlay {filter:none;}
+.gallery-close,
+.gallery-prev,
+.gallery-next {position:absolute;color:#fff;text-decoration:none;}
+.gallery-prev,
+.gallery-next {top:40%;font:bold 80px/80px simsun;}
+.gallery-prev {left:50px;}
+.gallery-next {right:50px;}
+.gallery-close {width:82px;height:77px;top:0;right:0;background:url(../img/close.png) no-repeat;text-indent:-9999em;}
+.gallery-photo {width:100%;height:100%;position:absolute;top:50px;vertical-align:middle;text-align:center;}
+.gallery-photo span {height:100%;display:inline-block;vertical-align:middle;}
+.gallery-photo img {max-width:100%;max-height:100%;vertical-align:middle;cursor:pointer;}
+.gallery-thumb {width:100%;height:62px;position:absolute;bottom:50px;text-align:center;font-size:0;}
+.gallery-thumb a {width:100px;height:56px;overflow:hidden;margin:0 2px;display:inline-block;*zoom:1;border:3px solid transparent;opacity:.6;filter:alpha(opacity:60);}
+.gallery-thumb img {max-width:100px;max-height:100px;min-width:50px;min-height:50px;border:none;}
+.gallery-thumb .selected {border-color:#f60;opacity:1;filter:alpha(opacity:100);}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.PacketUserBuyMapper">
+    <resultMap id="MallCategoryMap" type="com.company.business.goods.moudle.entity.PacketUserBuyEntity">
+        <id column="id" property="id"/>
+        <result column="buy_amounts" property="buy_amounts"/>
+        <result column="user_name" property="user_name"/>
+        <result column="buy_times" property="buy_times"/>
+        <result column="recent_date" property="recent_date"/>
+        <result column="first_date" property="first_date"/>
+
+
+    </resultMap>
+    <sql id="cate_mallSql">
+        SELECT id,buy_times,user_name,buy_amounts FROM tomato_promotion_packet_user_buy_table
+    </sql>
+
+    <!--获取用户购买情况-->
+    <select id="getPacketUserBuy" resultMap="MallCategoryMap">
+
+        <include refid="cate_mallSql"/>where user_name=#{username}
+    </select>
+
+
+</mapper>

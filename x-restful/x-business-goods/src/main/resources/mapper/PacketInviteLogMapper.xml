@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.PacketInviteLogMapper">
+    <resultMap id="MallCategoryMap" type="com.company.business.goods.moudle.entity.PacketInviteLogEntity">
+        <id column="id" property="id"/>
+        <result column="invite_user" property="invite_user"/>
+        <result column="invited_user" property="invited_user"/>
+        <result column="packet_money" property="packet_money"/>
+        <result column="invite_date" property="invite_date"/>
+
+
+
+    </resultMap>
+    <sql id="cate_mallSql">
+        SELECT id,invite_user,invited_user,packet_money,invite_date FROM tomato_promotion_packet_user_invited_log
+    </sql>
+
+    <!--获取邀请者与被邀请者之间的联系-->
+    <select id="getPacketInviteLogList" resultType="java.util.HashMap">
+        select packet.invited_user,packet.packet_money,tomato.username,ifnull(tomato.nick_name,'') as nick_name,ifnull(tomato.avatar,'') as avatar from tomato_promotion_packet_user_invited_log AS packet inner join tomato_promotion_user AS tomato on packet.invited_user=tomato.username WHERE packet.invite_user=#{inviteUser}
+    </select>
+
+
+</mapper>

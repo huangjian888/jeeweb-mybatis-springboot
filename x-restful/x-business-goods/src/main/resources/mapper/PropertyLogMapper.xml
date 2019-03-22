@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.PropertyLogMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.PropertyLogEntity">
+        <id column="id" property="id"/>
+        <result column="commission_money" property="commission_money"/>
+        <result column="commission_date" property="commission_date"/>
+        <result column="user_name" property="user_name"/>
+        <result column="type" property="type"/>
+        <result column="order_no" property="order_no"/>
+
+        <result column="status" property="status"/>
+
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,commission_date,commission_money,type,user_name,order_no FROM tomato_promotion_user_property_log
+    </sql>
+
+    <!--获取用户收益log：查询当前用户-->
+    <select id="getPropertyLogList" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where user_name=#{username}
+    </select>
+
+
+    <!--根据订单号查询当前的实体-->
+    <select id="getPropertyLog" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where order_no=#{order_no} and user_name=#{username}
+    </select>
+
+</mapper>

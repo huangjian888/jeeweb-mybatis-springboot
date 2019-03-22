@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.SignConfigMapper">
+    <resultMap id="signconfigMap" type="com.company.shop.sys.service.modules.sys.entity.SignConfigEntity">
+        <id column="id" property="id"/>
+        <result column="step" property="step"/>
+        <result column="count_day" property="countDay"/>
+        <result column="status" property="status"/>
+        <result column="description" property="description"/>
+        <result column="category" property="category"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,step,count_day,description,category FROM tomato_sign_config
+    </sql>
+
+    <!--获取对应天数的奖励-->
+    <select id="getStep" resultMap="signconfigMap">
+
+        <include refid="Base_normal_select"/>
+        where count_day=#{day}
+
+    </select>
+
+    <!--获取后台服务器配置的奖励规则-->
+    <select id="getSignConfiguration" resultMap="signconfigMap">
+        select step,count_day,description FROM tomato_sign_config
+    </select>
+
+
+</mapper>

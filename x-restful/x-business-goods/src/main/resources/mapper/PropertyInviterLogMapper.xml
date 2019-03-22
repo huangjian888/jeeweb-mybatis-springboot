@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.PropertyInviterLogMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.PropertyInviterLogEntity">
+        <id column="id" property="id"/>
+        <result column="commission_money" property="commission_money"/>
+        <result column="commission_date" property="commission_date"/>
+        <result column="user_name" property="user_name"/>
+        <result column="type" property="type"/>
+        <result column="order_no" property="order_no"/>
+        <result column="status" property="status"/>
+        <result column="inviter_user" property="inviter_user"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,commission_date,commission_money,type,user_name,order_no,inviter_user FROM tomato_promotion_inviter_property_log
+    </sql>
+
+
+    <!--根据订单号查询当前的实体-->
+    <select id="getPropertyInviterLog" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where order_no=#{order_no}
+    </select>
+
+    <!--获取当前邀请者与被邀请者关系收益表-->
+    <select id="getPropertyInviterList" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where user_name=#{invited_user} and inviter_user=#{inviter_user}
+    </select>
+
+</mapper>

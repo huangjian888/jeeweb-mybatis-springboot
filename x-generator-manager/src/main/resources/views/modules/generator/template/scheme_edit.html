@@ -1,0 +1,27 @@
+<% layout('/layouts/form.html', {title: '模板方案', formId: 'templateSchemeForm', bodyClass: 'white-bg', libs: 'bootstrap-fileinput,simditor'}){ %>
+<#form:form id="templateSchemeForm" modelAttribute="data" method="post" class="form-horizontal">
+	<#form:hidden path="id"/>
+	<table  class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+		<tbody>
+		<tr>
+			<td  class="width-15 active text-right">
+				<label><font color="red">*</font>方案标题:</label>
+			</td>
+			<td class="width-35">
+				<#form:input path="title" class="form-control " datatype="*" nullmsg="请输入方案标题！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class="width-15 active text-right">
+				<label><font color="red">*</font>方案描述:</label>
+			</td>
+			<td class="width-35">
+				<#form:textarea path="description" class="form-control" rows="6" datatype="*" nullmsg="请输入方案标题！" htmlEscape="false"></#form:textarea>
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</#form:form>
+<% } %>

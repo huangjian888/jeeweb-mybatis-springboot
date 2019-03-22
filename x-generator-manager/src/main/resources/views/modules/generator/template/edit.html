@@ -1,0 +1,131 @@
+<% layout('/layouts/form.html', {title: '模板方案', formId: 'templateForm', bodyClass: 'white-bg', libs: 'bootstrap-fileinput,codemirror'}){ %>
+<link rel="stylesheet" href="${staticPath}/vendors/codemirror/theme/eclipse.css">
+<#form:form id="templateForm" modelAttribute="data" method="post" class="form-horizontal">
+	<#form:hidden path="id"/>
+	<table  class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+		<tbody>
+		<tr>
+			<td  class="active text-right" style="width:15%">
+				<label><font color="red">*</font>模板名称:</label>
+			</td>
+			<td>
+				<#form:input path="name" class="form-control " datatype="*" nullmsg="请输入模板名称！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+			<td  class="active text-right" style="style:10%">
+				<label><font color="red">*</font>模板关键字:</label>
+			</td>
+			<td>
+				<#form:input path="key" class="form-control " datatype="*" nullmsg="请输入模板关键字！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class="active text-right" style="style:10%">
+				<label><font color="red">*</font>生成目录路径:</label>
+			</td>
+			<td colspan="3">
+				<#form:input path="targetPath" class="form-control"  htmlEscape="false" datatype="*" nullmsg="请输入默认生成目录！"/>
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class="active text-right" style="style:10%">
+				<label><font color="red">*</font>是否生成包:</label>
+			</td>
+			<td colspan="3">
+				<#form:radiobuttons path="enablePackage" class="i-checks" dict="sf"  htmlEscape="false" datatype="*" defaultValue="1"/>
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr id="targetPackagDiv">
+			<td  class="active text-right" style="style:10%">
+				<label><font color="red">*</font>生成包:</label>
+			</td>
+			<td colspan="3">
+				<#form:input path="targetPackage" class="form-control"  htmlEscape="false" datatype="*" nullmsg="请输入生成的包名！"/>
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class="active text-right" style="style:10%">
+				<label><font color="red">*</font>文件名格式:</label>
+			</td>
+			<td colspan="3">
+				<#form:input path="nameFormat" class="form-control"  htmlEscape="false" datatype="*" nullmsg="请输入模板关键字！" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class="active text-right" style="style:10%">
+				<label><font color="red">*</font>是否驼峰命名:</label>
+			</td>
+			<td>
+				<#form:radiobuttons path="nameUnderline"  class="i-checks" dict="sf" defaultValue="1"  htmlEscape="false" datatype="*" nullmsg="请选择文件名是否下划线！" />
+				<label class="Validform_checktip"></label>
+			</td>
+			<td  class="active text-right" style="style:10%">
+				<label><font color="red">*</font>排序:</label>
+			</td>
+			<td>
+				<#form:input path="sort" class="form-control " datatype="*" nullmsg="请输入排序值！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class="active text-right">
+				<label><font color="red">*</font>模板内容:</label>
+			</td>
+			<td colspan="3">
+				<#form:editor   path="templateContent"  theme="eclipse" editorAfterSetting="editorAfterSetting" editorType="codemirror"  editorHeight="500px" editorWidth="1200px"  class="form-control" rows="20" datatype="*" nullmsg="请输入模板内容！" htmlEscape="false"></#form:editor>
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class="width-15 active text-right" colspan="4">
+				<input  class="btn btn btn-warning" type="button" onclick="testGenerator();" value="生成测试" />
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</#form:form>
+
+<script>
+    function  editorAfterSetting(editor) {
+        editor.on("change", function (editor, changes) {
+            var templateContentVal= editor.getValue();
+            $("#templateContent").val(templateContentVal)
+        });
+    }
+    $(function(){
+        $("input:radio[name='enablePackage']").click(function(){
+            var enablePackage= $(this).val();
+            packageChange(enablePackage);
+        });
+        packageChange(${data.enablePackage});
+    });
+
+    /**
+     * 包更改
+     *
+     * @param enablePackage
+     */
+    function packageChange(enablePackage) {
+        if(enablePackage=='0'){
+            $("#targetPackagDiv").hide();
+            $("#targetPackage").removeAttr("datatype");
+        }else{
+            $("#targetPackagDiv").show();
+            $("#targetPackage").attr("datatype","*");
+        }
+    }
+
+    function testGenerator(type){
+        $("#templateForm").attr("action", "${adminPath}/generator/template/test?schemeId=${schemeId}");
+        doSubmit(function () {});
+        $("#templateForm").attr("action", "");
+        return false;
+    }
+</script>
+
+<% } %>

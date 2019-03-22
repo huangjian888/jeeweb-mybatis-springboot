@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.ActivityMapper">
+    <resultMap id="MallBannerMap" type="com.company.shop.sys.service.modules.sys.entity.ActivityEntity">
+        <id column="id" property="id"/>
+        <result column="image_url" property="imageUrl"/>
+        <result column="name" property="description"/>
+        <result column="sub_name" property="subName"/>
+        <result column="belong" property="belong"/>
+
+    </resultMap>
+    <sql id="mallSql">
+        SELECT * FROM store_mall_banner banner where banner.status='1'
+
+    </sql>
+
+    <!-- 通过用户ID角色 -->
+    <select id="getActivity" resultMap="MallBannerMap">
+
+        <include refid="mallSql"/>
+    </select>
+
+
+</mapper>

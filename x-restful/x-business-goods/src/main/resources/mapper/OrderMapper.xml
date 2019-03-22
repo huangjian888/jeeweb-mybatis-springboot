@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.OrderMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.OrderEntity">
+        <id column="order_sn" property="order_sn"/>
+
+        <result column="goods_id" property="goods_id"/>
+        <result column="user_name" property="user_name"/>
+        <result column="goods_thumbnail_url" property="goods_thumbnail_url"/>
+        <result column="goods_name" property="goods_name"/>
+        <result column="goods_quantity" property="goods_quantity"/>
+        <result column="goods_price" property="goods_price"/>
+        <result column="order_amount" property="order_amount"/>
+        <result column="p_id" property="p_id"/>
+        <result column="promotion_rate" property="promotion_rate"/>
+        <result column="promotion_amount" property="promotion_amount"/>
+        <result column="order_status" property="order_status"/>
+        <result column="order_status_desc" property="order_status_desc"/>
+        <result column="order_create_date" property="order_create_date"/>
+        <result column="order_payment_time" property="order_payment_time"/>
+        <result column="order_group_success_time" property="order_group_success_time"/>
+        <result column="order_verify_time" property="order_verify_time"/>
+        <result column="order_modify_at" property="order_modify_at"/>
+        <result column="first_order" property="first_order"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+
+    </sql>
+
+    <!--根据username查询用户的订单表-->
+    <select id="getOrderListByName" resultMap="signMap">
+        select order_sn,user_name,first_order FROM tomato_promotion_order
+        where user_name=#{username}
+    </select>
+
+    <!--根据id查询用户的订单表-->
+    <select id="getOrderById" resultMap="signMap">
+        select * FROM tomato_promotion_order
+        where order_sn=#{orderId}
+    </select>
+
+    <!--获取用户已经完成的订单,大于0且小于等于3等为成功-->
+    <select id="getOrderComplete" resultMap="signMap">
+        select * FROM tomato_promotion_order
+        where user_name=#{username} and (order_status>#{orderStatus} and order_status &lt;= #{upStatus})
+    </select>
+
+
+</mapper>

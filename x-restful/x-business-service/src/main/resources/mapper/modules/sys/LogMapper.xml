@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.LogMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.LogEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="sign_date" property="signTime"/>
+        <result column="award" property="award"/>
+        <result column="category" property="category"/>
+        <result column="category_name" property="categoryName"/>
+
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,user_name,sign_date,award FROM tomato_user_log
+    </sql>
+
+
+</mapper>

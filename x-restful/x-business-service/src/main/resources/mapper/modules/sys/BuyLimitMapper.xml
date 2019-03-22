@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.BuyLimitMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.BuyLimitEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="amount" property="amount"/>
+        <result column="get_date" property="getDate"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,user_name,amount,get_date FROM tomato_user_day_buy where user_name=#{username}
+    </sql>
+
+    <!--获取每日购买限制-->
+    <select id="getLimit" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+    </select>
+
+
+</mapper>

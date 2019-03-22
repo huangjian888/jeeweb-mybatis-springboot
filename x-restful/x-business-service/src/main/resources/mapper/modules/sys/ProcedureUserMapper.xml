@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.ProcedureUserMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.ProcedureUserEntity">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="complete_date" property="completeDate"/>
+        <result column="packet_count" property="packetCount"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,username,complete_date,packet_count FROM tomato_user_procedure where username=#{username}
+    </sql>
+
+    <!--查询当前设置的新用户红包领取次数-->
+    <select id="getProcedureUserEntity" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+    </select>
+
+
+</mapper>

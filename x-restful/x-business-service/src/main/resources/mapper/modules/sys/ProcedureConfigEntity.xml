@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.ProcedureConfigMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.ProcedureConfigEntity">
+        <id column="id" property="id"/>
+        <result column="award" property="award"/>
+        <result column="description" property="description"/>
+        <result column="status" property="status"/>
+        <result column="packet_count" property="packetCount"/>
+        <result column="category" property="category"/>
+        <result column="create_by" property="create_by"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,award,packet_count,description,status,category FROM tomato_procedure_config where status=1
+    </sql>
+
+    <!--查询当前设置的新用户红包领取次数-->
+    <select id="getProcedureEntity" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+
+    </select>
+
+
+    <select id="getProcedure" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where create_by=#{username}
+    </select>
+
+
+</mapper>

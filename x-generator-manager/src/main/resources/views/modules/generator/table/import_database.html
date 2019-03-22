@@ -1,0 +1,26 @@
+<% layout('/layouts/form.html', {title: 'codegen.table.import', formId: 'importForm', bodyClass: 'white-bg', libs: 'bootstrap-fileinput,codemirror,bootstrap-select'}){ %>
+<#form:form id="importForm" modelAttribute="data" method="post" class="form-horizontal">
+	<#form:hidden path="id"/>
+	<table class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+		<tbody>
+		<tr>
+			<td  class="width-15 active text-right">
+				<label><font color="red">*</font>表名:</label>
+			</td>
+			<td class="width-35">
+				<#form:select path="tableName"  class="selectpicker form-control" data-live-search-strikethrough="true"  items="${dbTableInfos}" itemLabel="label"   itemValue="label"></#form:select>
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+
+		</tbody>
+	</table>
+</#form:form>
+<script>
+    $(function() {
+        $(".selectpicker").selectpicker({
+            noneSelectedText : '请选择'//默认显示内容
+        });
+    });
+</script>
+<% } %>

@@ -1,0 +1,29 @@
+<%for(menu in menus){%>
+	 <% if(menu.parentId == null && menu.enabled == 1  && menu.type != 3){%>
+	     <li>
+		   <% if(menu.hasChildren){%>
+			  <a href="#"><i class="fa ${menu.menuIcon}"></i> <span class="nav-label">${menu.name}</span><span class="fa arrow"></span></a>
+		   <%} else {%>
+			  <a  class="J_menuItem"  href="${menu.url}"><i class="fa ${menu.menuIcon}"></i> <span class="nav-label">${menu.name}</span><span class="fa arrow"></span></a>
+		   <%}%>
+			<ul class="nav nav-second-level">
+				 <%for(secondMenu in menu.childrenNode){%>
+				     <% if(secondMenu.parentId == menu.id && secondMenu.enabled == 1 && secondMenu.type != 3){%>
+					     <li>
+							 <% if(!secondMenu.hasChildren){%><a class="J_menuItem" href="${secondMenu.url}">${secondMenu.name}</a><%}%>
+							 <% if(secondMenu.hasChildren){%><a href="#">${secondMenu.name}<span class="fa arrow"></span></a><%}%>
+						     <!--  这里应该循环，但是出现了错误 -->
+							 <ul class="nav nav-third-level">
+								 <%for(thirdMenu in secondMenu.childrenNode){%>
+							        <% if(thirdMenu.parentId == secondMenu.id && thirdMenu.enabled == 1 && thirdMenu.type != 3){%>
+									  <li><a class="J_menuItem" href="${thirdMenu.url}">${thirdMenu.name}</a></li>
+								   <%}%>
+								 <%}%>
+							 </ul>
+						 </li>
+					 <%}%>
+				 <%}%>
+			</ul> 
+		</li>
+     <%}%>
+<%}%>

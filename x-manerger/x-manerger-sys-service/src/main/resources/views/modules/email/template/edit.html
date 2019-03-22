@@ -1,0 +1,35 @@
+<% layout('/layouts/form.html', {title: '栏目编辑', formId: 'messageTemplateForm', bodyClass: 'white-bg', libs: 'summernote'}){ %>
+<#form:form id="messageTemplateForm" modelAttribute="data"  method="post" class="form-horizontal">
+	<#form:hidden path="id"/>
+	<table  class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+		<tbody>
+			<tr>
+				<td  style="width: 10%" class="active text-right">
+					<label><font color="red">*</font>模版名称:</label>
+				</td>
+				<td class="width-35" >
+					<#form:input path="name" class="form-control " datatype="*" nullmsg="请输入主题名称！" htmlEscape="false" />
+					<label class="Validform_checktip"></label>
+				</td>
+			</tr>
+			<tr>
+				<td  class="active text-right">
+					<label><font color="red">*</font>模板主题:</label>
+				</td>
+				<td class="width-35" >
+					<#form:input path="templateSubject" class="form-control " datatype="*" nullmsg="请输入模版标题！" htmlEscape="false" />
+					<label class="Validform_checktip"></label>
+				</td>
+			</tr>
+			<tr>
+				<td class="active">
+					<label class="pull-right"><font color="red">*</font>模板内容:</label>
+				</td>
+				<td style="height: 300px">
+					<#form:editor editorType="summernote"  height="500px" path="templateContent"/>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</#form:form>
+<% } %>

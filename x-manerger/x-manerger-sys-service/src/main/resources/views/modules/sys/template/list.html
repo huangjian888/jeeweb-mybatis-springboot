@@ -1,0 +1,16 @@
+<% layout('/layouts/list.html', {title: '消息模版'}){ %>
+<#grid:grid id="roleGrid" url="${adminPath}/sys/message/template/ajaxList">
+    <#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+    <#grid:column label="sys.common.opt"  name="opt" formatter="button" width="100"/>
+    <#grid:button   groupname="opt" function="delete" />
+    <#grid:column label="模版名称"  name="name"  query="true"  />
+    <#grid:column label="模版编码"  name="code"  query="true" />
+
+    <#grid:toolbar function="add" winwidth="100%" winheight="100%"/>
+    <#grid:toolbar   function="update" winwidth="100%" winheight="100%"/>
+    <#grid:toolbar   function="delete"/>
+
+    <#grid:toolbar  function="search"/>
+    <#grid:toolbar  function="reset"/>
+</#grid:grid>
+<% } %>

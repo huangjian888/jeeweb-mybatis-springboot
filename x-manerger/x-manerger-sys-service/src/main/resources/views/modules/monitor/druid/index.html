@@ -1,0 +1,16 @@
+<% layout('/layouts/list.html', {title: '数据库监控', libs: ''}){ %>
+<iframe  id="druidIframe" onload="reinitIframe()"  width="100%" height="100%" src="${adminPath}/sys/monitor/druid/index.html" frameborder="0"  seamless></iframe>
+<script type="text/javascript">
+    function reinitIframe() {
+        var iframe = document.getElementById("druidIframe");
+        try {
+            var bHeight = iframe.contentWindow.document.body.scrollHeight;
+            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+            var height = Math.max(bHeight, dHeight);
+            iframe.height = height;
+            // console.log(height);
+        } catch(ex) {}
+    }
+    window.setInterval("reinitIframe()", 200);
+</script>
+<% } %>

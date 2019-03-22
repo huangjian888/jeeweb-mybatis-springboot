@@ -1,0 +1,62 @@
+<li <% if(currentMenu == null){%>class="active"<%}%>>
+<a href="${adminPath}">
+    <i class="fa fa-tachometer fa-fw">
+        <div class="icon-bg bg-orange"></div>
+    </i>
+    <span class="menu-title">控制台</span>
+</a>
+</li>
+<%for(menu in menus){%>
+<% if(menu.parentId == null && menu.enabled == 1 && menu.type != 3){%>
+<li <% if(strutil.contain(pmenuids,menu.id)==true||menu.id == currentMenu.id){%>class="active"<%}%>>
+<% if(menu.hasChildren){%>
+<a href="#">
+    <i class="fa <% if(isEmpty(menu.menuIcon)){%>fa-desktop<%}%> ${menu.menuIcon} fa-fw">
+        <div class="icon-bg bg-dark"></div>
+    </i>
+    <span class="menu-title">${menu.name}</span>
+    <span class="fa arrow"></span>
+</a>
+<ul class="nav nav-second-level collapse<% if(strutil.contain(pmenuids,menu.id)==true||menu.id == currentMenu.id){%> in<%}%>">
+    <%for(secondMenu in menu.childrenNode){%>
+    <% if(secondMenu.parentId == menu.id && secondMenu.enabled == 1 && secondMenu.type != 3){%>
+    <li <% if(strutil.contain(pmenuids,secondMenu.id)==true||secondMenu.id == currentMenu.id){%>class="active"<%}%>>
+    <% if(secondMenu.hasChildren){%>
+    <a href="#">
+        <i class="fa <% if(isEmpty(secondMenu.menuIcon)){%>fa-angle-right<%}%>${secondMenu.menuIcon}"></i>
+        <span class="submenu-title">${secondMenu.name}</span>
+        <span class="fa arrow"></span>
+    </a>
+    <ul class="nav nav-third-level collapse <% if(strutil.contain(pmenuids,secondMenu.id)==true||secondMenu.id == currentMenu.id){%>in<%}%>">
+        <%for(thirdMenu in secondMenu.childrenNode){%>
+        <% if(thirdMenu.parentId == secondMenu.id && thirdMenu.enabled == 1 && thirdMenu.type != 3){%>
+        <li <% if(strutil.contain(pmenuids,thirdMenu.id)==true||thirdMenu.id == currentMenu.id){%>class="active"<%}%>>
+        <a href="${thirdMenu.url}">
+            <i class="fa <% if(isEmpty(thirdMenu.menuIcon)){%>fa-angle-double-right<%}%>${thirdMenu.menuIcon}"></i>
+            <span class="submenu-title">${thirdMenu.name}</span>
+        </a>
+        </li>
+        <%}%>
+        <%}%>
+    </ul>
+    <%}else{%>
+    <a href="${secondMenu.url}">
+        <i class="fa <% if(isEmpty(secondMenu.menuIcon)){%>fa-angle-right<%}%>${secondMenu.menuIcon}"></i>
+        <span class="submenu-title">${secondMenu.name}</span>
+    </a>
+    </li>
+    <%}%>
+    <%}%>
+    <%}%>
+</ul>
+<%}else{%>
+<a href="${menu.url}">
+    <i class="fa ${menu.menuIcon}">
+        <div class="icon-bg bg-orange"></div>
+    </i>
+    <span class="menu-title">${menu.name}</span>
+</a>
+<%}%>
+</li>
+<%}%>
+<%}%>

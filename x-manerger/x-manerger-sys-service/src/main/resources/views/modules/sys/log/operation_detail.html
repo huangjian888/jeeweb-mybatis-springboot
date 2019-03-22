@@ -1,0 +1,34 @@
+<% layout('/layouts/form.html', {title: '操作详细日志', formId: 'userForm', bodyClass: 'white-bg', libs: ''}){ %>
+<div class="form-group">
+  <label class="col-sm-2 control-label">操作标题：</label>
+  <div class="form-control-static">${operationLog.title}</div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">登录信息：</label>
+  <div class="form-control-static">${operationLog.operationName} / ${operationLog.operationIp} </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">客户端：</label>
+  <div class="form-control-static">${operationLog.os}/${operationLog.browser}</div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">请求地址：</label>
+  <div class="form-control-static">${operationLog.requestUri}</div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">操作方法：</label>
+  <div class="form-control-static">${operationLog.method}</div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">请求参数：</label>
+  <div class="form-control-static">${operationLog.params}</div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">状态：</label>
+  <div class="label label-primary"><% if(operationLog.status == "1"){%>成功<%}else{%>失败<%}%></div>
+</div>
+<div class="form-group" style="display:none">
+  <label class="col-sm-2 control-label">异常信息：</label>
+  <div class="form-control-static">${operationLog.msg}</div>
+</div>
+<% } %>

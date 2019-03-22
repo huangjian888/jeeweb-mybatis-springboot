@@ -1,0 +1,105 @@
+<% layout('/layouts/form.html', {title: 'codegen.table.gen', formId: 'genForm', bodyClass: 'white-bg', libs: 'bootstrap-fileinput,codemirror'}){ %>
+<#form:form id="genForm" action="${adminPath}/generator/table/generateCode" method="post" class="form-horizontal">
+	<#form:hidden path="tableid"  nested="false"/>
+	<#form:hidden path="id" nested="false" value="${scheme.id}"/>
+	<table  class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+		<tbody>
+		<tr>
+			<td  class=" active text-right" style="width:20%;">
+				<label><font color="red">*</font>模板方案:</label>
+			</td>
+			<td>
+				<#form:select path="templateSchemeId" class="form-control" nested="false" items="${templateSchemes}" itemLabel="title" itemValue="id" value="${templateSchemeId}" datatype="*" nullmsg="请选择模版方案！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class=" active text-right">
+				<label><font color="red">*</font>实体类名(首字母大写):</label>
+			</td>
+			<td>
+				<#form:input path="entityName" class="form-control"  value="${scheme.entityName}"  nested="false"  datatype="*" nullmsg="请输入实体类名(首字母大写)！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class=" active text-right">
+				<label><font color="red">*</font>生成功能描述:</label>
+			</td>
+			<td>
+				<#form:input path="functionDesc" class="form-control"  value="${scheme.functionDesc}" nested="false"  datatype="*" nullmsg="请输入生成功能描述！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class=" active text-right">
+				<label><font color="red">*</font>生成功能名:</label>
+			</td>
+			<td>
+				<#form:input path="functionName" class="form-control" value="${scheme.functionName}" nested="false"  datatype="*" nullmsg="请输入生成功能名！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class=" active text-right">
+				<label><font color="red">*</font>生成功能作者:</label>
+			</td>
+			<td>
+				<#form:input path="functionAuthor" class="form-control" nested="false" value="${scheme.functionAuthor}"  datatype="*" nullmsg="请输入生成功能作者！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class=" active text-right">
+				<label><font color="red">*</font>需要生成的代码:</label>
+			</td>
+			<td>
+				<#form:checkboxes path="templateKeys" items="${templates}" datatype="*"  nullmsg="请选择生成模板！" nested="false" itemLabel="name" itemValue="id" ></#form:checkboxes>
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<% for(template in templates){ %>
+						<li <%if(templateLP.index == 1){%>class="active"<%}%>><a data-toggle="tab" href="#tab_${template.id}" aria-expanded="true">${template.name}</a></li>
+						<%}%>
+					</ul>
+					<div class="tab-content">
+						<% for(template in templates){ %>
+							<div id="tab_${template.id}" class="tab-pane <%if(templateLP.index == 1){%>active<%}%>">
+							<div class="panel-body">
+								<label class="col-sm-3 control-label  active text-right"><font color="red">*</font>生成目录路径：</label>
+								<div class="col-sm-9">
+									<#form:input path="template_path_${template.id}" class="form-control" nested="false"  defaultValue="${template.targetPath}" datatype="*" nullmsg="请输入${template.targetPath}目录！" htmlEscape="false" />
+									<label class="Validform_checktip"></label>
+								</div>
+								<% if(template.enablePackage == '1'){ %>
+								<label class="col-sm-3 control-label  active text-right" style="margin-top: 10px;"><font color="red">*</font>生成包：</label>
+								<div class="col-sm-9" style="margin-top: 10px;">
+									<#form:input path="template_package_${template.id}" class="form-control" nested="false"  defaultValue="${template.targetPackage}" datatype="*" nullmsg="请输入${template.targetPath}目录！" htmlEscape="false" />
+									<label class="Validform_checktip"></label>
+								</div>
+								<%}%>
+							</div>
+					</div>
+					<%}%>
+				</div>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</#form:form>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#templateSchemeId").change(function () {
+            var templateSchemeId = $(this).children('option:selected').val();
+            location.href="${adminPath}/generator/table/${tableid}/generateCode?templateSchemeId="+templateSchemeId;
+        });
+    });
+
+</script>
+
+<% } %>

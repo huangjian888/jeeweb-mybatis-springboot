@@ -1,0 +1,51 @@
+<% layout('/layouts/list.html', {title: @MessageUtils.getMessage('codegen.table.title',''), libs: ''}){ %>
+<#grid:grid id="codegenGrid"  url="${adminPath}/generator/table/ajaxList" sortname="create_date" sortorder="asc">
+	<#grid:column label="sys.common.key" hidden="true"   name="id"/>
+	<#grid:column label="codegen.table.source" name="sourceId" query="true" queryMode="select"  formatterValue="${sourceFormatterValue}"/>
+	<#grid:column label="codegen.table.table.name"  width="120"  name="tableName"  query="true" condition="like"/>
+	<#grid:column label="codegen.table.remarks"  name="remarks" />
+	<#grid:column label="codegen.table.sync.database"  width="60" dict="sf" formatterClass="0:label label-danger;1:label label-success" name="syncDatabase" />
+
+	<#grid:column label="sys.common.opt"  name="opt" formatter="button" width="300"/>
+	<#grid:button title="sys.common.remove"  groupname="opt" function="rowConfirm" tipMsg="确认要移除该条记录吗？" outclass="btn-warning" innerclass="fa-remove" url="${adminPath}/generator/table/{id}/remove" />
+	<#grid:button groupname="opt" title="删除" function="rowConfirm" url="${adminPath}/generator/table/{id}/delete" outclass="btn-danger" innerclass="fa-trash" tipMsg="确认要删除该条记录,删除会删除对应的表结构，请谨慎操作！" />
+	<#grid:button title="codegen.table.sync.database"  groupname="opt" function="rowConfirm"  tipMsg="确认要强制同步数据库吗？同步数据库将删除所有数据重新建表！" outclass="btn-info" innerclass="fa-database"  url="${adminPath}/generator/table/{id}/syncDatabase" />
+	<#grid:toolbar  function="addTableDialog" title="创建表" url="${adminPath}/generator/table/add"  winwidth = "100%" winheight = "100%"/>
+	<#grid:toolbar  function="update"  winwidth = "100%" winheight = "100%"/>
+	<#grid:toolbar title="codegen.table.import" btnclass="btn-warning" icon="fa-database" function="importTableDialog" url="${adminPath}/generator/table/importDatabase"  />
+	<#grid:toolbar title="codegen.table.gen" btnclass="btn-info" icon="fa-file-code-o" function="updateDialog" url="${adminPath}/generator/table/{id}/generateCode" winwidth = "100%" winheight = "100%" />
+	<#grid:toolbar  function="search"/>
+	<#grid:toolbar  function="reset"/>
+</#grid:grid>
+<script>
+    /**
+     * 新增事件打开窗口
+     * @param title 编辑框标题
+     * @param addurl//目标页面地址
+     */
+    function addTableDialog(title,url,gridid,width,height) {
+        var sourceId= $("select[name='sourceId'] option:selected").val();
+        if (!sourceId || sourceId.length==0) {
+            top.layer.alert('请选择数据源才能设计表!', {icon: 0, title:'警告'});
+            return;
+        }
+        url=url+"?sourceId="+sourceId;
+        openDialog(title,url,gridid,width,height);
+    }
+
+    /**
+     * 新增事件打开窗口
+     * @param title 编辑框标题
+     * @param addurl//目标页面地址
+     */
+    function importTableDialog(title,url,gridid,width,height) {
+        var sourceId=  $("select[name='sourceId'] option:selected").val();
+        if (!sourceId || sourceId.length==0) {
+            top.layer.alert('请选择数据源才能导入表!', {icon: 0, title:'警告'});
+            return;
+        }
+        url=url+"?sourceId="+sourceId;
+        openDialog(title,url,gridid,width,height);
+    }
+</script>
+<% } %>

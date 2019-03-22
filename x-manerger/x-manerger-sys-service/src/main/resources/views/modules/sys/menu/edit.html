@@ -1,0 +1,113 @@
+<% layout('/layouts/form.html', {title: @MessageUtils.getMessage('sys.menu.edittitle',''), formId: 'menuForm', bodyClass: 'white-bg', libs: 'bootstrap-fileinput'}){ %>
+<#form:form id="menuForm" modelAttribute="data" method="post" class="form-horizontal">
+	<#form:hidden path="id"/>
+	<table  class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+		<tbody>
+			<tr>
+				<td class="width-15 active"><label class="pull-right">资源类型:</label></td>
+				<td class="width-35">
+					<#form:radiobuttons path="type"
+							dict="menutype" defaultValue="2"
+							htmlEscape="false"
+							cssClass="i-checks required" />
+					<label class="Validform_checktip"></label>
+				</td>
+				<td  class="width-15 active text-right">
+					<label><font color="red">*</font>是否可用:</label>
+				</td>
+				<td class="width-35" >
+					<#form:radiobuttons path="enabled"
+							dict="sf" defaultValue="1"
+							htmlEscape="false"
+							cssClass="i-checks required" />
+					<label class="Validform_checktip"></label>
+				</td>
+			</tr>
+			<tr>
+				<td class="width-15 active"><label class="pull-right">上级菜单:</label></td>
+				<td class="width-35">
+					<#form:treeselect title="请选择上级菜单"   path="parentId" dataUrl="${adminPath}/sys/menu/treeData"   labelName="parentname" labelValue="${data.parent.name!}" />
+				</td>
+				<td  class="width-15 active text-right">
+					<label><font color="red">*</font>菜单名称:</label>
+				</td>
+				<td class="width-35" >
+					<#form:input path="name" class="form-control " datatype="*" nullmsg="请输入菜单名称！" htmlEscape="false" />
+					<label class="Validform_checktip"></label>
+				</td>
+			</tr>
+			<tr>
+				<td  class="width-15 active text-right menuView buttonView">
+					<label>权限标识:</label>
+				</td>
+				<td class="width-35 menuView buttonView" >
+					<#form:input path="permission" class="form-control buttonClass" nullmsg="请输入权限标识！" htmlEscape="false" />
+					<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>控制器中定义的权限标识，<br />如：@RequiresPermissions("权限标识")</span>
+					<label class="Validform_checktip"></label>
+				</td>
+				<td  class="width-15 active text-right menuView">
+					<label>链接:</label>
+				</td>
+				<td class="width-35 menuView" >
+					<#form:input path="url" class="form-control menuClass"  nullmsg="请输入菜单跳转的页面！" htmlEscape="false" />
+					<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>点击菜单跳转的页面</span>
+					<label class="Validform_checktip"></label>
+				</td>
+			</tr>
+			<tr>
+				<td  class="width-15 active text-right">
+					<label>备注:</label>
+				</td>
+				<td class="width-35" colspan="3" >
+					<#form:textarea path="remarks" htmlEscape="false" rows="3" maxlength="200" class="form-control "/>
+				</td>
+			</tr>
+			<tr class="menuView pathView">
+				<td  class="width-15 active"><label class="pull-right">图标:</label></td>
+				<td class="width-35" >
+					<#form:iconselect path="menuIcon" class="pathClass menuClass"/>
+					<label class="Validform_checktip"></label>
+				</td>
+				<td  class="width-15 active"><label class="pull-right">排序:</label></td>
+				<td  class="width-35" >
+					<#form:input path="sort" class="form-control pathClass menuClass"  htmlEscape="false" />
+					<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>排序为升序</span>
+					<label class="Validform_checktip"></label>
+			</tr>
+		</tbody>
+	</table>
+</#form:form>
+<script type="text/javascript">
+    $(function() {
+        var type = $('input[name="type"]:checked').val()
+        changeType(type)
+        $('input[name="type"]').click(function(){
+            var value = $(this).val()
+            changeType(value)
+        });
+    });
+
+    function changeType(type)
+    {
+        $(".pathView").hide();
+        $(".menuView").hide();
+        $(".buttonView").hide();
+        $(".pathClass").removeAttr("datatype");
+        $(".menuClass").removeAttr("datatype");
+        $(".buttonClass").removeAttr("datatype");
+        if(type=='1')
+        {
+            $(".pathView").show();
+            $(".pathClass").attr("datatype","*");
+        }else if(type=='2')
+        {
+            $(".menuView").show();
+            $(".menuClass").attr("datatype","*");
+        }else if(type=='3')
+        {
+            $(".buttonView").show();
+            $(".buttonClass").attr("datatype","*");
+        }
+    }
+</script>
+<% } %>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.StepMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.StepEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="status" property="status"/>
+        <result column="step" property="step"/>
+        <result column="gold" property="gold"/>
+        <result column="exchange_date" property="exchangeDate"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="symbol" property="symbol"/>
+
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,status,step,gold,order_no,exchange_date,symbol
+    </sql>
+
+
+    <!--获取用户今日领取步数情况-->
+    <select id="getUserStep" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        FROM tomato_user_step
+        where user_name=#{username} order by step ASC
+    </select>
+
+    <!--根据id查询到当前的步数设置实体-->
+    <select id="getStepEntity" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        FROM tomato_user_step
+        where id=#{id}
+    </select>
+
+</mapper>

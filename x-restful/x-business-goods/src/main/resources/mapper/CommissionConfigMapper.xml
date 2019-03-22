@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.CommissionConfigMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.CommissionConfigEntity">
+        <id column="id" property="id"/>
+        <result column="commission_money" property="commission_money"/>
+        <result column="count_times" property="count_times"/>
+        <result column="tips" property="tips"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,commission_money,count_times,tips FROM tomato_promotion_commission_config
+    </sql>
+
+    <!--查询管理后台配置的数据-->
+    <select id="getCommissionConfig" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where count_times=#{countTimes}
+    </select>
+
+    <!--查询所有配置列表-->
+    <select id="getCommissionConfigList" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+    </select>
+
+
+</mapper>

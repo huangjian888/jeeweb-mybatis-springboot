@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.InviteAwardMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.InviteAwardEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="award" property="award"/>
+        <result column="status" property="status"/>
+        <result column="description" property="description"/>
+        <result column="get_date" property="getDate"/>
+        <result column="insert_date" property="insertDate"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,user_name,insert_date,description,award FROM tomato_user_invite
+    </sql>
+
+    <!--根据id删除当条记录-->
+    <delete id="deleteInviteAward" parameterType="java.lang.String">
+        delete from tomato_user_invite where id = #{id}
+
+    </delete>
+
+    <!--查询当前的所有奖励信息List-->
+    <select id="getInviteAward" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where user_name=#{username} and status=0
+    </select>
+
+    <!--查询当前的所有奖励信息实体-->
+    <select id="getAward" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where id=#{id}
+    </select>
+
+</mapper>

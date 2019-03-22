@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.ProductMapper">
+    <!--商品详细将返回-->
+    <resultMap id="GoodsDetailsMap" type="com.company.shop.sys.service.modules.sys.entity.ProductEntity">
+        <id column="id" property="id"/>
+        <result column="product_id" property="product_id"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="product_name" property="productName"/>
+
+        <result column="main_image" property="mainImageUrl"/>
+        <result column="detail" property="detail"/>
+        <result column="price" property="price"/>
+        <result column="status" property="status"/>
+        <result column="original_price" property="originalPrice"/>
+        <result column="genuine_guarantee" property="guarantee"/>
+        <result column="seven_days_return" property="seven"/>
+        <result column="compensation" property="compensation"/>
+        <result column="provider_company" property="company"/>
+        <result column="provider_company_id" property="companyId"/>
+        <result column="description" property="description"/>
+        <result column="gold" property="gold"/>
+        <result column="inventory" property="inventory"/>
+        <result column="page_price" property="pinkagePrice"/>
+
+        <result column="show_img1" property="subImagesUrl"/>
+        <result column="invite" property="invite"/>
+        <result column="attach" property="attach"/>
+        <result column="descriptions" property="descriptions"/>
+
+
+    </resultMap>
+
+
+    <sql id="Base_detail_select">
+        select * FROM tomato_products
+    </sql>
+
+    <sql id="Base_normal_select">
+        select id,category_id,gold,page_price,price,detail,original_price,product_name,main_image,inventory,status,show_img1,invite,attach,descriptions FROM tomato_products
+
+    </sql>
+
+    <sql id="Base_normal">
+        select id,category_id,gold,page_price,price,original_price,product_name,main_image,status,show_img1,invite,attach,descriptions FROM tomato_products
+    </sql>
+
+    <!--1：已上架，2：已下架-->
+    <sql id="where_condition">
+        where category_id=#{pid} or type=#{pid} and (status=1 or status=2)
+    </sql>
+    <!-- 通过商品类别查询商品-->
+    <select id="getProductByCategory" resultMap="GoodsDetailsMap">
+        <include refid="Base_normal"/>
+        <include refid="where_condition"/>
+
+    </select>
+
+    <!--查询商品-->
+    <select id="getProduct" resultMap="GoodsDetailsMap">
+
+        select id,category_id,gold,price,detail,original_price,product_name,main_image,descriptions FROM tomato_products
+        where id=#{productId}
+    </select>
+    <!--查询商品详情-->
+    <select id="getProductDetails" resultMap="GoodsDetailsMap">
+
+        <include refid="Base_detail_select"/>
+        where id=#{productId}
+    </select>
+    <!--搜索通过名称(name)框搜索商品-->
+    <select id="getProductByName" resultMap="GoodsDetailsMap">
+        <include refid="Base_normal_select"/>
+        where product_name like CONCAT('%',#{prefix},'%')
+    </select>
+
+
+</mapper>

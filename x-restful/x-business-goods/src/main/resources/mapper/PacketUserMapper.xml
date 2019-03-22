@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.PacketUserMapper">
+    <resultMap id="MallCategoryMap" type="com.company.business.goods.moudle.entity.PacketUserEntity">
+        <id column="id" property="id"/>
+        <result column="packet_amounts" property="packet_amounts"/>
+        <result column="user_name" property="user_name"/>
+        <result column="packet_times" property="packet_times"/>
+        <result column="packet_recent_date" property="packet_recent_date"/>
+        <result column="packet_first_date" property="packet_first_date"/>
+
+    </resultMap>
+
+
+    <!--获取用户的当前红包金额实体-->
+    <select id="getPacketUser" resultType="java.util.HashMap">
+      SELECT packet.packet_amounts,packet.user_name,packet.packet_times,tomato.avatar FROM tomato_promotion_packet_user as packet inner join tomato_promotion_user AS tomato on packet.user_name=tomato.username where packet.user_name=#{username}
+    </select>
+
+    <!--获取实体-->
+    <select id="getPacketUserEntity" resultMap="MallCategoryMap">
+      SELECT id,packet_amounts,user_name,packet_times FROM tomato_promotion_packet_user where user_name=#{username}
+    </select>
+
+
+</mapper>

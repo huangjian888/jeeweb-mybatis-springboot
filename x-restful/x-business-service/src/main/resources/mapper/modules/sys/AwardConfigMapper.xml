@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.AwardConfigMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.AwardConfigEntity">
+        <id column="id" property="id"/>
+        <result column="award_limit" property="award"/>
+        <result column="status" property="status"/>
+        <result column="gold" property="gold"/>
+        <result column="sort_order" property="sort_order"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,status,award_limit,gold FROM tomato_award_config where status=1
+    </sql>
+
+    <!--查询运营当前设置的可兑换规则-->
+    <select id="getAwardList" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+    </select>
+
+    <select id="getAwardConfigEntity" resultMap="signMap">
+        select id,status,award_limit,gold,sort_order FROM tomato_award_config where sort_order=#{order_no}
+    </select>
+
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.authorization.security.user.TomatoUserMapper">
+    <resultMap id="BaseResultMap" type="com.company.business.authorization.security.user.TomatoUserEntity">
+        <id column="id" property="id"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="avatar" property="avatar"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="status" property="status"/>
+        <result column="new_user" property="rookie"/>
+        <result column="register_date" property="registerDate"/>
+        <result column="lately_login_date" property="latelyLogin"/>
+
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        DISTINCT
+        t.id,
+        t.username,
+        t.password,
+        t.register_date,
+        t.new_user,
+        t.register_date,
+        t.lately_login,
+        t.status,
+        t.nick_name,
+        t.avatar
+
+    </sql>
+
+    <sql id="Base_normal_select">
+        select id,username,password,new_user,register_date,lately_login_date FROM tomato_promotion_user
+    </sql>
+
+    <!--获取用户的签到表信息-->
+    <select id="getUserByUserName" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where username=#{username}
+    </select>
+
+
+</mapper>

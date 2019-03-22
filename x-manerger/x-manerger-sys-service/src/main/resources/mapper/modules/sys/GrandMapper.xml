@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.manerger.sys.service.modules.sys.mapper.GrandMapper" >
+    <resultMap id="BaseResultMap" type="com.company.manerger.sys.service.modules.sys.entity.Grand" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="company_logo" property="companyLogo" jdbcType="VARCHAR" />
+        <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+        <result column="company_describe" property="companyDescribe" jdbcType="VARCHAR" />
+        <result column="contact" property="contact" jdbcType="VARCHAR" />
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    DISTINCT
+    t.id,
+    t.name,
+    t.company_logo,
+    t.company_name,
+    t.company_describe,
+    t.contact,
+    t.update_date,
+    t.remarks
+  </sql>
+    <!-- 查询品牌表 -->
+    <select id="selectGrandList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_grand t
+        <if test="ew.sqlSegment != '' and ew.sqlSegment != null">
+            <where>
+                ${ew.sqlSegment}
+            </where>
+        </if>
+    </select>
+
+</mapper>

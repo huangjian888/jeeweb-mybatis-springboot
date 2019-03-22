@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.generator.manager.mapper.TableMapper" >
+
+  <select id="findSubTables" resultType="com.company.generator.manager.entity.Table">
+	  select DISTINCT t.* from generator_table t
+	  LEFT JOIN codegen_column c  on t.id=c.table_id
+	  WHERE   t.table_type='3' and  c.foreign_table=#{tablename}
+  </select>
+</mapper>

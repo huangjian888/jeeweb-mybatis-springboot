@@ -1,0 +1,98 @@
+<% layout('/layouts/list.html', {title: '消息模版'}){ %>
+<#grid:grid id="roleGrid" url="${adminPath}/email/template/ajaxList">
+    <#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+    <#grid:column label="sys.common.opt"  name="opt" formatter="button" width="100"/>
+    <#grid:button   groupname="opt" function="delete" />
+    <#grid:button title="详细"  groupname="opt" function="rowDialogDetailRefresh_test" outclass="btn-warning btn-xs" innerclass="fa-search" url='${adminPath}/email/template/\"+row.id+\"/detail' />
+    <#grid:column label="模版名称"  name="name"  query="true" condition="like" />
+    <#grid:column label="模版编码"  name="code"  query="true" />
+
+    <#grid:toolbar function="add" winwidth="100%" winheight="100%"/>
+    <#grid:toolbar   function="update" winwidth="100%" winheight="100%"/>
+    <#grid:toolbar   function="delete"/>
+
+    <#grid:toolbar  function="search"/>
+    <#grid:toolbar  function="reset"/>
+</#grid:grid>
+
+<script>
+    function rowDialogDetailRefresh_test(title,url,gridId,id,width,height){
+        console.log(url);
+        var url=preprocessUrl1(url,id);
+        console.log(url);
+        openDialogDetailRefresh1(title,url,gridId,width,height,id);
+    }
+    function preprocessUrl1(url,id){
+        if(isContains(url,"?id=")||isContains(url,"&id="))
+        {
+            return url;
+        }
+        if(url.indexOf("?")!=-1)
+        {
+            return url+"&id="+id;
+        }else{
+            return url+"?id="+id;
+        }
+    }
+    function openDialogDetailRefresh1(title,url,gridId,width,height,id){
+        if(navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)){//如果是移动端，就使用自适应大小弹窗
+            width='auto';
+            height='auto';
+        }else{//如果是PC端，根据用户设置的width和height显示。
+
+        }
+        top.layer.open({
+            type: 2,
+            area: [width, height],
+            title: title,
+            maxmin: true, //开启最大化最小化按钮
+            content: url ,
+            btn: ['修改','关闭'],
+            yes: function(index, layero){
+                setTimeout(function(){top.layer.close(index)}, 100);//延时0.1秒，对应360 7.1版本bug
+                var updateurl = "${adminPath}/email/template/"+id+"/update";
+                update1(title,updateurl,gridId,width,height);
+            },
+            cancel: function(index){
+                //刷新表单
+                refreshTable(gridId);
+            }
+        });
+    }
+    function update1(title,url,gridId,width,height) {
+        width = width?width:'800px';
+        height = height?height:'500px';
+        if(navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)){//如果是移动端，就使用自适应大小弹窗
+            width='auto';
+            height='auto';
+        }else{//如果是PC端，根据用户设置的width和height显示。
+
+        }
+        top.layer.open({
+            type: 2,
+            area: [width, height],
+            title: title,
+            maxmin: true, //开启最大化最小化按钮
+            content: url ,
+            btn: ['确定', '关闭'],
+            yes: function(index, layero){
+                var body = top.layer.getChildFrame('body', index);
+                var iframeWin = layero.find('iframe')[0]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                //文档地址
+                //http://www.layui.com/doc/modules/layer.html#use
+                iframeWin.contentWindow.doSubmit(function()
+                {
+                    //判断逻辑并关闭
+                    setTimeout(function(){top.layer.close(index)}, 100);//延时0.1秒，对应360 7.1版本bug
+                    //刷新表单
+                    refreshTable(gridId);
+                });
+
+            },
+            cancel: function(index){
+
+            }
+        });
+    }
+</script>
+<% } %>

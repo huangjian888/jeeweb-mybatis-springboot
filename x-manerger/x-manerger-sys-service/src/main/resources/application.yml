@@ -1,0 +1,221 @@
+server:
+    port: 8080
+
+#spring
+spring:
+  resources:
+    static-locations: file:${oss.local.upload-file-path}
+    add-mappings: false
+  session:
+    store-type: none
+  devtools:
+    restart:
+      enabled: true        #这里是为了热部署的，与mybatis是无关的
+  cache:
+    type: redis
+  redis:   #redis 配置
+      host: localhost
+      port: 6379
+      password:
+      jedis:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: 10000
+  mail:     #邮件发送
+    host: smtp.exmail.qq.com
+    username:  #发送方的邮箱
+    sender:
+    password:  #对于qq邮箱而言 密码指的就是发送方的授权码,对于企业邮箱 密码为邮箱密码 个人邮箱和企业邮箱配置不同
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+
+  messages: #国际化
+      basename: i18n/messages,i18n/ValidationMessages
+  mvc: # 捕获404
+      throw-exception-if-no-handler-found: true
+#  resources:
+#    add-mappings: false
+  thymeleaf: #关闭默认模板引擎
+    cache: false
+    enabled: false
+  aop:  #使用CGLIB来实现AOP的时候
+     proxy-target-class: true
+
+  datasource:
+    dynamic:
+      druid:
+#        filters: stat,wall,log4j
+        filters: stat,wall
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        connection-properties: druid.stat.merggSql=ture;druid.stat.slowSqlMillis=5000
+      datasource:
+        master:
+          username: root
+          password: 123456
+          url: jdbc:mysql://localhost:3306/company_shop?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        slave:
+          username: root
+          password: 123456
+          url: jdbc:mysql://localhost:3306/company_haibao_store?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  level:
+    com.baomidou.dynamic: debug
+
+  #DATABASE CONFIG
+#  datasource:
+##    driver-class-name: com.mysql.jdbc.Driver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+##    测试环境
+#    username: root
+#    password: 123456
+#    url: jdbc:mysql://localhost:3306/company_shop?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+#
+##   正式环境
+##    username: pt_user
+##    password: Ui$3mGm.dnG934G23f
+##    url: jdbc:mysql://172.16.0.5:3306/company_shop?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+#
+#    type: com.alibaba.druid.pool.DruidDataSource   #这里是配置druid连接池，以下都是druid的配置信息
+#    filters: stat,wall,log4j
+#    maxActive: 20
+#    initialSize: 1
+#    maxWait: 60000
+#    minIdle: 1
+#    timeBetweenEvictionRunsMillis: 60000
+#    minEvictableIdleTimeMillis: 300000
+#    validationQuery: select 'x'
+#    testWhileIdle: true
+#    testOnBorrow: false
+#    testOnReturn: false
+#    poolPreparedStatements: true
+#    maxOpenPreparedStatements: 20
+#    connection-properties: druid.stat.merggSql=ture;druid.stat.slowSqlMillis=5000
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml   #把xml文件放在com.XX.mapper.*中可能会出现找到的问题，这里把他放在resource下的mapper中
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.company.manerger.sys.service.modules.*.entity  #这里是实体类的位置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package:  com.company.manerger.sys.service.modules.*.entity
+  #typeEnumsPackage: com.baomidou.springboot.entity.enums
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 3
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 1
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    refresh-mapper: true
+    #数据库大写下划线转换
+    #capital-mode: true
+    #逻辑删除配置（下面3个配置）
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+    # SQL 解析缓存，开启后多租户 @SqlParser 注解生效
+    sql-parser-cache: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  configuration-properties:
+    dbType: mysql #设置全局属性用于控制数据库的类型
+
+#shiro
+company:
+  data: data #该目录为数据存储目录，比如临时数据，日志数据存储等
+  staticPath: /static/
+  shiro:
+     rememeberMeCookieName: company_shop_rememeberMeCache
+     rememeberMeCookieBase64CipherKey: bya2HkYo57u6fWh5theAWw==
+     filter-chain-definitions: /static/**=anon;/admin/jcaptcha*=anon;/upload/**=anon;/admin/logout=logout;/admin/login=jCaptchaValidate,authc;/admin/register=jCaptchaValidate;/admin/register/**=anon;/**=user,sysUser,onlineSession,perms,roles
+  admin:
+     url:
+       prefix: /admin
+       suffix: .html
+     default:
+       theme: uadmin
+
+#beetl配置
+beetlsql:
+  enabled: false
+beetl:
+  enabled: false
+  suffix: html
+  templatesPath: views
+  importPackage: com.company.manerger.sys.common.utils.
+
+#文件上传配置
+#使用的上传存储空间,local本地,aliyun:阿里云
+oss:
+ env: debug
+ client-type: local
+ #默认上传目录
+ base_dir:
+ #允许的文件扩展名
+ allowed_extension: mp4,bmp, gif, jpg, jpeg, png,doc, docx, xls, xlsx, ppt, pptx,html,htm,txt,rar, zip, gz, bz2,pdf
+ #最大文件大小 50M
+ max_size: 52428800
+ local:
+#   测试环境
+   domain: http://localhost:8080/data/www/images
+   upload-file-path: F://Federation2.0/spring-boot-shop/tmp_upload/
+
+   #正式环境
+#   domain: http://62.234.118.32:8080
+#   upload-file-path: /data/www/images/
+ aliyun:
+   #阿里云api的内或外网域名
+   endpoint: oss-cn-beijing.aliyuncs.com
+   #阿里云api的密钥access key id
+   access-key-id: 你的密钥
+   #阿里云api的密钥access key secret
+   access-key-secret: C6Y8xAFaZdPa9KQphnWnJSgckd8lq5
+   #阿里云api的bucket名称
+   bucket-name: companyshop
+   #外部访问域名
+   domain: companyshop
+
+#swagger配置
+swagger:
+  enabled: true
+  title: 管理系统_接口文档
+  description: 描述：具体包括XXX,XXX模块...
+  version: 1.0
+  license: Apache License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfServiceUrl: company
+  contact.name: company
+  contact.url: company
+  contact.email: company
+  base-package: com.company.manerger.sys.service
+  base-path: /**
+  exclude-path: /error, /ops/**

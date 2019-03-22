@@ -1,0 +1,19 @@
+<% layout('/layouts/list.html', {title: '操作日志', libs: 'bootstrap-treeview'}){ %>
+<#grid:grid id="groupGrid" url="${adminPath}/sys/operation/log/ajaxList" sortname="createDate" sortorder="desc">
+    <#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+    <#grid:column label="操作标题"  name="title" />
+    <#grid:column label="操作类型"  name="logType" dict="logType" width="100"/>
+    <#grid:column label="URI"  name="requestUri"  />
+    <#grid:column label="操作人"  name="operationName"  />
+    <#grid:column label="操作IP"  name="operationIp"  />
+    <#grid:column label="浏览器"  name="browser"   width="80"/>
+    <#grid:column label="操作系统"  name="os"   width="120"/>
+    <#grid:column label="请求状态"  name="status" formatterValue="1:成功;0:失败" formatterClass="1:label label-success;0:label label-danger"  width="120"/>
+    <#grid:column label="操作时间"  name="createDate" query="true" queryMode="date" condition="between" />
+    <#grid:column label="sys.common.opt"  name="opt" formatter="button" width="100"/>
+    <#grid:button title="详细"  groupname="opt" function="rowDialogDetailRefresh" outclass="btn-warning btn-xs" innerclass="fa-search" url='${adminPath}/sys/operation/log/\"+row.id+\"/detail' />
+    <#grid:toolbar   function="delete" />
+    <#grid:toolbar  function="search"  />
+    <#grid:toolbar  function="reset" />
+</#grid:grid>
+<% } %>

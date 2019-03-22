@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.manerger.sys.service.modules.sys.mapper.GrandClassifyMapper" >
+    <resultMap id="BaseResultMap" type="com.company.manerger.sys.service.modules.sys.entity.GrandClassify" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="grand_id" property="grandId" jdbcType="VARCHAR" />
+        <result column="grand_name" property="grandName" jdbcType="VARCHAR" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="show_img1" property="showImg1" jdbcType="VARCHAR" />
+        <result column="show_img2" property="showImg2" jdbcType="VARCHAR" />
+        <result column="show_img3" property="showImg3" jdbcType="VARCHAR" />
+        <result column="show_img4" property="showImg4" jdbcType="VARCHAR" />
+        <result column="show_img5" property="showImg5" jdbcType="VARCHAR" />
+        <result column="details_img" property="detailsImg" jdbcType="VARCHAR" />
+        <result column="original" property="original" jdbcType="VARCHAR" />
+        <result column="present" property="present" jdbcType="VARCHAR" />
+        <result column="is_quality" property="isQuality" jdbcType="VARCHAR" />
+        <result column="is_free" property="isFree" jdbcType="VARCHAR" />
+        <result column="is_return" property="isReturn" jdbcType="VARCHAR" />
+        <result column="is_pay" property="isPay" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+        <result column="update_date" property="updateDate" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    DISTINCT
+    t.id,
+    t.grand_id,
+    t.grand_name,
+    t.icon,
+    t.show_img1,
+    t.show_img2,
+    t.show_img3,
+    t.show_img4,
+    t.show_img5,
+    t.details_img,
+    t.original,
+    t.present,
+    t.is_quality,
+    t.is_free,
+    t.is_return,
+    t.is_pay,
+    t.create_date,
+    t.update_date
+  </sql>
+
+    <!-- 查询商品表，品牌名字-->
+    <select id="selectGrandClassifyList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" /> ,s.name
+        from sys_grand_classify t
+        inner join sys_grand s  on  t.grand_id=s.id
+        <if test="ew.sqlSegment != '' and ew.sqlSegment != null">
+            <where>
+                ${ew.sqlSegment}
+            </where>
+        </if>
+    </select>
+
+</mapper>

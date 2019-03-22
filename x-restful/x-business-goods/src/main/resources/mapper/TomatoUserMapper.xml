@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.security.user.TomatoUserMapper">
+    <resultMap id="BaseResultMap" type="com.company.business.goods.security.user.TomatoUserEntity">
+        <id column="id" property="id"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="avatar" property="avatar"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="status" property="status"/>
+        <result column="new_user" property="rookie"/>
+        <result column="register_date" property="registerDate"/>
+        <result column="lately_login_date" property="latelyLogin"/>
+        <result column="exit_time" property="exitTime"/>
+        <result column="address" property="address"/>
+        <result column="gender" property="gender"/>
+        <result column="invite_user" property="inviteUser"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        DISTINCT
+        t.id,
+        t.username,
+        t.password,
+        t.register_date,
+        t.new_user,
+        t.register_date,
+        t.lately_login,
+        t.status,
+        t.nick_name,
+        t.avatar,
+        t.exit_time,
+        t.address,
+        t.gender,
+        t.invite_user
+
+    </sql>
+
+    <sql id="Base_normal_select">
+        select id,avatar,nick_name,username,password,new_user,register_date,lately_login_date,exit_time,invite_user FROM tomato_promotion_user
+    </sql>
+
+    <!--注册时通过用户名查询当前用户-->
+    <select id="getUserByUserName" resultMap="BaseResultMap">
+        <include refid="Base_normal_select"/>
+        where username=#{username}
+    </select>
+
+    <!--获取当前小程序的全部用户-->
+    <select id="getAllUser" resultMap="BaseResultMap">
+        select username,lately_login_date,exit_time FROM tomato_promotion_user
+    </select>
+
+
+    <!--获取当前用户的所有邀请好友信息-->
+    <select id="getUserFansList" resultMap="BaseResultMap">
+        select username,nick_name,avatar,invite_user,register_date,lately_login_date,exit_time FROM tomato_promotion_user where invite_user=#{username} order by register_date desc
+    </select>
+
+    <!--获取当前用户的所有邀请好友信息-->
+    <select id="getUserFansListSize" resultMap="BaseResultMap">
+        select username,invite_user,register_date FROM tomato_promotion_user where invite_user=#{username}
+    </select>
+
+</mapper>

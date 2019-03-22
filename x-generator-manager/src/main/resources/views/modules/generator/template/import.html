@@ -1,0 +1,23 @@
+<% layout('/layouts/form.html', {title: '模板方案', formId: 'templateSchemeForm', bodyClass: 'white-bg', libs: 'bootstrap-fileinput,simditor'}){ %>
+<form id="templateSchemeForm" class="form-horizontal" method="post" enctype="multipart/form-data">
+
+    <table  class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+        <tbody>
+        <tr>
+            <td  class="width-15 active text-right">
+                <label><font color="red">*</font>模板文件:</label>
+            </td>
+            <td class="width-35">
+                <#form:fileinput  autoUpload="true" nested="false" path="fileUrl" buttonText="选择文件" uploadUrl="${adminPath}/generator/template/scheme/upload" extend="json" uploadSuccessCallback="uploadSuccessCallback"/>
+                <label class="Validform_checktip"></label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+<script>
+ function uploadSuccessCallback(response) {
+    $("#fileUrl").val(response.fileName)
+ }
+</script>
+<% } %>

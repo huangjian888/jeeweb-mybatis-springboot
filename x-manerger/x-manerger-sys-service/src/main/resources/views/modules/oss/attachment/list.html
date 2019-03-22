@@ -1,0 +1,18 @@
+<% layout('/layouts/list.html', {title: '上传日志', libs: 'bootstrap-treeview'}){ %>
+<#grid:grid id="attachmentId" url="${adminPath}/oss/attachment/ajaxList">
+    <#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+    <#grid:column label="sys.common.opt"  name="opt" formatter="button" width="100"/>
+    <#grid:button groupname="opt" function="delete"/>
+    <#grid:column label="附件名称"  name="fileName" width="200"  />
+    <#grid:column label="文件路径"  name="filePath"  width="200" />
+    <#grid:column label="文件大小"  name="fileSize" width="100"    />
+    <#grid:column label="文件扩展名"  name="fileExtension"   width="100" />
+    <#grid:column label="上传时间"  name="uploadTime"  />
+    <#grid:column label="上传IP"  name="uploadIp"  />
+
+    <#grid:toolbar  function="delete" />
+
+    <#grid:toolbar  function="search"  />
+    <#grid:toolbar  function="reset" />
+</#grid:grid>
+<% } %>

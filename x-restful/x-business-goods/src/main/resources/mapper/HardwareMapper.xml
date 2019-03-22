@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.HardwareMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.HardwareEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="username"/>
+        <result column="brand" property="brand"/>
+        <result column="model" property="model"/>
+        <result column="version" property="version"/>
+        <result column="system" property="system"/>
+        <result column="platform" property="platform"/>
+
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,user_name,brand,model,version,system,platform FROM tomato_promotion_hardware
+    </sql>
+
+    <!--获取实体-->
+    <select id="getHandware" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where user_name=#{username}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.StatisticsSearchMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.StatisticsSearchEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="username"/>
+        <result column="key_word" property="keyWord"/>
+        <result column="search_update_time" property="search_update_time"/>
+    </resultMap>
+
+
+
+</mapper>

@@ -1,0 +1,155 @@
+server:
+  port: 8083
+
+company:
+  security:
+    credentialsHashAlgorithmName: md5
+    credentialsHashIterations: 2
+  jwt:
+    header: Authorization
+    tokenHead: Bearer
+    secret:
+    expiration: 1800000
+    claim_key_username: username
+    claim_key_createdate: createdate
+    authpath:
+  redis:
+    prefix:
+    expiration: 600
+
+wx:
+  properties:
+    appId:
+    appSecret:
+    grantType:
+    merchantId:
+    notifyId:
+    incomeId:
+    inviteId:
+
+pdd:
+  config:
+    clientId:
+    clientSecret:
+
+spring:
+  resources:
+    add-mappings: false
+  session:
+    store-type: none
+  devtools:
+    restart:
+      enabled: true
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6009
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: 10000
+
+  messages:
+    basename: i18n/messages,i18n/ValidationMessages
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+  thymeleaf:
+    cache: false
+    enabled: false
+  aop:
+    proxy-target-class: true
+
+  datasource:
+    dynamic:
+      druid:
+        filters: stat,wall,log4j
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        connection-properties: druid.stat.merggSql=ture;druid.stat.slowSqlMillis=5000
+      primary: master
+      datasource:
+        master:
+          username: root
+          password: 123456
+          url: jdbc:mysql://localhost:3306/company_business_goods?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        slave_companyShop:
+          username: root
+          password: 123456
+          url: jdbc:mysql://localhost:3306/company_shop?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+
+  typeAliasesPackage: com.company.authorization.moudle.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+
+  type-aliases-package:  com.company.authorization.moudle.entity
+  #typeEnumsPackage: com.baomidou.springboot.entity.enums
+  global-config:
+
+    id-type: 2
+
+    field-strategy: 1
+
+    db-column-underline: true
+
+    refresh-mapper: true
+
+    #capital-mode: true
+
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+
+    sql-parser-cache: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  configuration-properties:
+    dbType: mysql
+
+
+
+xxl:
+  job:
+    admin:
+      ### xxl-job admin address list, such as "http://address" or "http://address01,http://address02"
+      addresses: http://localhost:8080/xxl-job-admin
+    ### xxl-job executor address
+    executor:
+      appname: business-authorization
+      ip:
+      port: 9998
+      ### xxl-job log path
+      logpath: /data/applogs/xxl-job/jobhandler
+      ### xxl-job log retention days
+      logretentiondays: -1
+    ### xxl-job, access token
+    accessToken:
+
+#write image to server file
+
+#configuration cdn
+

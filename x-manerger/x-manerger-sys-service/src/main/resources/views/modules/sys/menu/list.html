@@ -1,0 +1,18 @@
+<% layout('/layouts/list.html', {title: @MessageUtils.getMessage('sys.menu.title',''), libs: 'bootstrap-treeview'}){ %>
+<#grid:grid id="menuGrid" async="true" treeGrid="true"  expandColumn="name"  sortname="sort" url="${adminPath}/sys/menu/ajaxTreeList">
+	<#grid:column label="sys.common.key" hidden="true"   name="id" />
+	<#grid:column label="sys.menu.name"  name="name"  query="true" condition="like"/>
+	<#grid:column label="类型"  name="type" dict="menutype" width="60" formatterClass="1:label label-primary;2:label label-success;3:label label-danger" query="true" condition="like"/>
+	<#grid:column label="sys.menu.url"  name="url"  />
+	<#grid:column label="sys.menu.permission"  name="permission"  />
+	<#grid:column label="sys.menu.enabled"  name="enabled" dict="sf"/>
+
+	<#grid:column label="sys.common.opt"  name="opt" formatter="button" width="100"/>
+	<#grid:button   groupname="opt" function="delete" />
+	<#grid:toolbar  function="add" winheight="520px"/>
+	<#grid:toolbar  function="update"/>
+	<#grid:toolbar  function="delete"/>
+	<#grid:toolbar  function="search"/>
+	<#grid:toolbar  function="reset"/>
+</#grid:grid>
+<% } %>

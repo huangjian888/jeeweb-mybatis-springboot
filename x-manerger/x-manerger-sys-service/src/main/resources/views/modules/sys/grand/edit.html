@@ -1,0 +1,60 @@
+<% layout('/layouts/form.html', {title: @MessageUtils.getMessage('sys.grand.edittitle',''), formId: 'grandForm', bodyClass: 'white-bg', libs: 'bootstrap-fileinput'}){ %>
+<#form:form id="grandForm" modelAttribute="data"  method="post" class="form-horizontal">
+	<#form:hidden path="id"/>
+	<table  class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+		<tbody>
+		<tr>
+			<td class="width-15 active text-right">
+				<label><font color="red">*</font>品牌名字:</label>
+			</td>
+			<td class="width-35" >
+				<#form:input path="name" class="form-control " datatype="*" nullmsg="请输入名字！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+            <td class="width-15 active text-right">
+                <label><font color="red">*</font>公司名称:</label>
+            </td>
+            <td class="width-35" >
+                <#form:input path="companyName" class="form-control " datatype="*" nullmsg="请输入公司名称！" htmlEscape="false" />
+                <label class="Validform_checktip"></label>
+            </td>
+		</tr>
+        <tr>
+            <td  class="width-15 active text-right">
+                <label><font color="red">*</font>联系信息:</label>
+            </td>
+            <td class="width-35" >
+                <#form:input path="contact" class="form-control " datatype="m" nullmsg="请输入联系信息！" htmlEscape="false" />
+                <label class="Validform_checktip"></label>
+            </td>
+        </tr>
+        <tr>
+            <td  class="width-15 active text-right">
+                <label>公司描述:</label>
+            </td>
+            <td class="width-35" colspan="3" >
+                <#form:textarea path="companyDescribe" htmlEscape="false" rows="3" maxlength="200" class="form-control "/>
+            </td>
+        </tr>
+		<tr>
+			<td  class="width-15 active text-right">
+				<label>备注:</label>
+			</td>
+			<td class="width-35" colspan="3" >
+				<#form:textarea path="remarks" htmlEscape="false" rows="3" maxlength="200" class="form-control "/>
+			</td>
+		</tr>
+
+        <tr>
+            <td  class="width-15 active text-right">
+                <label>上传logo:</label>
+            </td>
+            <td class="width-35" colspan="3" >
+                <#form:fileinput basePath="/hellows/test" showType="avatar" fileInputWidth="100px"  fileInputHeight="100px"  path="companyLogo"/>
+            </td>
+        </tr>
+
+		</tbody>
+    </table>
+</#form:form>
+<% } %>

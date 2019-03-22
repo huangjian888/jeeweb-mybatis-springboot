@@ -1,0 +1,34 @@
+<% layout('/layouts/form.html', {title: @MessageUtils.getMessage('sys.grandSpec.edittitle',''), formId: 'grandSpecForm', bodyClass: 'white-bg', libs: 'bootstrap-fileinput'}){ %>
+<#form:form id="grandSpecForm" modelAttribute="data"  method="post" class="form-horizontal">
+	<#form:hidden path="id"/>
+	<table  class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+		<tbody>
+        <tr>
+            <td class="width-15 active text-right">
+                <label><font color="red">*</font>尺寸:</label>
+            </td>
+            <td class="width-35" >
+                <#form:input path="size" class="form-control " datatype="*" nullmsg="请输入尺寸！" htmlEscape="false" />
+                <label class="Validform_checktip"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="width-15 active text-right">
+                <label><font color="red">*</font>颜色:</label>
+            </td>
+            <td class="width-35" >
+                <#form:input path="colour" class="form-control " datatype="*" nullmsg="请输入颜色！" htmlEscape="false" />
+                <label class="Validform_checktip"></label>
+            </td>
+            <td class="width-15 active text-right">
+                <label><font color="red">*</font>库存:</label>
+            </td>
+            <td class="width-35" >
+                <#form:input path="stock" class="form-control " datatype="n" nullmsg="请输入库存！" htmlEscape="false" />
+                <label class="Validform_checktip"></label>
+            </td>
+        </tr>
+		</tbody>
+    </table>
+</#form:form>
+<% } %>

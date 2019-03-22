@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.OrderMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.OrderEntity">
+        <id column="id" property="id"/>
+        <result column="gold" property="gold"/>
+        <result column="order_id" property="orderId"/>
+        <result column="user_name" property="userName"/>
+        <result column="shipping_id" property="shippingId"/>
+        <result column="price" property="price"/>
+        <result column="payment_type" property="paymentType"/>
+        <result column="postage" property="postage"/>
+        <result column="status_two" property="status"/>
+        <result column="payment_time" property="paymentTime"/>
+        <result column="create_date_two" property="createDate"/>
+        <result column="remarks" property="remarks"/>
+
+        <result column="product_id_two" property="productId"/>
+        <result column="total_gold" property="totalGold"/>
+        <result column="total_price" property="totalPrice"/>
+        <result column="quantity" property="quantity"/>
+
+        <result column="shipments" property="shipments"/>
+        <result column="express_no" property="expressNo"/>
+        <result column="express_company" property="expressCompany"/>
+
+        <result column="send_time" property="send_time"/>
+
+    </resultMap>
+    <sql id="delete_order">
+        delete from tomato_order_info
+    </sql>
+
+    <sql id="base_select_order">
+        select
+        id,express_no,express_company,user_name,order_id,shipping_id,status_two,product_id_two,total_gold,total_price,quantity,postage,payment_type,price,gold,payment_time,create_date_two,remarks
+        from tomato_order_info
+    </sql>
+
+    <sql id="Basic_query_order">
+        select id,user_name,order_id,status_two from tomato_order_info
+    </sql>
+    <delete id="deleteOrder" parameterType="map">
+        <include refid="delete_order"/>
+        where user_name=#{username} and order_id=#{orderId} and (status_two=#{cancel} or status_two=#{complete})
+    </delete>
+
+    <!--获取当前的订单-->
+    <select id="getOrder" resultMap="signMap">
+        <include refid="base_select_order"/>
+        where user_name=#{username} and order_id=#{orderId}
+    </select>
+
+
+    <!--获取当前用户的所有订单-->
+    <select id="getAllOrder" resultMap="signMap">
+        select
+        order_id,status_two,product_id_two,total_gold,total_price,quantity,price,gold,payment_time
+        from tomato_order_info
+        where user_name=#{username}
+    </select>
+
+    <!--获取当前用户的所有订单-->
+    <select id="getAllOrderByType" resultMap="signMap">
+        <include refid="base_select_order"/>
+        where user_name=#{username} and status_two=#{status}
+    </select>
+
+    <!--获取商品兑换记录,需要用户的头像，昵称等信息-->
+    <select id="getProductRecord" resultType="java.util.HashMap">
+        select packet.product_id_two,packet.create_date_two,ifnull(tomato.nick_name,'') as nick_name,ifnull(tomato.avatar,'') as avatar from tomato_order_info AS packet inner join tomato_user AS tomato on packet.user_name=tomato.username WHERE packet.product_id_two=#{productId} order by create_date_two desc
+    </select>
+
+    <!--获取已发货的订单-->
+    <select id="getOrderList" resultMap="signMap">
+        select
+        id,order_id,status_two,send_time
+        from tomato_order_info
+        where status_two=#{type}
+    </select>
+
+    <!--确认收货-->
+    <update id="comfirmOrder" parameterType="map">
+        update tomato_order_info set status_two=#{status} where user_name=#{username} and order_id=#{orderId}
+
+    </update>
+
+
+</mapper>

@@ -1,0 +1,101 @@
+<% layout('/layouts/list.html', {title: @MessageUtils.getMessage('sys.dict.group.title',''), libs: 'bootstrap-treeview'}){ %>
+<div class="row">
+	<div class="col-md-6" >
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>字典分组</h5>
+			</div>
+			<div class="ibox-content">
+			<#grid:grid id="groupGrid" baseUrl="${adminPath}/sys/dict/group" onSelectRow="onSelectRow">
+				<#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+				<#grid:column label="sys.common.opt"  name="opt" formatter="button" width="80"/>
+				<#grid:button  groupname="opt" function="delete"  />
+				<#grid:column label="sys.dict.group.name"  name="name"  query="true" condition="like" />
+				<#grid:column label="sys.dict.group.code"  name="code"  query="true" condition="like" />
+
+				<#grid:toolbar   function="add"  />
+				<#grid:toolbar   function="update"    />
+				<#grid:toolbar   function="delete"    />
+				<#grid:toolbar   title="强制刷新"   icon="fa-refresh"  onclick="forceRefresh()"  />
+				<#grid:toolbar  function="search"  />
+				<#grid:toolbar  function="reset"  />
+			</#grid:grid>
+			</div>
+		</div>
+		<script>
+            function forceRefresh() {
+                swal({
+                    title: "提示",
+                    text: "您确定强制刷新字典！",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确定",
+                    closeOnConfirm: false,
+                    cancelButtonText: "取消",
+                }, function () {
+                    $.ajax({
+                        url : '${adminPath}/sys/dict/group/forceRefresh',
+                        type : 'post',
+                        cache : false,
+                        success : function(d) {
+                            if (d.code == 0 || d.code== undefined==0) {
+                                var msg = d.msg;
+                                swal("提示！", msg, "success");
+                            }else{
+                                var msg = d.msg;
+                                swal("提示！", msg, "error");
+                            }
+                        }
+                    });
+                });
+            }
+
+            /**
+             * 行选择
+             * @param rowId
+             */
+            function onSelectRow(rowId) {
+                $("input[name='gid']").val(rowId);
+                search('dictGrid');
+                var rowData = $("#groupGrid").jqGrid('getRowData',rowId);
+                $("#groupLable").html(rowData.name);
+            }
+		</script>
+	</div>
+	<div  class="col-md-6">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>[<label id="groupLable">未知分组</label>]字典</h5>
+			</div>
+			<div class="ibox-content">
+			<#grid:grid id="dictGrid" url="${adminPath}/sys/dict/ajaxList">
+				<#grid:query name="gid"  queryMode="hidden" />
+				<#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+				<#grid:column label="sys.common.opt"  name="opt" formatter="button" width="80"/>
+				<#grid:button  groupname="opt" function="delete" />
+				<#grid:column label="sys.dict.label"  name="label"  query="true"  />
+				<#grid:column label="sys.dict.value"  name="value"  query="true"  />
+
+				<#grid:toolbar title="添加" onclick="createDict('添加字典','${adminPath}/sys/dict/add','dictGrid','800px','500px')" />
+				<#grid:toolbar   function="update"    />
+				<#grid:toolbar   function="delete"    />
+				<#grid:toolbar  function="search"  />
+				<#grid:toolbar  function="reset"  />
+			</#grid:grid>
+			</div>
+		</div>
+	</div>
+	<script>
+        /**
+         * 行选择
+         * @param rowId
+         */
+		function createDict(title,url,gridid,width,height) {
+		    var gid = $("input[name='gid']").val();
+            url = url + "?gid="+ gid
+			openDialog(title,url,gridid,width,height);
+		}
+	</script>
+</div>
+<% } %>

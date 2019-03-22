@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.CommissionTipMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.CommissionTipEntity">
+        <id column="id" property="id"/>
+
+        <result column="day_count_times" property="day_count_times"/>
+        <result column="commission_money_max" property="commission_money_max"/>
+        <result column="create_by" property="create_by"/>
+        <result column="create_id" property="create_id"/>
+        <result column="create_date" property="create_date"/>
+        <result column="update_by" property="update_by"/>
+        <result column="update_id" property="update_id"/>
+        <result column="update_date" property="update_date"/>
+        <result column="remarks" property="remarks"/>
+        <result column="status" property="status"/>
+
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select * FROM tomato_promotion_commission_tip_config
+    </sql>
+
+    <!--查询返现比例配置-->
+    <select id="getCommissionTip" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where create_by=#{username}
+    </select>
+
+</mapper>

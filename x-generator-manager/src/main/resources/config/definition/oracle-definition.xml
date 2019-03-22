@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition>
+	<!-- 名称 -->
+	<name>Oracle</name>
+	<!-- 描述 -->
+	<description>Oracle数据库定义</description>
+	<!-- 数据库KEY -->
+	<db-type>Oracle</db-type>
+	<!-- 默认连接字符串 -->
+	<db-url>jdbc:oracle:thin:@SERVERADDRESS:PORT:YOURDATABASENAME</db-url>
+	<!-- 名称 -->
+	<db-driver>oracle.jdbc.driver.OracleDriver</db-driver>
+	<db>
+	    <!-- 所有类型 -->
+	    <all-types>
+			CHAR,NCHAR,VARCHAR2,NVARCHAR2,NUMBER,INTEGER,BINARY_FLOAT,BINARY_DOUBLE,FLOAT,DATE,TIMESTAMP,TIMESTAMP WITH TIME ZONE,TIMESTAMP WITH LOCAL TIME ZONE,INTERVAL YEAR TO MOTH,INTERVAL DAY TO SECOND,CLOB,NCLOB,BLOB,BFILE,LONG,LONG RAW,RAW,ROWID
+		</all-types>
+	    <!-- 字符类型 -->
+	    <char-types>
+			CHAR,NCHAR,VARCHAR2,NVARCHAR2
+	    </char-types>
+	    <!--需要设置小组点的类型-->
+	    <float-types>
+			NUMBER,INTEGER,BINARY_FLOAT,BINARY_DOUBLE,FLOAT
+	    </float-types>
+	    <!--不需要设置长度的类型 -->
+	    <alone-types>
+			DATE,TIMESTAMP,TIMESTAMP WITH TIME ZONE,TIMESTAMP WITH LOCAL TIME ZONE,INTERVAL YEAR TO MOTH,INTERVAL DAY TO SECOND,CLOB,NCLOB,BLOB,BFILE,LONG,LONG RAW,RAW,ROWID
+	    </alone-types>
+	    <!--大文本类型 -->
+	    <blob-types>
+			 CLOB,NCLOB,BLOB,BFILE,LONG,LONG RAW,RAW
+	    </blob-types>
+	    
+		<sqls>
+			<sql>
+				<!-- SQLID  -->
+				<id>dropTable</id>
+				<!-- SQL 描述  -->
+				<description>删除语句的SQL</description>
+				<!-- SQL片段 -->
+				<content>
+				 <![CDATA[
+				   DROP TABLE ${tablename}
+				 ]]>
+			    </content>
+			</sql>
+			<sql>
+				<!-- SQL ID  -->
+				<id>createTable</id>
+				<!-- SQL 描述  -->
+				<description>创建表SQL</description>
+				<!-- SQL片段 -->
+				<content>
+				 <![CDATA[
+				   CREATE TABLE "${table.tableName?upper_case}" (
+						  "ID" VARCHAR2(32) NOT NULL,
+					<#if table.columns?exists>
+					   <#list table.columns as attr>
+						  <#if attr.columnName != "id">
+						  "${attr.columnName?upper_case}" <#if attr.isAlone> ${attr.typeName}<#else> ${attr.typeName}(${attr.columnSize}<#if attr.isFloat>,${attr.decimalDigits}</#if>)</#if><#if !attr.isBlob&&attr.columnDef?exists&&attr.columnDef!=''> DEFAULT <#if attr.isString>'${attr.columnDef}'<#else>${attr.columnDef}</#if></#if><#if !attr.nullable> NOT NULL</#if> <#if attr_has_next>,</#if>
+						  </#if>
+					   </#list>
+					</#if>
+					)
+					LOGGING
+					NOCOMPRESS
+					NOCACHE
+					;
+					comment on table ${table.tableName?upper_case} is '${table.remarks}';
+					<#list table.columns as attr>
+					<#if attr.remarks?exists&&attr.remarks!=''>
+					comment on column ${table.tableName?upper_case}.${attr.columnName?upper_case} is '${attr.remarks}';
+					</#if>
+					</#list>
+					ALTER TABLE "${table.tableName?upper_case}" ADD CHECK ("ID" IS NOT NULL);
+					ALTER TABLE "${table.tableName?upper_case}" ADD PRIMARY KEY ("ID");
+				 ]]>
+			    </content>
+			</sql>
+		</sqls>
+	</db>
+	<!-- 数据导入的时候，类型与JAVA类型的判断 -->
+	<dbtojava-types>
+		<type>
+			<!-- JAVA类型 -->
+			<java-type>String</java-type>
+			<!-- 数据库中的类型 -->
+			<db-type>CHAR</db-type>
+		</type>
+		<type>
+			<!-- JAVA类型 -->
+			<java-type>String</java-type>
+			<!-- 数据库中的类型 -->
+			<db-type>VARCHAR2</db-type>
+		</type>
+		<type>
+			<!-- JAVA类型 -->
+			<java-type>String</java-type>
+			<!-- 数据库中的类型 -->
+			<db-type>LONG</db-type>
+		</type>
+		<type>
+			<!-- JAVA类型 -->
+			<java-type>Double</java-type>
+			<!-- 数据库中的类型 -->
+			<db-type>NUMBER</db-type>
+		</type>
+		<type>
+			<!-- JAVA类型 -->
+			<java-type>byte[]</java-type>
+			<!-- 数据库中的类型 -->
+			<db-type>LONGRAW</db-type>
+		</type>
+		<type>
+			<!-- JAVA类型 -->
+			<java-type>Date</java-type>
+			<!-- 数据库中的类型 -->
+			<db-type>DATE</db-type>
+		</type>
+		<type>
+			<!-- JAVA类型 -->
+			<java-type>Date</java-type>
+			<!-- 数据库中的类型 -->
+			<db-type>TIMESTAMP</db-type>
+		</type>
+		<type>
+			<!-- JAVA类型 -->
+			<java-type>Date</java-type>
+			<!-- 数据库中的类型 -->
+			<db-type>TIMESTAMP WITH LOCAL TIME ZONE</db-type>
+		</type>
+		<type>
+			<!-- JAVA类型 -->
+			<java-type>Date</java-type>
+			<!-- 数据库中的类型 -->
+			<db-type>TIMESTAMP WITH TIME ZONE</db-type>
+		</type>
+		<type>
+			<!-- JAVA类型 -->
+			<java-type>Date</java-type>
+			<!-- 数据库中的类型 -->
+			<db-type>TIMESTAMP</db-type>
+		</type>
+	</dbtojava-types>
+	<!-- java类型与class全路径的对应 -->
+	<javatoclass-types>
+		<type>
+			<java-type>Date</java-type>
+			<full-type>java.util.Date</full-type>
+		</type>
+	</javatoclass-types>
+</definition>

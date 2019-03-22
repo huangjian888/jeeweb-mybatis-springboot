@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.PacketConfigMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.PacketConfigEntity">
+        <id column="id" property="id"/>
+        <result column="packet_count" property="packetCount"/>
+        <result column="award" property="award"/>
+        <result column="description" property="description"/>
+        <result column="category" property="category"/>
+        <result column="create_by" property="create_by"/>
+        <result column="status" property="status"/>
+
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,award,packet_count,description,category,status FROM tomato_packet_config
+    </sql>
+
+    <!--查询当前设置的新用户红包领取次数-->
+    <select id="getPackConfig" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where status=1
+    </select>
+
+    <!--查询当前设置的新用户红包领取次数-->
+    <select id="getPackConfigUser" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where create_by=#{username}
+    </select>
+
+
+</mapper>

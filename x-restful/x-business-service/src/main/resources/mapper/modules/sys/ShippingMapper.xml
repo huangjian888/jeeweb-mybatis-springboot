@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.ShippingMapper">
+    <resultMap id="ShippingMap" type="com.company.shop.sys.service.modules.sys.entity.ShippingEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="username"/>
+        <result column="real_name" property="realName"/>
+        <result column="receiver_phone_no" property="phone"/>
+        <result column="province_name" property="province"/>
+        <result column="city_name" property="city"/>
+        <result column="district_name" property="zone"/>
+        <result column="street_name" property="street"/>
+        <result column="detail_address" property="detailAddress"/>
+        <result column="receiver_zip_code" property="code"/>
+        <result column="default_address" property="defaultAddress"/>
+    </resultMap>
+
+    <sql id="Base_normal_select">
+        select
+        id,user_name,real_name,receiver_phone_no,province_name,city_name,district_name,street_name,detail_address,default_address
+        FROM tomato_user_address
+    </sql>
+
+    <!--删除指定收货地址-->
+    <delete id="removeAddress" parameterType="map">
+        delete from tomato_user_address where user_name=#{username} and id=#{shippingId}
+    </delete>
+
+    <!--查找当前用户的默认收货地址-->
+    <select id="getCurrentDefaultAddress" resultMap="ShippingMap">
+        <include refid="Base_normal_select"/>
+        where user_name=#{username} and default_address=1
+
+    </select>
+
+    <update id="setDefaultAddress" parameterType="map">
+        update tomato_user_address set default_address=1 where user_name=#{username} and id=#{shippingId}
+
+    </update>
+    <!--根据id查找到当前用户的物流地址-->
+    <select id="getShipById" resultMap="ShippingMap">
+        <include refid="Base_normal_select"/>
+        where user_name=#{username} and id=#{shippingId}
+
+    </select>
+
+    <!--查询用户所有的物流地址-->
+    <select id="getAllAdress" resultMap="ShippingMap">
+        <include refid="Base_normal_select"/>
+        where user_name=#{username}
+
+    </select>
+
+    <!--查询用户的物流地址数量-->
+    <select id="countAddress" resultType="java.lang.Integer">
+        SELECT count(1) from tomato_user_address where user_name = #{username}
+    </select>
+
+    <!--获取用户的默认收货地址-->
+    <select id="getDefaultAddress" resultMap="ShippingMap">
+        <include refid="Base_normal_select"/>
+        where user_name=#{username} and default_address=1
+
+    </select>
+
+</mapper>

@@ -1,0 +1,127 @@
+<% layout('/layouts/form.html', {title: @MessageUtils.getMessage('sys.grandClassify.edittitle',''), formId: 'grandClassifyForm', bodyClass: 'white-bg', libs: 'bootstrap-fileinput'}){ %>
+<#form:form id="grandClassifyForm" modelAttribute="data"  method="post" class="form-horizontal">
+	<#form:hidden path="id"/>
+	<table  class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+		<tbody>
+        <tr>
+            <td class="width-15 active text-right">
+                <label><font color="red">*</font>品牌名字:</label>
+            </td>
+            <td class="width-35" >
+                <#form:select path="grandId" class="selectpicker form-control" data-live-search-strikethrough="true"  items="${sourceFormatterValue}" itemLabel="name"   itemValue="id"></#form:select>
+                <label class="Validform_checktip"></label>
+            </td>
+        </tr>
+		<tr>
+			<td class="width-15 active text-right">
+				<label><font color="red">*</font>商品名字:</label>
+			</td>
+			<td class="width-35" >
+				<#form:input path="grandName" class="form-control " datatype="*" nullmsg="请输入商品名字！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+        <tr>
+            <td class="width-15 active text-right">
+                <label><font color="red">*</font>原价:</label>
+            </td>
+            <td class="width-35" >
+                <#form:input path="original" class="form-control " datatype="*" nullmsg="请输入原价！" htmlEscape="false" />
+                <label class="Validform_checktip"></label>
+            </td>
+            <td class="width-15 active text-right">
+                <label><font color="red">*</font>销售价:</label>
+            </td>
+            <td class="width-35" >
+                <#form:input path="present" class="form-control " datatype="*" nullmsg="请输入销售价！" htmlEscape="false" />
+                <label class="Validform_checktip"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="active">
+                <label class="pull-right"><font color="red">*</font>正品保障:</label>
+            </td>
+            <td>
+                <#form:radiobuttons path="isQuality"   dict="sf" defaultValue="0"  htmlEscape="false" cssClass="i-checks required" />
+            </td>
+            <td class="active">
+                <label class="pull-right"><font color="red">*</font>全场包邮:</label>
+            </td>
+            <td>
+                <#form:radiobuttons path="isFree"   dict="sf" defaultValue="1"  htmlEscape="false" cssClass="i-checks required" />
+            </td>
+        </tr>
+        <tr>
+            <td class="active">
+                <label class="pull-right"><font color="red">*</font>七天退换:</label>
+            </td>
+            <td>
+                <#form:radiobuttons path="isReturn"   dict="sf" defaultValue="0"  htmlEscape="false" cssClass="i-checks required" />
+            </td>
+            <td class="active">
+                <label class="pull-right"><font color="red">*</font>先行赔付:</label>
+            </td>
+            <td>
+                <#form:radiobuttons path="isPay"   dict="sf" defaultValue="1"  htmlEscape="false" cssClass="i-checks required" />
+            </td>
+        </tr>
+        <tr>
+            <td  class="width-15 active text-right">
+                <label>上传icon:</label>
+            </td>
+            <td class="width-35" colspan="3" >
+                <#form:fileinput basePath="/hellows/test" showType="avatar" fileInputWidth="100px"  fileInputHeight="100px"  path="icon"/>
+            </td>
+        </tr>
+        <tr>
+            <td  class="width-15 active text-right">
+                <label>上传展示图1:</label>
+            </td>
+            <td class="width-35" colspan="3" >
+                <#form:fileinput basePath="/hellows/test" showType="avatar" fileInputWidth="100px"  fileInputHeight="100px"  path="showImg1"/>
+            </td>
+        </tr>
+        <tr>
+            <td  class="width-15 active text-right">
+                <label>上传展示图2:</label>
+            </td>
+            <td class="width-35" colspan="3" >
+                <#form:fileinput basePath="/hellows/test" showType="avatar" fileInputWidth="100px"  fileInputHeight="100px"  path="showImg2"/>
+            </td>
+        </tr>
+        <tr>
+            <td  class="width-15 active text-right">
+                <label>上传展示图3:</label>
+            </td>
+            <td class="width-35" colspan="3" >
+                <#form:fileinput basePath="/hellows/test" showType="avatar" fileInputWidth="100px"  fileInputHeight="100px"  path="showImg3"/>
+            </td>
+        </tr>
+        <tr>
+            <td  class="width-15 active text-right">
+                <label>上传展示图4:</label>
+            </td>
+            <td class="width-35" colspan="3" >
+                <#form:fileinput basePath="/hellows/test" showType="avatar" fileInputWidth="100px"  fileInputHeight="100px"  path="showImg4"/>
+            </td>
+        </tr>
+        <tr>
+            <td  class="width-15 active text-right">
+                <label>上传展示图5:</label>
+            </td>
+            <td class="width-35" colspan="3" >
+                <#form:fileinput basePath="/hellows/test" showType="avatar" fileInputWidth="100px"  fileInputHeight="100px"  path="showImg5"/>
+            </td>
+        </tr>
+        <tr>
+            <td  class="width-15 active text-right">
+                <label>上传详情图:</label>
+            </td>
+            <td class="width-35" colspan="3" >
+                <#form:fileinput basePath="/hellows/test" showType="avatar" fileInputWidth="100px"  fileInputHeight="100px"  path="detailsImg"/>
+            </td>
+        </tr>
+		</tbody>
+    </table>
+</#form:form>
+<% } %>

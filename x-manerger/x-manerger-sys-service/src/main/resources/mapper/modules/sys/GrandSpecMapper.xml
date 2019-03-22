@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.manerger.sys.service.modules.sys.mapper.GrandSpecMapper" >
+    <resultMap id="BaseResultMap" type="com.company.manerger.sys.service.modules.sys.entity.GrandSpec" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="grand_classify_id" property="grandClassifyId" jdbcType="VARCHAR" />
+        <result column="size" property="size" jdbcType="VARCHAR" />
+        <result column="colour" property="colour" jdbcType="VARCHAR" />
+        <result column="stock" property="stock" jdbcType="VARCHAR" />
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    DISTINCT
+    t.id,
+    t.grand_classify_id,
+    t.size,
+    t.colour,
+    t.stock,
+    t.update_date
+  </sql>
+
+    <!-- 查询商品规格 -->
+    <select id="selectGrandSpecList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_grand_spec t
+        LEFT JOIN sys_grand_classify s on t.grand_classify_id=s.id ORDER BY sort desc
+    </select>
+</mapper>

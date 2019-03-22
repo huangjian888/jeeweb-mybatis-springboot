@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.QrCodeMapper">
+    <resultMap id="MallCategoryMap" type="com.company.business.goods.moudle.entity.QrCodeEntity">
+        <id column="id" property="id"/>
+        <result column="wx_qrcode_img" property="qrImg"/>
+        <result column="wx_account" property="wx_account"/>
+        <result column="status" property="status"/>
+        <result column="show_counts" property="show_counts"/>
+
+    </resultMap>
+    <sql id="cate_mallSql">
+        SELECT id,show_counts,wx_qrcode_img,wx_account,status FROM tomato_promotion_qrcode_config
+    </sql>
+
+    <!--查询管理后台所有的二维码集合-->
+    <select id="getAllQrList" resultMap="MallCategoryMap">
+
+        <include refid="cate_mallSql"/>where status=#{status}
+    </select>
+</mapper>

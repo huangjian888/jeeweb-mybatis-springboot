@@ -1,0 +1,63 @@
+<% layout('/layouts/list.html', {title: @MessageUtils.getMessage('sys.grandClassify.title',''), libs: 'bootstrap-treeview'}){ %>
+<#grid:grid id="grandClassifyGrid" multiselect="false"  url="${adminPath}/sys/grandSpec/grandClassify/ajaxList">
+<#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+<#grid:column label="sys.grandClassify.grand_name" name="grandName"  query="true" condition="like"   />
+<#grid:column label="sys.grand.name"  name="name"   queryMode="select" formatterValue="${sourceFormatterValue}"/>
+<#grid:column label="sys.grandClassify.original"  name="original"  />
+<#grid:column label="sys.grandClassify.present"  name="present"  />
+<#grid:column label="sys.grandClassify.is_quality"  name="isQuality" dict="sf" />
+<#grid:column label="sys.grandClassify.is_free"  name="isFree"  dict="sf"/>
+<#grid:column label="sys.grandClassify.is_return"  name="isReturn"  dict="sf"/>
+<#grid:column label="sys.grandClassify.is_pay"  name="isPay"  dict="sf"/>
+<#grid:column label="sys.common.opt"  name="opt" formatter="button" width="100"/>
+<#grid:button  groupname="opt" function="delete" />
+<#grid:toolbar  function="add"/>
+<#grid:toolbar  function="update"/>
+<#grid:button   groupname="opt" title="规格" function="createSpecDiv" outclass="btn-info" innerclass="fa-plus"/>
+<#grid:toolbar  function="delete"/>
+<#grid:toolbar  function="search"/>
+<#grid:toolbar  function="reset"/>
+</#grid:grid>
+
+<#grid:grid id="grandSpecGrid" multiselect="false" url="${adminPath}/sys/grandSpec/ajaxList" >
+<#grid:query name="grandClassifyId"  queryMode="hidden" />
+<#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+<#grid:column label="sys.grandSpec.size"  name="size" />
+<#grid:column label="sys.grandSpec.colour"  name="colour" />
+<#grid:column label="sys.grandSpec.stock"  name="stock"  />
+<#grid:column label="sys.grandSpec.update_date"  name="updateDate"  />
+<#grid:column label="sys.common.opt"  name="opt" formatter="button" width="100"/>
+<#grid:button  groupname="opt" function="delete" />
+<#grid:toolbar  title="添加" onclick="createSpec('添加规格','${adminPath}/sys/grandSpec/add','grandSpecGrid','800px','500px')"/>
+<#grid:toolbar  function="update"/>
+<#grid:toolbar  function="delete"/>
+</#grid:grid>
+
+<script>
+    /**
+     * 规格获取商品id
+     * @param grandClassifyId
+     * @param id
+     */
+    function createSpecDiv(title,url,gridId,id,width,height){
+        $("input[name='grandClassifyId']").val(id);
+        search('grandSpecGrid');
+    }
+</script>
+<script>
+    /**
+     * 行选择
+     * @param rowId
+     */
+    function createSpec(title,url,gridid,width,height) {
+        var grandClassifyId = $("input[name='grandClassifyId']").val();
+        if (grandClassifyId != ""){
+            url = url + "?grandClassifyId=" + grandClassifyId;
+            openDialog(title, url, gridid, width, height);
+        }
+        else if (grandClassifyId == ""){
+            sweetAlert("提示", "请选择商品规格", "warning");
+        };
+    }
+</script>
+<% } %>

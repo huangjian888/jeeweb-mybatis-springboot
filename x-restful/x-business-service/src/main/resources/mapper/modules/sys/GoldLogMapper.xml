@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.GoldLogMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.GoldLogEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="gold_date" property="goldDate"/>
+        <result column="step" property="step"/>
+        <result column="gold" property="gold"/>
+        <result column="event" property="event"/>
+        <result column="gold_type" property="goldType"/>
+
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,user_name,gold_date,gold,event,gold_type FROM tomato_gold_log
+    </sql>
+
+    <select id="getGoldList" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+    </select>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.DailyTaskMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.DailyTaskEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="today_count" property="todayCount"/>
+        <result column="complete_date" property="completeDate"/>
+        <result column="category" property="category"/>
+        <result column="status" property="status"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,user_name,today_count,complete_date,category,status FROM tomato_user_task where status=1
+    </sql>
+
+    <!--查询当前用户完成的任务列表-->
+    <select id="getUserTskList" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+    </select>
+
+
+</mapper>

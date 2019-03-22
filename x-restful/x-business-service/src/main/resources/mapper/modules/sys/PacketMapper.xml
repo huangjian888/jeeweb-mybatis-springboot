@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.PacketMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.PacketEntity">
+        <id column="id" property="id"/>
+        <result column="packet_count" property="packetCount"/>
+        <result column="get_date" property="getDate"/>
+        <result column="user_name" property="username"/>
+
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,packet_count,get_date,user_name FROM tomato_user_packet where user_name=#{username}
+    </sql>
+
+    <!--查询用户红包领取信息-->
+    <select id="getPacket" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+    </select>
+
+
+</mapper>

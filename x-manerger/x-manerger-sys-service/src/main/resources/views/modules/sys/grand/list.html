@@ -1,0 +1,18 @@
+<% layout('/layouts/list.html', {title: @MessageUtils.getMessage('sys.grand.title',''), libs: 'bootstrap-treeview'}){ %>
+<#grid:grid id="grandGrid" url="${adminPath}/sys/grand/ajaxList" multiselect="false">
+<#grid:column label="sys.common.key" hidden="true"  name="id" width="100"/>
+<#grid:column label="sys.grand.name" name="name"  query="true" condition="like"   />
+<#grid:column label="sys.grand.company_name"  name="companyName"  />
+<#grid:column label="sys.grand.company_describe"  name="companyDescribe"  />
+<#grid:column label="sys.grand.contact"  name="contact"  />
+<#grid:column label="sys.grand.update_date"  name="updateDate"  />
+<#grid:column label="sys.common.opt"  name="opt" formatter="button" width="100"/>
+<#grid:button  groupname="opt" function="delete" />
+
+<#grid:toolbar  function="add"/>
+<#grid:toolbar  function="update"/>
+<#grid:toolbar  function="delete"/>
+<#grid:toolbar  function="search"/>
+<#grid:toolbar  function="reset"/>
+</#grid:grid>
+<% } %>

@@ -1,4 +1,3 @@
-# jeeweb-mybatis-spring-boot_2.0
 JeeWeb敏捷开发平台(Mybatis),分布式应用框架
 ===============
 *   QQ交流群： 46417153
@@ -51,14 +50,14 @@ JeeWeb 功能特点
 1、后端
 
 * 核心框架：Springboot2.0+dubbo(zookeeper注册中心)+Spring Framework
-* 安全框架：Apache Shiro
+* 安全框架：Apache Shiro/Spring security + jwt
 * 视图框架：Spring MVC
 * 服务端验证：Hibernate Validator
 * 布局框架：SiteMesh
 * 任务调度：Quartz
 * 持久层框架：Mybatis
 * 数据库连接池：Alibaba Druid
-* 缓存框架：Ehcache/Redis
+* 缓存框架：Ehcache/Redis/hazelcast
 * 并发框架：Disruptor
 * 日志管理：SLF4J、Log4j
 * 工具类：Apache Commons、Jackson、Xstream、
@@ -83,113 +82,35 @@ JeeWeb 功能特点
 * 导入项目到IDEA.
 * 修改数据库配置文件dbconfig.properties中的账号密码.
 * 启动项目,管理员账号admin/密码123456
-* 启动项目：(如:F:/Federation2.0/jeeweb-spring-boot-2.0为项目根目录,找到IDEA工具右侧maven projects，点击上方Excute Maven Goal按钮)
-* Working directory输入F:/Federation2.0/jeeweb-spring-boot-2.0/
-* Command line为以下命令
-* 启动jeeweb-sys-service命令：clean package -P build -Dmaven.tomcat.port=8081 tomcat8:run-war -f jeeweb-sys-service-server.xml
-* 启动jeeweb-sys-web命令：clean package -P build -Dmaven.tomcat.port=8082 tomcat8:run-war -f jeeweb-sys-web-server.xml
-* 项目访问：http://localhost:8082/jeeweb-sys-web/
-* 生产环境打包：clean package -P product -Dmaven.tomcat.port=8081 tomcat8:run-war -f jeeweb-sys-service-server.xml
-                clean package -P product -Dmaven.tomcat.port=8082 tomcat8:run-war -f jeeweb-sys-web-server.xml
-* 启动Sso单点登录模块(访问Sso client入口：http://localhost:8085/jeeweb-sso-client/auth/login)
-* clean package -P build -Dmaven.tomcat.port=8083 tomcat8:run-war -f jeeweb-sso-service-server.xml
-* clean package -P build -Dmaven.tomcat.port=8084 tomcat8:run-war -f jeeweb-sso-web-server.xml
-* clean package -P build -Dmaven.tomcat.port=8085 tomcat8:run-war -f jeeweb-sso-client-server.xml
 
-计划任务
+
+计划任务(微服务框架整合)
 -----------------------------------
-* v3.0版本扩展子系统
+* 注册发现服务->Nacos
+* 熔断降级、系统负载->Sentinel
+* API网关->Spring Cloud Gateway
+* 其他阿里生态(fescar分布事务、dubbo...)
 
 平台目录结构说明
 -----------------------------------
 ```
-├─main
-│  │  
-│  ├─java
-│  │   │
-│  │   └─cn.jeeweb----------------平台主代码
-│  │             │
-│  │             ├─core----------------平台核心模块存放目录
-│  │             │    ├─common----------------项目公用的部分(例如基础controller、dao、service、以及动态SQL/HQL实现)
-│  │             │    │
-│  │             │    ├─config-------------springboot配置文件(cache、datasource、mybatis、shiro、mcv)
-│  │             │    │
-│  │             │    ├─disruptor-------------并发框架的实现(短信发送模块、邮件发送模块)
-│  │             │    │
-│  │             │    ├─filter、interceptor---安全过滤器、其他一些公用拦截器
-│  │             │    │
-│  │             │    ├─mapper----------------各种Object到Xml、Object到Json的映射转换类
-│  │             │    │
-│  │             │    ├─model-----------------前段暂时的各种JSON实体
-│  │             │    │
-│  │             │    ├─quartz----------------quartz定时任务实现
-│  │             │    │
-│  │             │    ├─query-----------------前端请求，后端自动组装、以及分页的查询模块
-│  │             │    │
-│  │             │    ├─repository------------持久层相关类
-│  │             │    │
-│  │             │    ├─security--------------安全相关类
-│  │             │    │
-│  │             │    ├─tag-------------------GRID标签、form标签、html组件加载标签等
-│  │             │    │
-│  │             │    └─utils-----------------一些工具类
-│  │             │    
-│  │             └─modules----------------内置功能模块（按照业务模块分类）
-│  │                  ├─charts----------------图表模块
-│  │                  │
-│  │                  └─sys-------------------权限模块
-│  │                     │
-│  │                     ├─controller---控制层
-│  │                     │
-│  │                     ├─entity-------实体层
-│  │                     │
-│  │                     ├─service------服务层
-│  │                     │
-│  │                     ├─security-----安全相关
-│  │                     │
-│  │                     ├─tags----------------标签
-│  │                     │
-│  │                     └─utils-----------------一些工具类
-│  │   
-│  │
-│  ├─resources----------------平台资源文件
-│  │     │
-│  │     ├─ehcache----------------缓存配置目录（ehcache.xml缓存配置文件）
-│  │     │ 
-│  │     ├─i18n-------------------国际化信息所在的文件名文件目录（messages.properties项目国际化、ValidationMessages.propertieshibernate validator验证）
-│  │     │ 
-│  │     ├─mapper----------------一些映射（特别tag/html/中的文件，为html组件加载包）
-│  │     │ 
-│  │     ├─statement-------------动态SQL/HQL(是更灵活的操作SQL/HQL)
-│  │     │ 
-│  │     ├─codegen.properties-----代码生成配置
-│  │     │ 
-│  │     ├─dbconfig.properties----数据库配置
-│  │     │ 
-│  │     ├─jeeweb.properties------项目的一些配置
-│  │     │ 
-│  │     ├─shiro.properties-------shiro配置
-│  │     │ 
-│  │     ├─shiro.properties-------代码生成器的模板文件，以及其他模板存放目录
-│  │     │ 
-│  │     ├─*.properties----------（其他配置，可以查看配置的前缀，对应具体业务的配置,如何:sms.properties短信、email.properties邮件配置）
-│  │     │ 
-│  │     └─spring-*.xml-----------Spring相关文件
-│  │
-│  └─webapp----------------web页面和静态资源存放的目录
-│      │
-│      └─WEB-INF
-│            │
-│            ├─static----------------静态资源目录
-│            │    │
-│            │    ├─ace----------------ace样式JS,CSS文件
-│            │    ├─vendors----------------第三方的JS，css,按照第三方包名单独保存
-│            │    ├─common-----------------系统的公用JS.CSS文件
-│            │    └─modules----------------功能模块CSS,以及JS,按照模板名单独存放
-│            └─webpage----------------视图文件目录
-│                 ├─decorators-------------视图装饰目录
-│                 ├─error------------------系统异常映射相关页面
-│                 └─modules----------------内置核心功能模块视图相关文件（按照模板名单独存放）
+x-manerger-sys-common 后台管理系统公用模块
+    x-manerger-sys-common-base 基础模块
+    x-manerger-sys-common-email 邮件模块
+    x-manerger-sys-common-mybatis 数据库操作模块、Mybatis-plus
+    x-manerger-sys-common-oss 附件上传模块
+    x-manerger-sys-common-quartz 任务模块
+    x-manerger-sys-common-query 参数封装模块
+    x-manerger-sys-common-security 鉴权模块
+    x-manerger-sys-common-sms  短信模块
+    x-manerger-sys-common-utils 工具模块
+    x-manerger-sys-common-limit 限流模块
+    x-manerger-sys-common-lock 分布式锁模块
+    x-manerger-sys-common-idgenerator id生成模块
+    x-manerger-sys-common-queue 排队模块
+x-manerger-sys-service 后台管理模块
+x-restful 业务系统模块
+x-micro-service 微服务模块(计划中...)
 ```
 系统演示
 -----------------------------------

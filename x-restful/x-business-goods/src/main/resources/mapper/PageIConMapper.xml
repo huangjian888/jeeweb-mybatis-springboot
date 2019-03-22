@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.PageIConMapper">
+    <resultMap id="MallCategoryMap" type="com.company.business.goods.moudle.entity.PageIConEntity">
+        <id column="id" property="id"/>
+        <result column="icon_mark" property="iconMark"/>
+        <result column="page_info" property="pageInfo"/>
+        <result column="status" property="status"/>
+        <result column="remark" property="remark"/>
+
+    </resultMap>
+    <sql id="cate_mallSql">
+        SELECT id,icon_mark,page_info,status,remark FROM tomato_promotion_icon_config
+    </sql>
+
+
+    <!--查询实体-->
+    <select id="getPageIConEntity" resultMap="MallCategoryMap">
+
+        <include refid="cate_mallSql"/>
+        where icon_mark=#{markId}
+    </select>
+
+    <!--更新实体-->
+    <update id="updatePageIcon" parameterType="map">
+      update tomato_promotion_icon_config set page_info=#{pageInfo},status=#{status},remark=#{remark},update_date=#{updateDate},update_id=#{username} where icon_mark=#{markId}
+    </update>
+
+
+</mapper>

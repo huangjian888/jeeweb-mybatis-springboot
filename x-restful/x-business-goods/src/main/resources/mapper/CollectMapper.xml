@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.CollectMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.CollectEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="username"/>
+        <result column="coupon_id" property="couponId"/>
+        <result column="collect_time" property="collectTime"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,coupon_id,collect_time FROM tomato_promotion_collect
+    </sql>
+
+    <!--获取用户的收藏优惠券列表 时间降序-->
+    <select id="getCollectList" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where user_name=#{username} order by collect_time desc
+    </select>
+    <!--获取实体-->
+    <select id="selectCollect" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where coupon_id=#{couponId} and user_name=#{username}
+    </select>
+
+    <sql id="delete_collect">
+        delete from tomato_promotion_collect
+    </sql>
+    <!--取消收藏-->
+    <delete id="cancelCollect" parameterType="map">
+        <include refid="delete_collect"/>
+        where coupon_id=#{couponId} and user_name=#{username}
+    </delete>
+
+</mapper>

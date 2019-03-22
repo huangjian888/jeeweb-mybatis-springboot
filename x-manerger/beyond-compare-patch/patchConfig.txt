@@ -1,0 +1,8 @@
+﻿load "%1" "%2"
+select all
+filter "-.svn\"
+expand all
+compare rules-based
+select right.newer.all right.orphan.all
+copyto path:base patch
+folder-report layout:summary options:display-right-newer-orphans,column-none output-to:"%3"

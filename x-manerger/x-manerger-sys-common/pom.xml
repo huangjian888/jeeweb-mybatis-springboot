@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.company</groupId>
+	<artifactId>x-manerger-sys-common</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>x-manerger-sys-common</name>
+	<description>Demo project for Spring Boot</description>
+
+	<!--<parent>-->
+		<!--<groupId>org.springframework.boot</groupId>-->
+		<!--<artifactId>spring-boot-starter-parent</artifactId>-->
+		<!--<version>2.1.0.RELEASE</version>-->
+		<!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+	<!--</parent>-->
+
+	<parent>
+		<groupId>com.company</groupId>
+		<artifactId>x-manerger</artifactId>
+		<version>0.0.1.RELEASE</version>
+		<!--<relativePath>../</relativePath>-->
+		<!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+	<modules>
+		<module>x-manerger-sys-common-mybatis</module>
+		<module>x-manerger-sys-common-query</module>
+		<module>x-manerger-sys-common-security</module>
+		<module>x-manerger-sys-common-base</module>
+		<module>x-manerger-sys-common-utils</module>
+		<module>x-manerger-sys-common-oss</module>
+		<module>x-manerger-sys-common-quartz</module>
+		<module>x-manerger-sys-common-email</module>
+		<module>x-manerger-sys-common-sms</module>
+		<module>x-manerger-sys-common-limit</module>
+		<module>x-manerger-sys-common-lock</module>
+		<module>x-manerger-sys-common-idgenerator</module>
+		<module>x-manerger-sys-common-queue</module>
+		<module>x-manerger-sys-common-mq</module>
+	</modules>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

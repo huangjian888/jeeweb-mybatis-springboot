@@ -1,0 +1,131 @@
+<% layout('/layouts/form.html', {title: '数据源编辑', formId: 'datasourceForm', bodyClass: 'white-bg', libs: 'multiple-select'}){ %>
+<style>
+
+	.ms-choice {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		overflow: hidden;
+		cursor: pointer;
+		border: 0px solid #fff;
+		text-align: left;
+		white-space: nowrap;
+		color: #444;
+		text-decoration: none;
+		background-color: #fff;
+		outline:0 none !important; blr:expression(this.onFocus=this.blur());
+	}
+
+</style>
+<#form:form id="datasourceForm" modelAttribute="data" method="post" class="form-horizontal">
+	<#form:hidden path="id"/>
+	<table  class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+		<tbody>
+		<tr>
+			<td  class="width-15 active text-right">
+				<label><font color="red">*</font>数据库关键字:</label>
+			</td>
+			<td class="width-35" >
+				<#form:input path="dbKey" class="form-control " datatype="/^[a-zA-Z 0-9]+$/" errormsg="数据库关键字必须为英文" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+			<td  class="width-15 active text-right">
+				<label><font color="red">*</font>数据库类型:</label>
+			</td>
+			<td  class="width-35" >
+				<#form:select path="dbType" id="dbType_select" multiple="multiple" class="form-control"  htmlEscape="false"  datatype="*"  nullmsg="请输入数据库类型！">
+					<#form:option value="">请选择</#form:option>
+					<#form:options items="${definitionList}" itemLabel="name" itemValue="dbType"></#form:options>
+				</#form:select>
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class="width-15 active text-right">
+				<label><font color="red">*</font>驱动类:</label>
+			</td>
+			<td class="width-35" colspan="3">
+				<#form:input path="driverClass" class="form-control " datatype="*" nullmsg="请输入驱动类！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class="width-15 active text-right">
+				<label><font color="red">*</font>数据源地址:</label>
+			</td>
+			<td  class="width-35"  colspan="3">
+				<#form:input path="url" class="form-control " datatype="*" nullmsg="请输入数据源地址！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class="width-15 active text-right">
+				<label><font color="red">*</font>数据库名称:</label>
+			</td>
+			<td class="width-35" >
+				<#form:input path="dbName" class="form-control " datatype="*" nullmsg="请输入驱动类！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+			<td  class="width-15 active text-right">
+				<label><font color="red">*</font>数据库用户名:</label>
+			</td>
+			<td  class="width-35" >
+				<#form:input path="dbUser" class="form-control " datatype="*" nullmsg="请输入数据源地址！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+		</tr>
+		<tr>
+			<td  class="width-15 active text-right">
+				<label><font color="red">*</font>数据库密码:</label>
+			</td>
+			<td class="width-35" >
+				<#form:input path="dbPassword" class="form-control " datatype="*" nullmsg="请输入驱动类！" htmlEscape="false" />
+				<label class="Validform_checktip"></label>
+			</td>
+			<td  class="width-15 active text-right">
+				<label>描述:</label>
+			</td>
+			<td class="width-35">
+				<#form:textarea path="description" htmlEscape="false" rows="3" maxlength="200" class="form-control "/>
+			</td>
+		</tr>
+		<tr>
+			<td  class="width-15 active text-right" colspan="4">
+				<input  class="btn btn btn-warning" type="button" onclick="testConnect();" value="连接测试" />
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</#form:form>
+<script type="text/javascript">
+    $(function(){
+        $('#dbType').change(function(){
+            var dbType = $("#dbType").val();
+            $.ajax({
+                type: "POST",
+                url: "${adminPath}/generator/datasource/dataSourceParameter",
+                data: "dbType=" + dbType,
+                success: function(data){
+                    $('#driverClass').val(data.dbDriver);
+                    $('#url').val(data.dbUrl);
+                }
+            });
+        });
+    });
+    
+    function testConnect(type){
+        $("#datasourceForm").attr("action", "${adminPath}/generator/datasource/testConnect");
+        doSubmit(function () {});
+        $("#datasourceForm").attr("action", "");
+        return false;
+    }
+</script>
+<script>
+    $(function () {
+        $('#dbType_select').multipleSelect({
+            width:"100%"
+		});
+    })
+</script>
+<% } %>

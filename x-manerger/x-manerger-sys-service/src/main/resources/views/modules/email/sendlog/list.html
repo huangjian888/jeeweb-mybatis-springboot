@@ -1,0 +1,16 @@
+<% layout('/layouts/list.html', {title: '消息模版'}){ %>
+<#grid:grid id="roleGrid" url="${adminPath}/email/sendlog/ajaxList">
+    <#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+    <#grid:column label="sys.common.opt"  name="opt" formatter="button" width="100"/>
+    <#grid:button   groupname="opt" function="delete" />
+    <#grid:column label="邮箱地址"  name="email"  query="true"  />
+    <#grid:column label="邮件主题"  name="subject"  query="true" condition="like" />
+    <#grid:column label="重发次数"  name="tryNum"  />
+    <#grid:column label="发送状态"  name="status" queryMode="select" query="true"  formatterValue="-1:发送失败;0:发送中;1:发送成功" formatterClass="0:label label-primary;1:label label-success;-1:label label-danger"  />
+
+    <#grid:toolbar   function="delete"/>
+
+    <#grid:toolbar  function="search"/>
+    <#grid:toolbar  function="reset"/>
+</#grid:grid>
+<% } %>

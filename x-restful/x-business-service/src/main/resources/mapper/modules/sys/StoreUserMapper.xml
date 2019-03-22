@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.StoreUserMapper">
+    <resultMap id="BaseResultMap" type="com.company.shop.sys.service.modules.sys.entity.StoreUserEntity">
+        <id column="id" property="id"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="avatar" property="avatar"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="status" property="status"/>
+        <result column="gold" property="gold"/>
+        <result column="gold_today" property="goldToday"/>
+        <result column="step" property="step"/>
+        <result column="new_user" property="newuser"/>
+        <result column="register_date" property="registerDate"/>
+        <result column="lately_login" property="latelyLogin"/>
+        <result column="invite_user" property="inviteUser"/>
+        <result column="gold_history" property="goldHistory"/>
+        <result column="status" property="status"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        DISTINCT
+        t.id,
+        t.username,selectAward
+        t.password,
+        t.register_date,
+        t.new_user,
+        t.register_date,
+        t.lately_login
+        t.status,
+        t.glod,
+        t.step,
+        t.gold_today,
+        t.nick_name,
+        t.avatar,
+        t.gold_history,
+        t.status
+
+    </sql>
+    <sql id="Base_Award">
+        select id,username,gold,step,new_user,register_date,lately_login,gold_today,nick_name,avatar,gold_history,status FROM
+        tomato_user
+    </sql>
+
+    <select id="selectStoreUserList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_user t store_role s
+        <if test="ew.sqlSegment != '' and ew.sqlSegment != null">
+            <where>
+                ${ew.sqlSegment}
+            </where>
+        </if>
+    </select>
+
+    <!--获取用户的签到表信息-->
+    <select id="selectAward" resultMap="BaseResultMap">
+        <include refid="Base_Award"/>
+        where username=#{username}
+    </select>
+
+    <!--获取用户邀请的好友列表-->
+    <select id="getFriendList" resultMap="BaseResultMap">
+        SELECT nick_name,avatar FROM tomato_user WHERE invite_user=#{username} order by register_date desc
+
+    </select>
+
+    <!--查询当日未进行步数兑换金币的用户,0未兑换-->
+    <select id="getUserListGold" resultMap="BaseResultMap">
+        SELECT status,username,register_date FROM tomato_user WHERE status=0 order by register_date desc
+    </select>
+
+</mapper>

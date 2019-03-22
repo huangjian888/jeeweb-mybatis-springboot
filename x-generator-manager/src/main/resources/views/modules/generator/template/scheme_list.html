@@ -1,0 +1,101 @@
+<% layout('/layouts/list.html', {title: '模板方案', libs: 'bootstrap-treeview'}){ %>
+<div class="row">
+    <div class="col-md-6" >
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>模板方案</h5>
+            </div>
+            <div class="ibox-content">
+                <#grid:grid id="templateSchemeGrid" onSelectRow="onSelectRow" url="${adminPath}/generator/template/scheme/ajaxList">
+                    <#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+                    <#grid:column label="标题"  query="true" condition="like" name="title" width="230"/>
+                    <#grid:column label="sys.common.opt"  name="opt" formatter="button" width="160"/>
+                    <#grid:button groupname="opt" function="delete" tipMsg="确认要删除该方案么！" />
+                    <#grid:button title="复制" tipMsg="你确定要复制该方案么?" groupname="opt" function="rowConfirm" outclass="btn-info"  innerclass="fa-play-circle-o" url="${adminPath}/generator/template/scheme/{id}/copy" />
+                    <#grid:button title="导出" tipMsg="你确定要导出该方案么?" groupname="opt" function="rowExportConfirm" outclass="btn-info"  innerclass="fa-download" url="${adminPath}/generator/template/scheme/{id}/export" />
+
+                    <#grid:toolbar function="add"/>
+                    <#grid:toolbar function="update"/>
+                    <#grid:toolbar function="add" title="导入" url="${adminPath}/generator/template/scheme/import"/>
+
+                    <#grid:toolbar function="search"/>
+                    <#grid:toolbar function="reset"/>
+                </#grid:grid>
+            </div>
+        </div>
+        <script>
+
+            /**
+             * 行选择
+             * @param rowId
+             */
+            function onSelectRow(rowId) {
+                $("input[name='schemeId']").val(rowId);
+                search('templateGridId');
+                var rowData = $("#templateSchemeGrid").jqGrid('getRowData',rowId);
+                $("#schemeLable").html(rowData.title);
+            }
+
+            /**
+             * 行内提示性操作
+             * @param title
+             * @param url
+             * @param gname
+             * @return
+             */
+            function rowExportConfirm(title,url,gridId,infoId) {
+                url=url.replace("{id}",infoId);
+                swal({
+                    title: "提示",
+                    text: "你确定要导出该方案么?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确定",
+                    closeOnConfirm: false,
+                    cancelButtonText: "取消",
+                }, function () {
+                    swal("提示！", "导出成功！", "success");
+                    window.location = url;
+                });
+            }
+        </script>
+    </div>
+    <div  class="col-md-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>[<label id="schemeLable">未知方案</label>]模版</h5>
+            </div>
+            <div class="ibox-content">
+                <#grid:grid id="templateGridId" editable="true"
+                        editurl="${adminPath}/generator/template/inline/edit"
+                        url="${adminPath}/generator/template/ajaxList"
+                        sortname="sort" sortorder="asc" >
+                    <#grid:query name="schemeId"  queryMode="hidden" />
+                    <#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+                    <#grid:column label="模板名称" query="true" condition="like" name="name" width="100"/>
+                    <#grid:column label="模板关键字"  name="key" width="100"/>
+                    <#grid:column label="排序" name="sort" editable="true" width="60"/>
+                    <#grid:toolbar title="添加" onclick="addTemplate('添加模板','${adminPath}/generator/template/add','templateGridId','100%','100%')"  url='${adminPath}/sys/dict/create'  />
+                    <#grid:toolbar function="update"  winheight="100%" winwidth="100%"/>
+                    <#grid:toolbar function="delete"/>
+
+                    <#grid:toolbar function="search"/>
+                    <#grid:toolbar function="reset"/>
+                </#grid:grid>
+            </div>
+        </div>
+    </div>
+    <script>
+        /**
+         * 行选择
+         * @param rowId
+         */
+        function addTemplate(title,url,gridid,width,height) {
+            var schemeId = $("input[name='schemeId']").val();
+            url = url + "?schemeId="+ schemeId
+            openDialog(title,url,gridid,width,height);
+        }
+    </script>
+</div>
+<% } %>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <title><#spring:message code="sys.site.title" arguments="${platformName}"/></title>
+    <meta name="keywords" content="<#spring:message code="sys.site.keywords" arguments="${platformName}"/>">
+    <meta name="description" content="<#spring:message code="sys.site.description" arguments="${platformName}"/>">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Minimal and Clean Sign up / Login and Forgot Form by FreeHTML5.co</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="Thu, 19 Nov 1900 08:52:00 GMT">
+
+    <link type="text/css" rel="stylesheet" href="${staticPath}/uadmin/css/style-responsive.css">
+    <link type="text/css" rel="stylesheet" href="${staticPath}/vendors/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
+    <link type="text/css" rel="stylesheet" href="${staticPath}/uadmin/css/themes/style1/orange-blue.css" class="default-style">
+    <link type="text/css" rel="stylesheet" href="${staticPath}/uadmin/css/themes/style1/orange-blue.css" id="theme-change" class="style-change color-change">
+    <#html:css  name="favicon,font-awesome,pace,iCheck,toastr,bootstrapvalidator"/>
+
+    <link rel="stylesheet" href="${staticPath}/modules/sys/login/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${staticPath}/modules/sys/login/css/animate.css">
+    <link rel="stylesheet" href="${staticPath}/modules/sys/login/css/style.css">
+
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="${staticPath}/modules/sys/login/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="style-3">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-push-8">
+            <form id="loginform" class="loginform animate-box" data-animate-effect="fadeInRight" method="post" autocomplete="off">
+                <div class="header-content" style="text-align: center">
+                    <h2><#spring:message code="sys.register.name"/></h2>
+                </div>
+
+                <div class="body-content">
+                    <div class="form-group">
+                        <div class="input-icon right"><i class="fa fa-user"></i>
+                            <input name="username"  id="username" style="background: white"  readonly onfocus="userFocus()" onblur="userBlur()" autocomplete="off" type="text" class="form-control"  placeholder="<#spring:message code="sys.login.username.placeholder"/>" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="sr-only">Email</label>
+                        <div class="input-icon right"><i class="fa fa-envelope-o"></i>
+                            <input type="email" name="email" class="form-control" id="email" style="background: white" readonly onfocus="userFocus()" onblur="userBlur()" placeholder="<#spring:message code="sys.register.email"/>"  autocomplete="off" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon right"><i class="fa fa-key"></i>
+                            <input name="password" autocomplete="new-password" autocomplete="off" type="password" class="form-control" placeholder="<#spring:message code="sys.login.password.placeholder"/>" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="re-password" class="sr-only">Re-Password</label>
+                        <div class="input-icon right"><i class="fa fa-key"></i>
+                            <input type="password" name="re_password" class="form-control" id="re-password" placeholder="<#spring:message code="sys.register.repassword"/>" autocomplete="off" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pull-left">
+                            <input   name="jcaptchaCode" autocomplete="off" type="text" class="form-control" placeholder="<#spring:message code="sys.login.captcha.placeholder"/>" required="">
+                        </div>
+                        <div class="pull-right">
+                            <img id="img_jcaptcha"  src="${adminPath}/jcaptcha.jpg" width="100" height="35" onclick="changeJcaptchaSrc();" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="form-group" style="height: 50px;margin-top: 15px">
+                        <div class="pull-left" style="width: 100%">
+                            <button type="submit" class="btn btn-primary" style="width: 100%"><#spring:message code="sys.register.name"/> &nbsp;</button>
+                        </div>
+                    </div>
+
+                    <hr/>
+                    <div class="form-group">
+                        <p>已经注册? <a id="btn-login" href="${adminPath}/login">登 录</a></p>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- jQuery -->
+<script src="${staticPath}/modules/sys/login/js/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="${staticPath}/modules/sys/login/js/bootstrap.min.js"></script>
+<!-- Placeholder -->
+<script src="${staticPath}/modules/sys/login/js/jquery.placeholder.min.js"></script>
+<!-- Waypoints -->
+<script src="${staticPath}/modules/sys/login/js/jquery.waypoints.min.js"></script>
+<!-- Main JS -->
+<script src="${staticPath}/modules/sys/login/js/main.js"></script>
+
+<#html:js  name="iCheck,bootstrap-hover-dropdown,toastr,bootstrapvalidator"/>
+<script src="${staticPath}/uadmin/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="${staticPath}/uadmin/js/jquery-ui.js"></script>
+<script src="${staticPath}/uadmin/js/html5shiv.js"></script>
+<script src="${staticPath}/uadmin/js/respond.min.js"></script>
+<script src="${staticPath}/uadmin/js/jquery.menu.js"></script>
+<script>
+    //BEGIN CHECKBOX & RADIO
+    $('input[type="checkbox"]').iCheck({
+        checkboxClass: 'icheckbox_minimal-grey',
+        increaseArea: '20%' // optional
+    });
+    $('input[type="radio"]').iCheck({
+        radioClass: 'iradio_minimal-grey',
+        increaseArea: '20%' // optional
+    });
+    //END CHECKBOX & RADIO
+    function changeJcaptchaSrc(){
+        document.getElementById("img_jcaptcha").src='${adminPath}/jcaptcha.jpg?_='+(new Date()).getTime();
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#loginform").bootstrapValidator();
+        var error="${error!}";
+        if (error!="")
+        {
+            showToast(error,"error");
+        }
+    });
+
+    function showToast(msg,shortCutFunction)
+    {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "onclick": null,
+            "showDuration": "400",
+            "hideDuration": "1000",
+            "timeOut": "7000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr[shortCutFunction](msg,"提示");
+    }
+</script>
+
+<script type="text/javascript">
+    function userFocus(){
+        //禁止自动填充，如果得到焦点，则删除readonly属性
+        $("#username").removeAttr("readonly");
+        $("#email").removeAttr("readonly");
+    }
+    function userBlur(){
+        //禁止自动填充，如果失去焦点，则使文本框只读
+        $("#username").attr("readonly", "");
+        $("#email").attr("readonly", "");
+    }
+</script>
+
+<script type="text/javascript">
+    function register() {
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/admin/register" ,//url
+            data: $('#loginform').serialize(),
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+                if (result.resultCode == 200) {
+                    alert("SUCCESS");
+                }
+                ;
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+        return false; //阻止form提交
+    }
+</script>
+
+</body>
+</html>
+

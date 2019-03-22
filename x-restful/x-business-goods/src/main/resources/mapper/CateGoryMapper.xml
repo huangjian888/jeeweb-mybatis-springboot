@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.CateGoryMapper">
+    <resultMap id="MallCategoryMap" type="com.company.business.goods.moudle.entity.CateGoryEntity">
+        <id column="id" property="id"/>
+        <result column="opt_name" property="opt_name"/>
+        <result column="opt_id" property="opt_id"/>
+        <result column="parent_opt_id" property="parent_opt_id"/>
+        <result column="level" property="level"/>
+        <result column="order_id" property="order"/>
+    </resultMap>
+    <sql id="cate_mallSql">
+        SELECT id,opt_name,opt_id,level,parent_opt_id,order_id FROM tomato_promotion_category
+    </sql>
+
+    <!--查询配置的商品类别-->
+    <select id="getCategoryList" resultMap="MallCategoryMap">
+
+        <include refid="cate_mallSql"/>
+        order by order_id
+    </select>
+
+    <!--查询商品配置-->
+    <select id="getCateGoryEntity" resultMap="MallCategoryMap">
+
+        <include refid="cate_mallSql"/>
+        where opt_id=#{optId}
+    </select>
+
+
+
+</mapper>

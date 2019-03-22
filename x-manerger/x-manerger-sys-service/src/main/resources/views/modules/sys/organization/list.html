@@ -1,0 +1,15 @@
+<% layout('/layouts/list.html', {title: @MessageUtils.getMessage('sys.organization.title',''), libs: 'bootstrap-treeview'}){ %>
+<#grid:grid id="organizationGrid" async="true" treeGrid="true" expandColumn="name"   url="${adminPath}/sys/organization/ajaxTreeList">
+	<#grid:column label="sys.common.key" hidden="true"   name="id" width="100"/>
+	<#grid:column label="sys.organization.name" name="name"  query="true" condition="like"   />
+	<#grid:column label="sys.organization.remarks"  name="remarks"  />
+	<#grid:column label="sys.common.opt"  name="opt" formatter="button" width="100"/>
+	<#grid:button  groupname="opt" function="delete" />
+
+	<#grid:toolbar  function="add"/>
+	<#grid:toolbar  function="update"/>
+	<#grid:toolbar  function="delete"/>
+	<#grid:toolbar  function="search"/>
+	<#grid:toolbar  function="reset"/>
+</#grid:grid>
+<% } %>

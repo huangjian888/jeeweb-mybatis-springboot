@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.SubjectMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.SubjectEntity">
+        <id column="id" property="id"/>
+
+        <result column="subject_name" property="subject_name"/>
+        <result column="subject_weight" property="subject_weight"/>
+        <result column="subject_start_date" property="subject_start_date"/>
+
+        <result column="subject_end_date" property="subject_end_date"/>
+        <result column="subject_product_id" property="subject_product_id"/>
+        <result column="subject_channel_id" property="subject_channel_id"/>
+    </resultMap>
+    <sql id="Base_normal_select">
+        select subject_name,subject_weight,subject_start_date,subject_end_date,subject_product_id,subject_channel_id FROM tomato_promotion_subject_config
+    </sql>
+
+    <!--根据分类id查询推荐主题商品id-->
+    <select id="getSubjectByCategoryId" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where find_in_set(#{categoryId},subject_channel_id)
+
+        <!--where subject_channel_id like CONCAT('%',#{categoryId},'%')-->
+    </select>
+
+</mapper>

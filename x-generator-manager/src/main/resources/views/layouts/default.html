@@ -1,0 +1,10 @@
+<% print('<'+'!DOC'+'TYPE html'+'>'); %>
+<% print('<'+'html'+'><'+'head'+'>'); %>
+<% include('/include/head.html', {title: title!}){} %>
+<% include('/themes/'+themeName+'/include/header.html', {libs: libs!}){} %>
+</head><body class="hold-transition ${bodyClass!}">
+<% if (!@ListUtils.inString('layout', libs!)){ %>
+<div class="wrapper">${layoutContent}</div>
+<% }else{ %>${layoutContent}<% } %>
+<a id="scroll-up" href="#" class="btn btn-sm"><i class="fa fa-angle-double-up"></i></a>
+<% include('/themes/'+themeName+'/include/footer.html', {libs: libs!}){} %>

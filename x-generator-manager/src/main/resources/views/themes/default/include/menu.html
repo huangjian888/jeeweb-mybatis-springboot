@@ -1,0 +1,4 @@
+<li class="user-panel">
+<%for(navigation in navigations){%>
+<li <% if(navigation.url==currentMenu.url){%>class="active"<%}%>><a href="${adminPath}${navigation.url}"><i class="${navigation.icon}"><div class="icon-bg bg-orange"></div></i><span class="menu-title">${navigation.name}</span></a></li>
+<%}%>

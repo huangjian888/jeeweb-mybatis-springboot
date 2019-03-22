@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.StatisticsLogMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.StatisticsLogEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="username"/>
+        <result column="description" property="description"/>
+        <result column="type" property="type"/>
+        <result column="visitCount" property="visitCount"/>
+        <result column="product_id" property="product_id"/>
+        <result column="view_product_time" property="view_product_time"/>
+
+        <result column="view_product_stay_time" property="view_product_stay_time"/>
+        <result column="operation_time" property="operation_time"/>
+        <result column="log_update_time" property="log_update_time"/>
+    </resultMap>
+
+</mapper>

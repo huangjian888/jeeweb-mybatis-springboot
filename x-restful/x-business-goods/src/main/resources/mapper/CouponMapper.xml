@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.CouponMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.CouponEntity">
+        <id column="id" property="id"/>
+        <result column="user_name" property="username"/>
+        <result column="coupon_id" property="couponId"/>
+        <result column="receive_time" property="receiveTime"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,coupon_id,receive_time FROM tomato_promotion_coupon
+    </sql>
+
+    <!--获取用户的优惠券列表-->
+    <select id="getCouponList" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where user_name=#{username}
+    </select>
+
+    <!--根据id获取当前实体-->
+    <select id="selectCoupon" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where coupon_id=#{couponId} and user_name=#{username}
+    </select>
+
+
+</mapper>

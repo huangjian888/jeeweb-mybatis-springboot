@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.CartMapper">
+    <resultMap id="CartMap" type="com.company.shop.sys.service.modules.sys.entity.CartInfo">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="user_id" property="userId"/>
+        <result column="product_id" property="productId"/>
+        <result column="quantity" property="quantity"/>
+        <result column="checked" property="checked"/>
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,product_id,quantity,checked FROM store_cart_info
+    </sql>
+
+    <!-- 通过商品类别查询商品-->
+    <select id="getGoodsInCart" resultMap="CartMap">
+        <include refid="Base_normal_select"/>
+        where username=#{username}
+    </select>
+
+    <!-- 通过商品id查询商品-->
+    <select id="getCartByProductId" resultMap="CartMap">
+        <include refid="Base_normal_select"/>
+        where username=#{username} and product_id=#{productId}
+    </select>
+
+    <!-- 查询当前购物车商品是否被选中0未勾选-->
+    <select id="getCheckedStatus" resultType="java.lang.Integer">
+        SELECT count(1) from store_cart_info where checked=0 and username=#{username}
+    </select>
+
+    <!-- 删除指定商品-->
+    <delete id="removeGoodsFromCart" parameterType="map">
+        delete from store_cart_info where username=#{username} and product_id=#{productId}
+    </delete>
+    <!--更新购物车中某一商品的被选中或是反选状态-->
+    <update id="selectCheckedStatus" parameterType="map">
+
+        UPDATE store_cart_info
+        set checked=#{status},
+        update_time=now()
+        where username=#{username}
+        <if test="productId != null">
+            and product_id=#{productId}
+        </if>
+    </update>
+
+</mapper>

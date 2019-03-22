@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.PacketLimitMapper">
+    <resultMap id="MallCategoryMap" type="com.company.business.goods.moudle.entity.PacketLimitEntity">
+        <id column="id" property="id"/>
+        <result column="total_accruing_amounts" property="total_accruing_amounts"/>
+
+        <result column="status" property="status"/>
+        <result column="create_by" property="create_by"/>
+        <result column="create_id" property="create_id"/>
+        <result column="create_date" property="create_date"/>
+        <result column="update_by" property="update_by"/>
+        <result column="update_id" property="update_id"/>
+        <result column="update_date" property="update_date"/>
+
+
+    </resultMap>
+    <sql id="cate_mallSql">
+        SELECT id,total_accruing_amounts,status FROM tomato_promotion_packet_limit_config
+    </sql>
+
+    <!--获取配置的提现金额限制-->
+    <select id="getPacketLimitEntity" resultMap="MallCategoryMap">
+
+        <include refid="cate_mallSql"/>where status=1
+    </select>
+
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.shop.sys.service.modules.sys.mapper.TaskMapper">
+    <resultMap id="signMap" type="com.company.shop.sys.service.modules.sys.entity.TaskEntity">
+        <id column="id" property="id"/>
+        <result column="award" property="award"/>
+        <result column="task_name" property="taskName"/>
+        <result column="status" property="status"/>
+        <result column="limit_count" property="limitCount"/>
+        <result column="category" property="limitCount"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,award,task_name,status,limit_count,category
+    </sql>
+
+
+    <!--获取服务端配置的任务表-->
+    <select id="getTask" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where status=1
+    </select>
+
+
+    <!--根据任务配置表中的配置的任务，查询当前用户未完成的任务-->
+    <select id="getTaskConfig" resultMap="signMap">
+        SELECT a.id,a.award,a.task_name,a.category,a.limit_count,a.status FROM tomato_user_task b LEFT JOIN
+        tomato_task_configuration a on b.#{category}=a.category AND b.#{todayCount}=a.limit_count
+    </select>
+
+
+</mapper>

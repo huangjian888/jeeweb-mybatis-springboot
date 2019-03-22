@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.business.goods.moudle.mapper.CommissionDailyMapper">
+    <resultMap id="signMap" type="com.company.business.goods.moudle.entity.CommissionDailyEntity">
+        <id column="id" property="id"/>
+        <result column="commission_money" property="commission_money"/>
+        <result column="commission_date" property="commission_date"/>
+        <result column="commission_times" property="commission_times"/>
+
+        <result column="user_name" property="user_name"/>
+
+    </resultMap>
+    <sql id="Base_normal_select">
+        select id,commission_date,user_name,commission_times FROM tomato_promotion_commission_daily
+    </sql>
+
+    <!--获取用户每日提现情况-->
+    <select id="getCommissionDaily" resultMap="signMap">
+        <include refid="Base_normal_select"/>
+        where user_name=#{username}
+    </select>
+
+
+</mapper>

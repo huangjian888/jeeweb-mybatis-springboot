@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html style="overflow-x:auto;overflow-y:auto;">
+<head>
+	<title>${title}-<#spring:message code="platform.copyright" /></title>
+	<% include("/themes/default/include/form-header.html"){}%>
+</head>
+<body class="${bodyClass}">
+	<div class="page-content">
+		${layoutContent}
+	</div>
+	<% include("/themes/default/include/form-footer.html"){}%>
+</body>
+</html>

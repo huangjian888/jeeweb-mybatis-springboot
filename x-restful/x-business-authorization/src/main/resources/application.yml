@@ -1,0 +1,27 @@
+server:
+  port: 8083
+
+company:
+  security:
+    credentialsHashAlgorithmName: md5
+    credentialsHashIterations: 2
+  jwt:
+    header: Authorization
+    tokenHead: Bearer
+    secret:
+    expiration: 1800000
+    claim_key_username: username
+    claim_key_createdate: createdate
+    authpath:
+  redis:
+    prefix:
+    expiration: 600
+
+wx:
+  properties:
+    appId:
+    appSecret:
+    grantType:
+    merchantId:
+
+
