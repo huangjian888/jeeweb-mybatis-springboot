@@ -37,7 +37,7 @@
 		<!-- 腾讯云COS -->
 		<qcloud.cos.version>3.3</qcloud.cos.version>
 		<!-- 文件上传 -->
-		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<commons-fileupload.version>1.4</commons-fileupload.version>
 	</properties>
 
 	<dependencies>
