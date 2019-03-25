@@ -50,16 +50,16 @@ JeeWeb 功能特点
 1、后端
 
 * 核心框架：Springboot2.0+dubbo(zookeeper注册中心)+Spring Framework
-* 安全框架：Apache Shiro/Spring security + jwt
+* 安全框架：Apache Shiro/Spring security + Jwt
 * 视图框架：Spring MVC
 * 服务端验证：Hibernate Validator
-* 布局框架：SiteMesh
-* 任务调度：Quartz
+* 布局框架：Beetl+Freemarker
+* 任务调度：Quartz/Xxl-job
 * 持久层框架：Mybatis
 * 数据库连接池：Alibaba Druid
 * 缓存框架：Ehcache/Redis/hazelcast
 * 并发框架：Disruptor
-* 日志管理：SLF4J、Log4j
+* 日志管理：SLF4J、Log4j、Logback
 * 工具类：Apache Commons、Jackson、Xstream、
 
 2、前端

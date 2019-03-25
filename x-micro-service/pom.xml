@@ -10,14 +10,14 @@
         <!--<relativePath>../</relativePath>-->
     </parent>
 
-    <groupId>com.cluster</groupId>
+    <groupId>com.company</groupId>
     <artifactId>x-micro-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>x-micro-service</name>
     <description>微服务模块</description>
 
     <modules>
-
+        <module>x-spring-cloud-gateway-service</module>
     </modules>
 
 
