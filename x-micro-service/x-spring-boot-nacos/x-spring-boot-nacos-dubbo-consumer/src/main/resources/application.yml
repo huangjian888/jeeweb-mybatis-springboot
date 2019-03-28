@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: x-spring-boot-nacos-dubbo-consumer
+
+project:
+  ip: 127.0.0.1
+
+server:
+  port: 8086
+
+dubbo:
+  registry:
+    address: nacos://127.0.0.1:8848
+  application:
+    name: x-spring-boot-nacos-dubbo-consumer
+  protocol:
+    name: dubbo
+    port: -1
+  scan:
+    basePackages: com.company.spring.boot.nacos.dubbo.facade

@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: x-spring-boot-nacos-dubbo-provider
+
+project:
+  ip: 127.0.0.1
+
+server:
+  port: 8085
+
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
+#  discovery:
+#    server-addr: 127.0.0.1:8848
+
+dubbo:
+  registry:
+    address: nacos://127.0.0.1:8848
+  application:
+    name: x-spring-boot-nacos-dubbo-provider
+  protocol:
+    name: dubbo
+    port: -1
+  scan:
+    basePackages: com.company.spring.boot.nacos.dubbo.facade
+
+#endpoint http://localhost:8080/actuator/nacos-config
+#health http://localhost:8080/actuator/health
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always
+
+
+

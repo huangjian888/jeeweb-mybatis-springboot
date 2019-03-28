@@ -18,6 +18,7 @@
 
     <modules>
         <module>x-spring-cloud-gateway-service</module>
+        <module>x-spring-boot-nacos</module>
     </modules>
 
 

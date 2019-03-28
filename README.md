@@ -82,6 +82,7 @@ JeeWeb 功能特点
 * 导入项目到IDEA.
 * 修改数据库配置文件dbconfig.properties中的账号密码.
 * 启动项目,管理员账号admin/密码123456
+* jvm参数优化：http://xxfox.perfma.com
 
 
 计划任务(微服务框架整合)
