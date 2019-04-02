@@ -89,7 +89,7 @@ JeeWeb 功能特点
 -----------------------------------
 * 注册发现服务/配置中心->Nacos(已完成Nacos-Dubbo例子整合)
 * 熔断降级、系统负载->Sentinel
-* API网关->Spring Cloud Gateway
+* API网关->Spring Cloud Gateway(已完成Nacos-Dubbo-Gateway默认路由/动态路由例子整合)
 * 其他阿里生态(Fescar分布事务、Dubbo...)
 
 平台目录结构说明
@@ -111,7 +111,12 @@ x-manerger-sys-common 后台管理系统公用模块
     x-manerger-sys-common-queue 排队模块
 x-manerger-sys-service 后台管理模块
 x-restful 业务系统模块
-x-micro-service 微服务模块(计划中...)
+x-micro-service 微服务模块(持续更新中...)
+    x-spring-cloud-gateway 本地配置模式路由
+    x-spring-cloud-gateway-service 动态配置模式路由、Nacos为配置中心
+    x-spring-cloud-gateway-provide 本地路由接口提供模块
+    x-spring-boot-nacos 动态路由接口提供模块,Nacos、Dubbo、Gateway方式实现
+    
 ```
 系统演示
 -----------------------------------

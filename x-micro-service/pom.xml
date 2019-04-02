@@ -10,6 +10,7 @@
         <!--<relativePath>../</relativePath>-->
     </parent>
 
+    <packaging>pom</packaging>
     <groupId>com.company</groupId>
     <artifactId>x-micro-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -19,8 +20,8 @@
     <modules>
         <module>x-spring-cloud-gateway-service</module>
         <module>x-spring-boot-nacos</module>
+        <module>x-spring-cloud-gateway</module>
+        <module>x-spring-cloud-gateway-provide</module>
     </modules>
-
-
 
 </project>
