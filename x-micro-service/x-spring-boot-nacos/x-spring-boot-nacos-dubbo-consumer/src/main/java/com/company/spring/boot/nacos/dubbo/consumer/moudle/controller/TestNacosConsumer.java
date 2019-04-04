@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("consumer")
 public class TestNacosConsumer {
-    @Reference(group="test")
+    @Reference(group="test",check = false)
     private INacos nacos;
 
     @RequestMapping(value = "test",method = RequestMethod.GET)

@@ -83,7 +83,8 @@ JeeWeb 功能特点
 * 修改数据库配置文件dbconfig.properties中的账号密码.
 * 启动项目,管理员账号admin/密码123456
 * jvm参数优化：http://xxfox.perfma.com
-
+* 项目部署容器推荐Docker部署
+* 项目导出命令:F:/目录/x-spring-boot(工程根目录) 执行maven package 默认会使用项目src/main/assembly 目录下assembly.xml进行打包
 
 计划任务(微服务框架整合)
 -----------------------------------
