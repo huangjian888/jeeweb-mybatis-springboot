@@ -1,0 +1,22 @@
+[
+  {
+    "name": "控制台",
+    "icon": "fa fa-tachometer fa-fw",
+    "url": "/"
+  },
+  {
+    "name": "数据源管理",
+    "icon": "fa fa-file-code-o fa-fw",
+    "url": "/generator/datasource"
+  },
+  {
+    "name": "模板方案",
+    "icon": "fa fa-file-code-o fa-fw",
+    "url": "/generator/template/scheme"
+  },
+  {
+    "name": "表单配置",
+    "icon": "fa fa-file-code-o fa-fw",
+    "url": "/generator/table"
+  }
+]

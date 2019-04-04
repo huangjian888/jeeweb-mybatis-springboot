@@ -151,7 +151,7 @@ mybatis-plus:
 
 #shiro
 company:
-  data: data #该目录为数据存储目录，比如临时数据，日志数据存储等
+  data: x-datas #该目录为数据存储目录，比如临时数据，日志数据存储等
   staticPath: /static/
   shiro:
      rememeberMeCookieName: company_shop_rememeberMeCache
