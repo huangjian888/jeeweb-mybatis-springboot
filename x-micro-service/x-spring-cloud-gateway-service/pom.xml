@@ -26,6 +26,7 @@
         <nacos-config-spring-boot.version>0.2.1</nacos-config-spring-boot.version>
         <spring-cloud-starter-gateway.version>2.1.0.RELEASE</spring-cloud-starter-gateway.version>
         <spring-cloud-starter-alibaba-nacos-discovery.version>0.2.1.RELEASE</spring-cloud-starter-alibaba-nacos-discovery.version>
+        <fastjson.version>1.2.56</fastjson.version>
     </properties>
 
 
@@ -58,7 +59,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
+            <version>${fastjson.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

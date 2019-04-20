@@ -5,8 +5,11 @@ import com.company.spring.boot.nacos.dubbo.facade.service.INacos;
 
 @Service(group="test")
 public class NacosImpl implements INacos {
+
     @Override
     public String test() {
         return "test success";
     }
+
+
 }

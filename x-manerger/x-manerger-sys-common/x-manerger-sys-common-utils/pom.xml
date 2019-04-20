@@ -35,7 +35,7 @@
 		<!-- 工具包 -->
 		<guava.version>17.0</guava.version>
 		<!--<fastjson.version>1.2.15</fastjson.version>-->
-		<fastjson.version>1.2.47</fastjson.version>
+		<fastjson.version>1.2.56</fastjson.version>
 		<jackson.version>2.9.5</jackson.version>
 		<jaxb.version>2.0.1</jaxb.version>
 		<commons-lang3.version>3.3.2</commons-lang3.version>

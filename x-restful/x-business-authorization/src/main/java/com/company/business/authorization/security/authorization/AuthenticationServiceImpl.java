@@ -2,9 +2,9 @@ package com.company.business.authorization.security.authorization;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.company.business.authorization.common.emum.ErrorCodeEnum;
+import com.company.business.authorization.security.user.ITokenService;
 import com.company.manerger.sys.common.utils.RestTemplateUtils;
-import com.company.shop.sys.service.common.bean.ErrorCodeEnum;
-import com.company.shop.sys.service.modules.sys.service.ITokenService;
 import com.company.business.authorization.common.constant.TomatoConstant;
 import com.company.business.authorization.security.user.ITomatoUserService;
 import com.company.business.authorization.security.user.TomatoUserEntity;

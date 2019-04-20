@@ -28,6 +28,11 @@
         <dubbo-spring-boot-starter.version>0.2.1.RELEASE</dubbo-spring-boot-starter.version>
         <spring-cloud.version>Greenwich.RC2</spring-cloud.version>
         <spring-cloud-alibaba-dependencies.version>0.2.1.RELEASE</spring-cloud-alibaba-dependencies.version>
+        <sentinel-dubbo-adapter.version>1.5.1</sentinel-dubbo-adapter.version>
+        <sentinel-transport-simple-http.version>1.5.1</sentinel-transport-simple-http.version>
+        <sentinel-annotation-aspectj.version>1.5.1</sentinel-annotation-aspectj.version>
+        <sentinel-datasource-nacos.version>1.5.1</sentinel-datasource-nacos.version>
+        <spring-boot-starter-aop.version>2.1.1.RELEASE</spring-boot-starter-aop.version>
     </properties>
 
     <dependencyManagement>
@@ -103,12 +108,12 @@
             <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>${dubbo-spring-boot-starter.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.alibaba</groupId>
-                    <artifactId>dubbo</artifactId>
-                </exclusion>
-            </exclusions>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>com.alibaba</groupId>-->
+                    <!--<artifactId>dubbo</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
         </dependency>
 
         <dependency>
@@ -117,6 +122,39 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!--Sentinel-->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-dubbo-adapter</artifactId>
+            <version>${sentinel-dubbo-adapter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-transport-simple-http</artifactId>
+            <version>${sentinel-transport-simple-http.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-annotation-aspectj</artifactId>
+            <version>${sentinel-annotation-aspectj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>${spring-boot-starter-aop.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.31.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+            <version>${sentinel-datasource-nacos.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

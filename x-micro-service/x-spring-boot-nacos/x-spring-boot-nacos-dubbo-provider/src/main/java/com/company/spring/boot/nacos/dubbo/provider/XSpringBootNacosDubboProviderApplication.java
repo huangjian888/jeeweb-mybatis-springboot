@@ -1,5 +1,6 @@
 package com.company.spring.boot.nacos.dubbo.provider;
 
+import com.alibaba.csp.sentinel.init.InitExecutor;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import org.springframework.boot.SpringApplication;
@@ -11,9 +12,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDubbo
 @EnableDiscoveryClient
 public class XSpringBootNacosDubboProviderApplication {
-
     public static void main(String[] args) {
+        InitExecutor.doInit();
         SpringApplication.run(XSpringBootNacosDubboProviderApplication.class, args);
     }
-
 }

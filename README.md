@@ -89,7 +89,7 @@ JeeWeb 功能特点
 计划任务(微服务框架整合)
 -----------------------------------
 * 注册发现服务/配置中心->Nacos(已完成Nacos-Dubbo例子整合)
-* 熔断降级、系统负载->Sentinel
+* 熔断降级、系统负载->Sentinel(已完成Nacos-Dubbo-Sentinel整合)
 * API网关->Spring Cloud Gateway(已完成Nacos-Dubbo-Gateway默认路由/动态路由例子整合)
 * 其他阿里生态(Fescar分布事务、Dubbo...)
 
