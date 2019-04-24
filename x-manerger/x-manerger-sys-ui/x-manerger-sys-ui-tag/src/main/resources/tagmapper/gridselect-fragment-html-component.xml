@@ -25,7 +25,7 @@
 					    content: "${gridUrl!}",
 					    btn: ['确定', '关闭'],
 					    yes: function(index, layero){ //或者使用btn1
-					               	var grid=layero.find("iframe")[0].contentWindow.$("#${gridId}Grid");//获取默认ID  
+					               	var grid=layero.find("iframe")[0].contentWindow.$("#${gridId}");//获取默认ID
 									var ids = []<#list gridFieldMap?keys as formField>,${formField}s=[]</#list>;
 									var rows = grid.jqGrid('getGridParam','selarrrow');
 									var rowData= grid.jqGrid('getGridParam','selrow');

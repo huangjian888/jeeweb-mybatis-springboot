@@ -32,6 +32,7 @@ public class FreemarkerFormTagHelper {
 			adminPath = env.getProperty("company.admin.url.prefix");
 		}
 		rootMap.put("ctx", ctx);
+		rootMap.put("appPath", ctx);
 		rootMap.put("adminPath", adminPath);
 		rootMap.put("staticPath", staticPath);
 		initStaticAttribute(tag);
