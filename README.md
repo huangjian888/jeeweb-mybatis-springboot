@@ -74,8 +74,13 @@ JeeWeb 功能特点
 * 树结构控件：jQuery zTree
 * 日期控件： datepicker
 * 代码高亮： syntaxhighlighter
+
+3、分析工具
+
 * 链路跟踪：SkyWalking6.1+elasticsearch-6.8.0
 * Java诊断工具：Arthas
+
+
 
 简单使用说明
 -----------------------------------
@@ -95,7 +100,7 @@ JeeWeb 功能特点
 * API网关->Spring Cloud Gateway(已完成Nacos-Dubbo-Gateway默认路由/动态路由例子整合)
 * 其他阿里生态(Fescar分布事务、Dubbo...)
 
-快速定位问题框架整合
+分析框架整合
 -----------------------------------
 * 链路跟踪->SkyWalking
 ```
