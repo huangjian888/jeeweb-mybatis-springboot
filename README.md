@@ -74,6 +74,8 @@ JeeWeb 功能特点
 * 树结构控件：jQuery zTree
 * 日期控件： datepicker
 * 代码高亮： syntaxhighlighter
+* 链路跟踪：SkyWalking6.1+elasticsearch-6.8.0
+* Java诊断工具：Arthas
 
 简单使用说明
 -----------------------------------
@@ -86,12 +88,22 @@ JeeWeb 功能特点
 * 项目部署容器推荐Docker部署
 * 项目导出命令:F:/目录/x-spring-boot(工程根目录) 执行maven package 默认会使用项目src/main/assembly 目录下assembly.xml进行打包
 
-计划任务(微服务框架整合)
+微服务框架整合
 -----------------------------------
 * 注册发现服务/配置中心->Nacos(已完成Nacos-Dubbo例子整合)
 * 熔断降级、系统负载->Sentinel(已完成Nacos-Dubbo-Sentinel整合)
 * API网关->Spring Cloud Gateway(已完成Nacos-Dubbo-Gateway默认路由/动态路由例子整合)
 * 其他阿里生态(Fescar分布事务、Dubbo...)
+
+快速定位问题框架整合
+-----------------------------------
+* 链路跟踪->SkyWalking
+```
+SkyWalking默认采用H2保存,关闭SkyWalking oapService服务数据消失,若采用elasticsearch进行数据保存需要修改config目录下application.yml,然后先启动elasticsearch
+客户端工程->需要上报数据到SkyWalking平台
+Vm参数中加入 -javaagent:F:/Federation2.0/x-spring-boot/x-skywalking-agent/skywalking-agent.jar -Dskywalking_config=F:/Federation2.0/x-spring-boot/x-micro-service/x-spring-cloud-gateway-provide/src/main/assembly/skywalking-conf/agent.config
+```
+* Java诊断工具->Arthas
 
 平台目录结构说明
 -----------------------------------
@@ -117,7 +129,8 @@ x-micro-service 微服务模块(持续更新中...)
     x-spring-cloud-gateway-service 动态配置模式路由、Nacos为配置中心
     x-spring-cloud-gateway-provide 本地路由接口提供模块
     x-spring-boot-nacos 动态路由接口提供模块,Nacos、Dubbo、Gateway方式实现
-    
+x-skywalking-agent SkyWalking agent探针模块
+
 ```
 系统演示
 -----------------------------------
