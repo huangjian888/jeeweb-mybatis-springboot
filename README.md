@@ -78,8 +78,7 @@ JeeWeb 功能特点
 3、分析工具
 
 * 链路跟踪：SkyWalking6.1+elasticsearch-6.8.0
-* Java诊断工具：Arthas
-
+* Java诊断工具：Arthas+Visualvm+JProfile
 
 
 简单使用说明
@@ -108,7 +107,13 @@ SkyWalking默认采用H2保存,关闭SkyWalking oapService服务数据消失,若
 客户端工程->需要上报数据到SkyWalking平台
 Vm参数中加入 -javaagent:F:/Federation2.0/x-spring-boot/x-skywalking-agent/skywalking-agent.jar -Dskywalking_config=F:/Federation2.0/x-spring-boot/x-micro-service/x-spring-cloud-gateway-provide/src/main/assembly/skywalking-conf/agent.config
 ```
-* Java诊断工具->Arthas
+* Java诊断工具->Arthas+Visualvm+JProfile
+```
+Arthas阿里开源工具,主要用于快速分析线程相关问题引起的CPU飙升,可以快速筛查出耗CPU资源的线程等等功能,不足在于对内存分析功能太少
+Visualvm JDK自带分析工具,可以通过远程连接分析生产环境各种CPU,内存等问题,主要用于分析内存方面问题,dump出内存数据,支持docker容器(开放jmx监控功能)
+JProfile 商用工具,和Visualvm 功能类似,可以远程链接,在远程连接docker应用没有Visualvm好用
+原生命令行方式 dump,如jmap -dump:format=b,file=文件名.hprof [pid],将数据导入Visualvm或者JProfile进行内存分析
+```
 
 平台目录结构说明
 -----------------------------------
