@@ -81,7 +81,8 @@ public class CommonServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M
         String extendParam = duplicateValid.getExtendParam();
         if (!StringUtils.isEmpty(extendParam)) {
             // [2].编辑页面校验
-            wrapper.eq(duplicateValid.getName(), duplicateValid.getParam()).ne(extendName, extendParam);
+//            wrapper.eq(duplicateValid.getName(), duplicateValid.getParam()).ne(extendName, extendParam);
+            wrapper.eq(duplicateValid.getName(), duplicateValid.getParam()).eq(extendName, extendParam);
             num = baseMapper.selectCount(wrapper);
         } else {
             // [1].添加页面校验
