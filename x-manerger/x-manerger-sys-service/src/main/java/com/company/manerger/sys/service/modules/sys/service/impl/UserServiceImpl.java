@@ -15,6 +15,7 @@ import com.company.manerger.sys.service.modules.sys.entity.UserOrganization;
 import com.company.manerger.sys.service.modules.sys.entity.UserRole;
 import com.company.manerger.sys.service.modules.sys.mapper.UserMapper;
 import com.company.manerger.sys.service.modules.sys.service.*;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.mapper.Wrapper;
@@ -104,6 +105,7 @@ public class UserServiceImpl extends CommonServiceImpl<UserMapper, User> impleme
 	public String queryDynamicDataSource() {
 		String pwd = storeUserService.findByUsername("test").getPassword(); //从库
 		List<Role> roleList = roleService.findListByUserId("40288ab85a362150015a3675ca950006"); //主库
+
 		return "pwd";
 	}
 
