@@ -64,6 +64,9 @@
         <module>x-spring-boot-nacos-dubbo-consumer</module>
         <module>x-spring-boot-nacos-dubbo-facade</module>
         <module>x-spring-boot-shardingsphere-seata</module>
+        <module>shardingsphere-seata-nacos-dubbo-provider-business</module>
+        <module>shardingsphere-seata-nacos-dubbo-provider-order</module>
+
     </modules>
 
 

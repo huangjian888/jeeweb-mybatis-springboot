@@ -22,6 +22,7 @@
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <jstl.version>1.2</jstl.version>
         <spring-boot-starter-web.version>2.1.1.RELEASE</spring-boot-starter-web.version>
+        <spring-boot-dependencies.version>2.1.1.RELEASE</spring-boot-dependencies.version>
         <spring-boot-starter-test.version>2.1.1.RELEASE</spring-boot-starter-test.version>
         <spring-boot-devtools.version>2.1.1.RELEASE</spring-boot-devtools.version>
     </properties>
@@ -52,6 +53,14 @@
                 <!--<artifactId>spring-boot-starter-logging</artifactId>-->
                 <!--</exclusion>-->
                 <!--</exclusions>-->
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <dependency>
