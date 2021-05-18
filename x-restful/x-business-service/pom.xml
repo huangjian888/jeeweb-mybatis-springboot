@@ -35,7 +35,7 @@
         <jwt.version>3.3.0</jwt.version>
         <jjwt.version>0.9.1</jjwt.version>
         <xxljob.version>2.0.1</xxljob.version>
-        <xstream.version>1.4.10</xstream.version>
+        <xstream.version>1.4.17</xstream.version>
         <bcprov.version>1.46</bcprov.version>
 
     </properties>
