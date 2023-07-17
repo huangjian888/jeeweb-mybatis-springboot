@@ -23,7 +23,7 @@
         <java.version>1.8</java.version>
         <sharding-sphere.version>4.0.0-RC2-SNAPSHOT</sharding-sphere.version>
         <!--<dubbo-spring-boot-starter.version>0.2.1.RELEASE</dubbo-spring-boot-starter.version>-->
-        <!--<dubbo.version>2.6.5</dubbo.version>-->
+        <!--<dubbo.version>2.6.12</dubbo.version>-->
         <!--<nacos-config-spring-boot.version>0.2.1</nacos-config-spring-boot.version>-->
         <!--<dubbo-registry-nacos.version>0.0.2</dubbo-registry-nacos.version>-->
         <!--<spring-context-support.version>1.0.2</spring-context-support.version>-->
